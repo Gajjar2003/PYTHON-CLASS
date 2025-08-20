@@ -74,3 +74,32 @@
 #         pass    
 
 
+#----------------------------------------------------------------------------------------------------
+
+#extar example for factorial
+
+#for loop
+
+# fact = int(input("Please enter your number is : "))
+
+# for i in range(1,fact):
+#     fact=fact*i
+# print(i,"is ",fact," is factorial number")
+
+
+#------------------------------------------------------------------------------------------------------
+
+#extar example for Fibonacci Series
+
+# fibonacci = int(input("Please enter your number: "))
+# temp = 0
+# pr = 0
+# pe = 1
+# for i in range(fibonacci):
+#   temp = pr + pe       
+#   pr = pe             
+#   pe = temp 
+
+#   print(temp ,"Fibonacci Series ")
+
+
