@@ -47,3 +47,44 @@
 #     print("C is greater")        
 
 
+# looping statement 
+
+# for loop
+
+# for i in range(15):
+#     print(i)
+
+# for i in range(5,15):
+#     print(i)
+
+# for i in range(1,15,4):
+#     print(i)
+
+
+# for i in range(15,1,-5):
+#     print(i)
+
+
+# while loop
+
+# i=10
+
+# while i < 20:
+#     print(i)
+#     i=i+1
+
+
+# break , continue , pass
+
+# for i in range(15):
+#     if i==5:
+#         #break
+#         continue
+#     print(i)
+
+# i=0
+ 
+# if 10 < 20:
+#     print("20 is greate") 
+# else:
+#     pass    
