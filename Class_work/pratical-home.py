@@ -66,3 +66,158 @@
 #     print("prime number")
 # else:
 #     print("Not a prime number")
+
+
+#-------------------------------------------------------------------------------
+
+#extar example for armstrong number
+
+# number = int(input("Enter your number: "))
+
+# temp = number
+# sum = 0
+
+# while number > 0:
+#     rem = number % 10
+#     sum += rem ** 3    
+#     number //= 10
+
+# if sum == temp:
+#     print(temp, "is an Armstrong number")
+# else:
+#     print(temp, "is not an Armstrong number")
+
+# -----------------------------------------------------------------------------
+
+# extar example for pelindron number
+
+# number = int(input("Enter your number: "))
+
+# temp = number
+# sum = 0
+
+# while number != 0:
+#     rem = number % 10
+#     sum = sum * 10 + rem  
+#     number = number // 10
+
+# if sum == temp:
+#     print(temp, "is a Palindrome number")
+# else:
+#     print(temp, "is Not a Palindrome number")
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -----------------------------------------------------------------------------
+
+
+# *
+# * * 
+# * * *
+# * * * *
+# * * * * *
+
+# for i in range(1,6):
+#     for j in range(i):
+#         print("*",end="")
+#     print()    
+
+
+# -------------------------------------------------------------------------------
+
+# * * * * *
+# * * * * *
+# * * * * *
+# * * * * *
+# * * * * *
+
+
+# for i in range(1,6):
+#     for j in range(1,6):
+#         print("*",end="")
+#     print()
+
+
+# -------------------------------------------------------------------------------
+
+
+# * * * * *
+# * * * *
+# * * *
+# * *
+# *
+
+
+# for i in range(5 ,0 ,-1):
+#     for j in range(i):
+#         print("*",end="")
+#     print()    
+
+#---------------------------------------------------------------------------------
+
+    #            *
+    #          * *
+    #        * * *
+    #      * * * *
+    #    * * * * * 
+
+
+# for i in range(1, 6):       
+#     for j in range(5, i, -1):   
+#         print(" ", end=" ")
+#     for k in range(1, i+1):     
+#         print("*", end=" ")
+#     print()   
+ 
+
+# for i in range(1, 6):   
+#     print("  " * (5 - i), end="")   
+#     print("* " * i)     
+
+
+# ----------------------------------------------------------------------------------
+
+#   * * * * *
+#     * * * *
+#       * * *
+#         * *
+#           *
+
+
+# for i in range(6, 0,-1):      
+#     for j in range(6, i, -1):    
+#         print(" ", end=" ")
+#     for k in range(1, i+1):      
+#         print("*", end=" ")
+#     print()  
+
+     
+
+
+
+
