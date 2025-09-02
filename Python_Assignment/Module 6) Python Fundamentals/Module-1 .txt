@@ -1,0 +1,56 @@
+1. Introduction to Python
+
+     1. Introduction to Python and its Features (simple, high-level, interpreted language)
+         Python is a high-level, interpreted programming language that is widely used for web development,
+         data science, artificial intelligence, automation, and many other applications. It was created by
+         Guido van Rossum in 1991 with the idea of making programming simple, readable, and beginner-friendly
+
+         Features of Python
+      
+              1.  Simple and Easy to Learn
+
+                Python has a clean and readable syntax.
+
+                Looks similar to English, which makes it beginner-friendly.
+
+              2.  High-Level Language
+
+                Programmers don’t need to worry about low-level details like memory management.
+
+                It allows developers to focus on solving problems rather than managing hardware.
+
+              3.  Interpreted Language
+
+                Python code runs line by line using an interpreter.
+
+                No need for compilation, which makes debugging easier.
+
+             4.   Cross-Platform
+
+                Python works on different operating systems like Windows, Mac, and Linux without changes in code.
+
+              5.  Object-Oriented and Procedural
+
+                Supports both object-oriented programming (classes, objects) and simple procedural programming.
+
+              6. Extensive Standard Library
+
+                Comes with built-in modules for math, file handling, networking, databases, etc.
+
+                Also supports thousands of external libraries (like NumPy, Pandas, Django).
+
+              7.  Free and Open Source
+
+                Python is free to use and distribute, with a huge community of developers.
+
+              8.  Dynamic Typing
+
+                No need to declare variable types explicitly; Python decides the type at runtime.
+
+              9.  Portable
+
+                The same Python program can run on multiple platforms without modification.
+   
+
+      
+ 
