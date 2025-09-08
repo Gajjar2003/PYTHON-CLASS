@@ -12,7 +12,7 @@ choice = "y"
 
 
 
-while choice.lower() == "y":
+while choice == "y":
     
     name = input("Enter your student name: ")
     marks = int(input("Enter your marks (0-100): "))
