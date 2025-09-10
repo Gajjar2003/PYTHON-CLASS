@@ -74,12 +74,42 @@
 #     print("three number greatest",n3) 
 
 
-# 🔹 Loops
-
 # Write a program to print numbers from 1 to 10 using a loop.
+
+# for i in range(1,11):
+#     print(i)
+
 
 # Write a program to print a multiplication table of a given number.
 
-# Write a program to calculate the factorial of a number using a loop.
+# number = int(input("enter your number is- "))
+ 
+# for i in range(1,11):
+#     print(i, "X",number ,"=",i*number)
+
+# Write a program to calculate the factorial of a number using a loop
+
+# number = int(input("enter your number is- "))
+
+# for i in range(1,number):
+#     number= number*i
+    
+    
+# print("Enter your facttorial is",number)
+ 
 
 # Write a program to find the sum of digits of a number.
+
+
+
+# num = int(input("Enter a number: "))
+# total = 0
+
+# while num > 0:
+#     digit = num % 10      
+#     total += digit       
+#     num //= 10            
+
+# print("Sum of digits:", total)
+
+
