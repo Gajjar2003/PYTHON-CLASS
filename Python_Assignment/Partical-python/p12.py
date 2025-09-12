@@ -66,7 +66,7 @@ print(last)
 
 print("-----------------------------------------------------------------------")
 
-#  Practical Example: 9) Write a Python program to print every alternate character from the string starting from index 1.
+#  Practical Example: 9) Write a Python program to print every alternate character from the string starting from index 1.
 
 my_string = "pythonprogramming"
 alte = my_string[1::2]
