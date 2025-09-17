@@ -158,7 +158,42 @@
 #     print()  
 
 
+# write a program find min and max number use to function reduce ()
 
 
+from functools import reduce
+
+l = [12,771,8474,1,74,2345,74887,4544]
+
+def max(a,b):
+    if a > b:
+        return a
+    else :
+        return b 
+    
+maxmum = reduce(max,l)    
+print(maxmum)
+
+def min(a,b):
+    if a < b :
+        return a
+    else :
+        return b
+
+minmum = reduce(min,l)
+print(minmum)
+
+
+# write a program to avg use to reduce function
+
+
+from functools import reduce
+
+l = [12, 771, 8474, 1, 74, 2345, 74887, 4544]
+total = reduce(lambda a, b: a + b, l)
+average = total / len(l)
+print("Average:", average)
+
+  
 
 
