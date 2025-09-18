@@ -1,0 +1,1150 @@
+1.Accessing List
+
+    1.Understanding how to create and access elements in a list.
+        ✅ Creating a List
+
+        A list in Python is created using square brackets [].
+        It can hold multiple values (even of different types).
+
+        # Example of creating lists
+        numbers = [10, 20, 30, 40, 50]       # list of integers
+        names = ["Alice", "Bob", "Charlie"]  # list of strings
+        mixed = [1, "hello", 3.5, True]      # list with mixed data types
+
+        ✅ Accessing Elements
+
+        Lists are ordered, and you can access elements using indexing.
+        👉 Indexing starts at 0 in Python.
+
+        numbers = [10, 20, 30, 40, 50]
+
+        print(numbers[0])   # First element → 10
+        print(numbers[2])   # Third element → 30
+        print(numbers[-1])  # Last element → 50 (negative indexing)
+        print(numbers[-2])  # Second last element → 40
+
+        ✅ Accessing Multiple Elements (Slicing)
+
+        You can use slicing to get a part of the list:
+
+        numbers = [10, 20, 30, 40, 50]
+
+        print(numbers[1:4])   # [20, 30, 40] → from index 1 to 3
+        print(numbers[:3])    # [10, 20, 30] → from start to index 2
+        print(numbers[2:])    # [30, 40, 50] → from index 2 to end
+        print(numbers[::2])   # [10, 30, 50] → every 2nd element
+
+        ✅ Changing Elements
+
+        Lists are mutable, so you can change elements:
+
+        numbers = [10, 20, 30, 40, 50]
+
+        numbers[1] = 99        # change 2nd element
+        print(numbers)         # [10, 99, 30, 40, 50]
+
+
+2. Indexing in lists (positive and negative indexing).
+
+        ✅ Indexing in Lists
+
+        When you create a list, each element gets a position (index number).
+
+        👉 Positive Indexing → Starts from 0 (left → right).
+        👉 Negative Indexing → Starts from -1 (right → left).
+
+        🔹 Example List
+        fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+        🔹 Positive Indexing
+        Index:   0        1         2        3          4
+        Value: "apple"  "banana"  "cherry" "date"   "elderberry"
+
+        print(fruits[0])   # apple  (first element)
+        print(fruits[2])   # cherry (third element)
+        print(fruits[4])   # elderberry (fifth element)
+
+        🔹 Negative Indexing
+        Index:  -5      -4       -3       -2        -1
+        Value: "apple" "banana" "cherry" "date"  "elderberry"
+
+        print(fruits[-1])   # elderberry 
+        print(fruits[-2])   # date      
+        print(fruits[-5])   # apple      
+
+3.Slicing a list: accessing a range of elements.
+
+        ✅ What is List Slicing?
+
+        Slicing means accessing a range of elements from a list using the format:
+
+        list[start:end:step]
+
+
+        start → index where the slice begins (inclusive).
+
+        end → index where the slice stops (exclusive).
+
+        step → interval (default is 1).
+
+        🔹 Example List
+        numbers = [10, 20, 30, 40, 50, 60, 70]
+
+        🔹 Basic Slicing
+        print(numbers[1:4])   # [20, 30, 40] → from index 1 to 3
+        print(numbers[:3])    # [10, 20, 30] → from start to index 2
+        print(numbers[3:])    # [40, 50, 60, 70] → from index 3 to end
+
+        🔹 Using Step
+        print(numbers[::2])   # [10, 30, 50, 70] → every 2nd element
+        print(numbers[1::2])  # [20, 40, 60] → every 2nd element starting from index 1
+
+        🔹 Negative Index with Slicing
+        print(numbers[-4:-1])   # [40, 50, 60] → from index -4 to -2
+        print(numbers[::-1])    # [70, 60, 50, 40, 30, 20, 10] → reverse the list
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+2.  List Operations
+
+    1.Common list operations: concatenation, repetition, membership
+
+            ✅ Common List Operations in Python
+        🔹 1. Concatenation (+)
+
+        You can join two or more lists using the + operator.
+
+        list1 = [1, 2, 3]
+        list2 = [4, 5, 6]
+
+        result = list1 + list2
+        print(result)   # [1, 2, 3, 4, 5, 6]
+
+        🔹 2. Repetition (*)
+
+        You can repeat elements of a list using the * operator.
+
+        list1 = ["A", "B"]
+
+        result = list1 * 3
+        print(result)   # ['A', 'B', 'A', 'B', 'A', 'B']
+
+        🔹 3. Membership (in, not in)
+
+        You can check whether an element exists in a list.
+
+        fruits = ["apple", "banana", "cherry"]
+
+        print("apple" in fruits)     # True
+        print("mango" in fruits)     # False
+        print("mango" not in fruits) # True
+
+    2.Understanding list methods like append(), insert(), remove(), pop().
+
+
+            ✅ Common List Methods
+        🔹 1. append() → Add element at the end
+        fruits = ["apple", "banana"]
+        fruits.append("cherry")
+        print(fruits)   # ['apple', 'banana', 'cherry']
+
+        🔹 2. insert() → Add element at a specific position
+        fruits = ["apple", "banana"]
+        fruits.insert(1, "cherry")   # insert at index 1
+        print(fruits)   # ['apple', 'cherry', 'banana']
+
+        🔹 3. remove() → Remove the first occurrence of an element
+        fruits = ["apple", "banana", "cherry", "banana"]
+        fruits.remove("banana")   # removes first 'banana'
+        print(fruits)   # ['apple', 'cherry', 'banana']
+
+
+        ⚠️ If the element does not exist → Error (ValueError).
+
+        🔹 4. pop() → Remove element at a specific index (default: last element)
+        fruits = ["apple", "banana", "cherry"]
+
+        fruits.pop()       # removes last element → 'cherry'
+        print(fruits)      # ['apple', 'banana']
+
+        fruits.pop(0)      # removes element at index 0 → 'apple'
+        print(fruits)      # ['banana']
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+3. Working with Lists
+
+    1.Iterating over a list using loops
+
+            ✅ Iterating Over a List Using Loops
+        🔹 1. Using a for loop (most common)
+        fruits = ["apple", "banana", "cherry"]
+
+        for item in fruits:
+            print(item)
+
+
+        👉 Output:
+
+        apple
+        banana
+        cherry
+
+        🔹 2. Using for loop with range() and indexing
+        fruits = ["apple", "banana", "cherry"]
+
+        for i in range(len(fruits)):   # i = 0,1,2
+            print(i, fruits[i])        # prints index and value
+
+
+        👉 Output:
+
+        0 apple
+        1 banana
+        2 cherry
+
+        🔹 3. Using a while loop
+        fruits = ["apple", "banana", "cherry"]
+
+        i = 0
+        while i < len(fruits):
+            print(fruits[i])
+            i += 1
+
+        🔹 4. Using enumerate() (index + value together, cleaner way)
+        fruits = ["apple", "banana", "cherry"]
+
+        for index, value in enumerate(fruits):
+            print(index, value)
+
+    2.Sorting and reversing a list using sort(), sorted(), and reverse().
+
+            ✅ Sorting and Reversing Lists
+        🔹 1. sort() → Sorts the list in-place
+
+        Changes the original list
+
+        Default: ascending order
+
+        numbers = [40, 10, 30, 20]
+        numbers.sort()
+        print(numbers)   # [10, 20, 30, 40]
+
+
+        👉 Sorting in descending order:
+
+        numbers.sort(reverse=True)
+        print(numbers)   # [40, 30, 20, 10]
+
+        🔹 2. sorted() → Returns a new sorted list
+
+        Original list remains unchanged
+
+        Can be used on any iterable (list, tuple, string, etc.)
+
+        numbers = [40, 10, 30, 20]
+
+        print(sorted(numbers))        # [10, 20, 30, 40]
+        print(numbers)                # [40, 10, 30, 20] (unchanged)
+
+        print(sorted(numbers, reverse=True))  # [40, 30, 20, 10]
+
+        🔹 3. reverse() → Reverses the list in-place
+
+        Does not sort, only flips the order
+
+        numbers = [40, 10, 30, 20]
+        numbers.reverse()
+        print(numbers)   # [20, 30, 10, 40]
+
+    3.Basic list manipulations: addition, deletion, updating, and slicing.
+
+                ✅ Basic List Manipulations in Python
+            🔹 1. Addition (Adding Elements)
+
+            You can add elements in multiple ways:
+
+            fruits = ["apple", "banana"]
+
+            fruits.append("cherry")           # add at end
+            print(fruits)   # ['apple', 'banana', 'cherry']
+
+            fruits.insert(1, "mango")         # add at index 1
+            print(fruits)   # ['apple', 'mango', 'banana', 'cherry']
+
+            fruits.extend(["grape", "orange"])  # add multiple
+            print(fruits)   # ['apple', 'mango', 'banana', 'cherry', 'grape', 'orange']
+
+            🔹 2. Deletion (Removing Elements)
+
+            Several ways to remove items:
+
+            fruits = ["apple", "banana", "cherry", "banana"]
+
+            fruits.remove("banana")   # removes first 'banana'
+            print(fruits)   # ['apple', 'cherry', 'banana']
+
+            fruits.pop()              # removes last element
+            print(fruits)   # ['apple', 'cherry']
+
+            fruits.pop(0)             # removes element at index 0
+            print(fruits)   # ['cherry']
+
+            del fruits[0]             # delete by index
+            print(fruits)   # []
+
+            fruits = ["apple", "banana", "cherry"]
+            fruits.clear()            # removes all elements
+            print(fruits)   # []
+
+            🔹 3. Updating (Changing Elements)
+
+            Lists are mutable → you can change elements directly.
+
+            numbers = [10, 20, 30, 40]
+
+            numbers[1] = 99          # change second element
+            print(numbers)   # [10, 99, 30, 40]
+
+            numbers[2:4] = [77, 88]  # update multiple using slicing
+            print(numbers)   # [10, 99, 77, 88]
+
+            🔹 4. Slicing (Accessing a Range of Elements)
+            numbers = [10, 20, 30, 40, 50, 60]
+
+            print(numbers[1:4])    # [20, 30, 40]
+            print(numbers[:3])     # [10, 20, 30]
+            print(numbers[3:])     # [40, 50, 60]
+            print(numbers[::2])    # [10, 30, 50]
+            print(numbers[::-1])   # [60, 50, 40, 30, 20, 10] (reversed)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Tuple
+
+    1.Introduction to tuples, immutability.
+
+            What is a Tuple?
+
+            A tuple is a collection of items, like a list, but enclosed in parentheses () instead of square brackets [].
+
+            # Example of tuples
+            numbers = (10, 20, 30, 40)
+            fruits = ("apple", "banana", "cherry")
+            mixed  = (1, "hello", 3.5, True)
+
+            🔹 Key Features of Tuples
+
+            Ordered → Items have a fixed order.
+
+            Allow duplicates → Same value can appear multiple times.
+
+            Heterogeneous → Can store different data types.
+
+            Immutable → Once created, you cannot change, add, or remove elements.
+
+            🔹 Tuple vs List
+            Feature	List ([])	Tuple (())
+            Mutable	✅ Yes (can change, add, delete)	❌ No (cannot change after creation)
+            Performance	Slower	Faster
+            Use case	When data needs updates	When data should stay constant
+            🔹 Immutability Example
+            fruits = ("apple", "banana", "cherry")
+
+            # Trying to update
+            # fruits[1] = "mango"   ❌ This gives an error (TypeError)
+
+
+            👉 Once created, tuple elements cannot be modified.
+
+            🔹 But you can…
+
+            Access elements using indexing and slicing:
+
+            print(fruits[0])    # apple
+            print(fruits[-1])   # cherry
+            print(fruits[0:2])  # ('apple', 'banana')
+
+
+            Reassign the whole tuple (create a new one):
+
+            fruits = ("mango", "orange")
+            print(fruits)   # ('mango', 'orange')
+
+    2.Creating and accessing elements in a tuple
+
+        ✅ Creating Tuples
+        🔹 1. Empty Tuple
+        t = ()
+        print(t)    # ()
+
+        🔹 2. Single Element Tuple
+
+        ⚠️ You must add a comma after the element, otherwise Python treats it as a normal value.
+
+        t1 = (10,)  
+        print(t1)     # (10,)
+
+        🔹 3. Multiple Elements Tuple
+        t2 = (10, 20, 30, 40)
+        print(t2)     # (10, 20, 30, 40)
+
+        🔹 4. Tuple Without Parentheses (Packing)
+        t3 = 1, 2, 3, 4
+        print(t3)     # (1, 2, 3, 4)
+
+        🔹 5. Mixed Data Types
+        t4 = (1, "hello", 3.5, True)
+        print(t4)     # (1, 'hello', 3.5, True)
+
+        ✅ Accessing Elements in Tuples
+
+        👉 Tuples are accessed just like lists, using indexing and slicing.
+
+        fruits = ("apple", "banana", "cherry", "date")
+
+        🔹 Positive Indexing
+        print(fruits[0])   # apple
+        print(fruits[2])   # cherry
+
+        🔹 Negative Indexing
+        print(fruits[-1])  # date
+        print(fruits[-2])  # cherry
+
+        🔹 Slicing
+        print(fruits[1:3])   # ('banana', 'cherry')
+        print(fruits[:2])    # ('apple', 'banana')
+        print(fruits[::2])   # ('apple', 'cherry')
+    
+    3.Basic operations with tuples: concatenation, repetition, membership.
+
+        ✅ Basic Operations with Tuples
+        🔹 1. Concatenation (+)
+
+        You can join two tuples together using the + operator.
+
+        t1 = (1, 2, 3)
+        t2 = (4, 5, 6)
+
+        result = t1 + t2
+        print(result)   # (1, 2, 3, 4, 5, 6)
+
+        🔹 2. Repetition (*)
+
+        You can repeat a tuple multiple times using the * operator.
+
+        t = ("A", "B")
+
+        result = t * 3
+        print(result)   # ('A', 'B', 'A', 'B', 'A', 'B')
+
+        🔹 3. Membership (in, not in)
+
+        You can check if an element exists in a tuple.
+
+        fruits = ("apple", "banana", "cherry")
+
+        print("apple" in fruits)      # True
+        print("mango" in fruits)      # False
+        print("mango" not in fruits)  # True
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Accessing Tuples
+
+    1.Accessing tuple elements using positive and negative indexing
+
+        ✅ Accessing Tuple Elements with Indexing
+
+        👉 Tuples are ordered collections, so each element has a fixed index number.
+
+        🔹 Example Tuple
+        fruits = ("apple", "banana", "cherry", "date", "elderberry")
+
+        🔹 Positive Indexing (from left → right)
+
+        Index starts from 0 for the first element.
+
+        Index:   0        1         2        3            4
+        Value: "apple"  "banana"  "cherry" "date"   "elderberry"
+
+        print(fruits[0])   # apple   (first element)
+        print(fruits[2])   # cherry  (third element)
+        print(fruits[4])   # elderberry (fifth element)
+
+        🔹 Negative Indexing (from right → left)
+
+        Index starts from -1 for the last element.
+
+        Index:  -5       -4        -3       -2           -1
+        Value: "apple" "banana" "cherry" "date"   "elderberry"
+
+        print(fruits[-1])   # elderberry (last element)
+        print(fruits[-2])   # date       (second last element)
+        print(fruits[-5])   # apple      (first element using negative index)
+
+    2.Slicing a tuple to access ranges of elements.
+
+        ✅ Slicing Tuples
+
+        👉 Just like lists, we use the syntax:
+
+        tuple[start:end:step]
+
+
+        start → index where the slice begins (inclusive).
+
+        end → index where the slice stops (exclusive).
+
+        step → interval (default = 1).
+
+        🔹 Example Tuple
+        numbers = (10, 20, 30, 40, 50, 60, 70)
+
+        🔹 Basic Slicing
+        print(numbers[1:4])   # (20, 30, 40) → from index 1 to 3
+        print(numbers[:3])    # (10, 20, 30) → from start to index 2
+        print(numbers[3:])    # (40, 50, 60, 70) → from index 3 to end
+
+        🔹 Using Step
+        print(numbers[::2])   # (10, 30, 50, 70) → every 2nd element
+        print(numbers[1::2])  # (20, 40, 60) → every 2nd element starting at index 1
+
+        🔹 Negative Index with Slicing
+        print(numbers[-4:-1])   # (40, 50, 60) → from index -4 to -2
+        print(numbers[::-1])    # (70, 60, 50, 40, 30, 20, 10) → reversed tuple
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Dictionaries
+
+    1.Introduction to dictionaries: key-value pairs
+
+            ✅ Introduction to Dictionaries in Python
+            🔹 What is a Dictionary?
+
+            A dictionary is a collection in Python that stores data in the form of key–value pairs.
+
+            Keys → unique identifiers
+
+            Values → data associated with the keys
+
+            Dictionaries are enclosed in curly braces {}.
+
+            student = {
+                "name": "Alice",
+                "age": 20,
+                "grade": "A"
+            }
+
+            🔹 Features of Dictionaries
+
+            Unordered (before Python 3.7 → unordered, now ordered by insertion).
+
+            Key–Value pairs.
+
+            Keys must be unique (cannot repeat).
+
+            Values can be duplicated.
+
+            Keys are immutable types (like string, number, tuple).
+
+            🔹 Example
+            person = {
+                "name": "John",
+                "age": 25,
+                "city": "New York"
+            }
+
+            print(person["name"])   # John
+            print(person["age"])    # 25
+
+            🔹 Empty Dictionary
+            empty_dict = {}
+            print(empty_dict)   # {}
+
+    2.Accessing, adding, updating, and deleting dictionary elements
+
+            ✅ Dictionary Operations: Access, Add, Update, Delete
+        🔹 Example Dictionary
+        student = {
+            "name": "Alice",
+            "age": 20,
+            "grade": "A"
+        }
+
+        1️⃣ Accessing Elements
+
+        Using the key
+
+        print(student["name"])   # Alice
+        print(student["age"])    # 20
+
+
+        ⚠️ If the key does not exist → KeyError.
+
+        👉 Safer way: use .get()
+
+        print(student.get("grade"))     # A
+        print(student.get("city"))      # None (no error if key doesn’t exist)
+
+        2️⃣ Adding Elements
+
+        Just assign a new key–value pair
+
+        student["city"] = "New York"
+        print(student)
+        # {'name': 'Alice', 'age': 20, 'grade': 'A', 'city': 'New York'}
+
+        3️⃣ Updating Elements
+
+        Reassign an existing key
+
+        student["age"] = 21   # change age
+        print(student)
+        # {'name': 'Alice', 'age': 21, 'grade': 'A', 'city': 'New York'}
+
+
+        Or use .update()
+
+        student.update({"grade": "A+"})
+        print(student)
+        # {'name': 'Alice', 'age': 21, 'grade': 'A+', 'city': 'New York'}
+
+        4️⃣ Deleting Elements
+
+        Several options:
+
+        student.pop("city")   # removes 'city' key
+        print(student)
+        # {'name': 'Alice', 'age': 21, 'grade': 'A+'}
+
+        del student["grade"]  # removes 'grade'
+        print(student)
+        # {'name': 'Alice', 'age': 21}
+
+        student.clear()       # removes all elements
+        print(student)
+
+
+    3.Dictionary methods like keys(), values(), and items().
+
+        ✅ Dictionary Methods: keys(), values(), items()
+
+        Let’s use an example dictionary:
+
+        student = {
+            "name": "Alice",
+            "age": 20,
+            "grade": "A"
+        }
+
+        🔹 1. keys() → returns all keys
+        print(student.keys())  
+        # dict_keys(['name', 'age', 'grade'])
+
+
+        👉 You can loop through keys:
+
+        for k in student.keys():
+            print(k)
+
+
+        Output:
+
+        name
+        age
+        grade
+
+        🔹 2. values() → returns all values
+        print(student.values())
+        # dict_values(['Alice', 20, 'A'])
+
+
+        👉 You can loop through values:
+
+        for v in student.values():
+            print(v)
+
+
+        Output:
+
+        Alice
+        20
+        A
+
+        🔹 3. items() → returns key-value pairs as tuples
+        print(student.items())
+        # dict_items([('name', 'Alice'), ('age', 20), ('grade', 'A')])
+
+
+        👉 Loop through key-value pairs:
+
+        for k, v in student.items():
+            print(k, ":", v)
+
+
+        Output:
+
+        name : Alice
+        age : 20
+        grade : A
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. Working with Dictionaries
+
+    1.Iterating over a dictionary using loops.
+
+            ✅ Iterating Over a Dictionary
+
+        Use loops to access keys, values, or key-value pairs.
+
+        Let’s take an example dictionary:
+
+        student = {
+            "name": "Alice",
+            "age": 20,
+            "grade": "A"
+        }
+
+        🔹 1. Iterating Over Keys (default)
+        for key in student:
+            print(key)
+
+
+        Output:
+
+        name
+        age
+        grade
+
+        🔹 2. Iterating Over Values
+        for value in student.values():
+            print(value)
+
+
+        Output:
+
+        Alice
+        20
+        A
+
+        🔹 3. Iterating Over Key-Value Pairs
+        for key, value in student.items():
+            print(key, ":", value)
+
+
+        Output:
+
+        name : Alice
+        age : 20
+        grade : A
+
+        🔹 4. Using keys() explicitly
+        for key in student.keys():
+            print(key, "->", student[key])
+
+
+        Output:
+
+        name -> Alice
+        age -> 20
+        grade -> A
+
+    2.Merging two lists into a dictionary using loops or zip().
+
+        ✅ Example Lists
+        keys = ["name", "age", "grade"]
+        values = ["Alice", 20, "A"]
+
+        🔹 1. Using a Loop
+        # Create an empty dictionary
+        student = {}
+
+        for i in range(len(keys)):
+            student[keys[i]] = values[i]
+
+        print(student)
+
+
+        Output:
+
+        {'name': 'Alice', 'age': 20, 'grade': 'A'}
+
+        🔹 2. Using zip()
+
+        zip() pairs elements from two lists and returns an iterator of tuples.
+
+        student = dict(zip(keys, values))
+        print(student)
+
+
+        Output:
+
+        {'name': 'Alice', 'age': 20, 'grade': 'A'}
+
+        🔹 3. Using Dictionary Comprehension + zip()
+        student = {k: v for k, v in zip(keys, values)}
+        print(student)
+
+
+        Output:
+
+        {'name': 'Alice', 'age': 20, 'grade': 'A'}
+
+    3.Counting occurrences of characters in a string using dictionaries.
+
+        ✅ Example: Count Character Occurrences
+        text = "hello world"
+
+        # Create an empty dictionary
+        char_count = {}
+
+        for char in text:
+            if char in char_count:
+                char_count[char] += 1   # increment count
+            else:
+                char_count[char] = 1    # initialize count
+
+        print(char_count)
+
+
+        Output:
+
+        {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}
+
+        🔹 Explanation
+
+        Loop through each character in the string.
+
+        Check if character already in dictionary:
+
+        Yes → increment its count
+
+        No → set count to 1
+
+        At the end, the dictionary contains characters as keys and counts as values.
+
+        🔹 Alternative: Using get() method
+        char_count = {}
+
+        for char in text:
+            char_count[char] = char_count.get(char, 0) + 1
+
+        print(char_count)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Functions
+
+    1.Defining functions in Python.
+
+         A function is a reusable block of code that performs a specific task.
+
+        Helps organize code, avoid repetition, and make programs modular.
+
+        🔹 Syntax
+        def function_name(parameters):
+            """
+            Optional docstring to describe the function.
+            """
+            # block of code
+            return value  # optional
+
+
+        def → keyword to define a function
+
+        function_name → name of the function (follow naming rules)
+
+        parameters → input values (optional)
+
+        return → value that function sends back (optional)
+
+        🔹 Example 1: Function without Parameters
+        def greet():
+            print("Hello, world!")
+
+        greet()   # calling the function
+
+
+        Output:
+
+        Hello, world!
+
+        🔹 Example 2: Function with Parameters
+        def greet(name):
+            print("Hello,", name)
+
+        greet("Alice")  # Hello, Alice
+        greet("Bob")    # Hello, Bob
+
+        🔹 Example 3: Function with Return Value
+        def add(a, b):
+            return a + b
+
+        result = add(10, 20)
+        print(result)   # 30
+
+        🔹 Example 4: Function with Default Parameters
+        def greet(name="Guest"):
+            print("Hello,", name)
+
+        greet()        # Hello, Guest
+        greet("Alice") # Hello, Alice
+
+    2.Different types of functions: with/without parameters, with/without return values.
+
+    
+        Type	Parameters	Return Value	Example
+        Type 1	No parameters	No return value	def greet(): print("Hello")
+        Type 2	Parameters	No return value	def greet(name): print("Hello", name)
+        Type 3	No parameters	Return value	def get_pi(): return 3.14
+        Type 4	Parameters	Return value	def add(a, b): return a + b
+        
+        1. Function without parameters & without return value
+        def greet():
+            print("Hello, world!")
+
+        greet()
+
+
+        Output:
+
+        Hello, world!
+
+        🔹 2. Function with parameters & without return value
+        def greet(name):
+            print("Hello,", name)
+
+        greet("Alice")
+
+
+        Output:
+
+        Hello, Alice
+
+        🔹 3. Function without parameters & with return value
+        def get_pi():
+            return 3.14159
+
+        pi = get_pi()
+        print(pi)
+
+
+        Output:
+
+        3.14159
+
+        🔹 4. Function with parameters & with return value
+        def add(a, b):
+            return a + b
+
+        result = add(10, 20)
+        print(result)
+
+
+        Output:
+
+        30
+
+    3.Anonymous functions (lambda functions).
+
+        ✅ Anonymous / Lambda Functions
+
+        A lambda function is a small, unnamed function defined using the keyword lambda.
+
+        Used for simple operations that can be written in a single line.
+
+        Can take any number of arguments, but only one expression.
+
+        Returns the value of the expression automatically (no return needed).
+
+        🔹 Syntax
+        lambda arguments: expression
+
+
+        arguments → input parameters
+
+        expression → single expression whose value is returned
+
+        🔹 Example 1: Add Two Numbers
+        add = lambda a, b: a + b
+        print(add(10, 20))   # 30
+
+        🔹 Example 2: Square a Number
+        square = lambda x: x ** 2
+        print(square(5))     # 25
+
+        🔹 Example 3: Conditional Expression
+        max_num = lambda a, b: a if a > b else b
+        print(max_num(10, 20))   # 20
+
+        🔹 Example 4: Using Lambda with map()
+        numbers = [1, 2, 3, 4]
+        squared = list(map(lambda x: x**2, numbers))
+        print(squared)   # [1, 4, 9, 16]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9. Modules
+
+    1. Introduction to Python modules and importing modules
+
+        ✅ Introduction to Python Modules
+        🔹 What is a Module?
+
+        A module is a file containing Python code (functions, variables, classes) that you can reuse in other programs.
+
+        Helps in organizing code and avoiding repetition.
+
+        Python has built-in modules, and you can also create your own modules.
+
+        🔹 Examples of Built-in Modules
+
+        math → mathematical functions (sqrt, factorial, etc.)
+
+        random → generate random numbers
+
+        datetime → work with dates and times
+
+        os → operating system related operations
+
+        🔹 Importing Modules
+        1. Import the entire module
+        import math
+
+        print(math.sqrt(16))  # 4.0
+
+        2. Import a specific function or variable
+        from math import factorial
+
+        print(factorial(5))  # 120
+
+        3. Import with an alias
+        import math as m
+
+        print(m.pi)  # 3.141592653589793
+
+        4. Import all functions (not recommended)
+        from math import *
+
+        print(sqrt(25))  # 5.0
+
+
+        ⚠️ Note: Using * may overwrite existing functions or variables.
+
+        🔹 Creating Your Own Module
+
+        Create a Python file, e.g., my_module.py:
+
+        def greet(name):
+            print("Hello,", name)
+
+
+        Import it in another file:
+
+        import my_module
+
+        my_module.greet("Alice")  # Hello, Alice
+
+    2.Standard library modules: math, random.
+
+            ✅ 1. math Module
+
+            The math module provides mathematical functions like square root, factorial, trigonometry, etc.
+
+            🔹 Examples
+            import math
+
+            print(math.sqrt(16))     # 4.0
+            print(math.factorial(5)) # 120
+            print(math.ceil(4.2))    # 5 (round up)
+            print(math.floor(4.8))   # 4 (round down)
+            print(math.pi)           # 3.141592653589793
+            print(math.sin(math.pi/2)) # 1.0
+
+
+            Common Functions in math
+
+            sqrt(x) → square root
+
+            factorial(x) → factorial
+
+            ceil(x) → round up
+
+            floor(x) → round down
+
+            sin(x), cos(x), tan(x) → trigonometry
+
+            log(x) → natural logarithm
+
+            ✅ 2. random Module
+
+            The random module is used for generating random numbers or selecting random elements.
+
+            🔹 Examples
+            import random
+
+            print(random.random())      # random float between 0.0 and 1.0
+            print(random.randint(1, 10)) # random integer between 1 and 10
+            print(random.choice([1, 2, 3, 4])) # randomly pick an element
+            print(random.shuffle([1, 2, 3, 4, 5])) # shuffle a list
+
+
+            Common Functions in random
+
+            random() → float 0.0 ≤ x < 1.0
+
+            randint(a, b) → integer a ≤ x ≤ b
+
+            choice(seq) → random element from sequence
+
+            shuffle(seq) → shuffle sequence in place
+
+            sample(seq, k) → get k random elements
+
+    3.Creating custom modules.
+
+            ✅ Creating Custom Modules in Python
+
+            A module is basically a Python file (.py) containing functions, variables, or classes that you can reuse in other programs.
+
+            🔹 Step 1: Create a Python File (Module)
+
+            Create a file named, for example, my_module.py.
+
+            Add functions or variables inside it:
+
+            # my_module.py
+
+            def greet(name):
+                print(f"Hello, {name}!")
+
+            def add(a, b):
+                return a + b
+
+            pi = 3.14159
+
+            🔹 Step 2: Import the Custom Module
+
+            In another Python file or interactive session:
+
+            import my_module
+
+            my_module.greet("Alice")       # Hello, Alice
+            print(my_module.add(10, 20))   # 30
+            print(my_module.pi)            # 3.14159
+
+            🔹 Step 3: Import Specific Functions or Variables
+            from my_module import greet, pi
+
+            greet("Bob")     # Hello, Bob
+            print(pi)        # 3.14159
+
+            🔹 Step 4: Import with Alias
+            import my_module as mm
+
+            mm.greet("Charlie")   # Hello, Charlie
+            print(mm.add(5, 7))   # 12
