@@ -161,39 +161,49 @@
 # write a program find min and max number use to function reduce ()
 
 
-from functools import reduce
+# from functools import reduce
 
-l = [12,771,8474,1,74,2345,74887,4544]
+# l = [12,771,8474,1,74,2345,74887,4544]
 
-def max(a,b):
-    if a > b:
-        return a
-    else :
-        return b 
+# def max(a,b):
+#     if a > b:
+#         return a
+#     else :
+#         return b 
     
-maxmum = reduce(max,l)    
-print(maxmum)
+# maxmum = reduce(max,l)    
+# print(maxmum)
 
-def min(a,b):
-    if a < b :
-        return a
-    else :
-        return b
+# def min(a,b):
+#     if a < b :
+#         return a
+#     else :
+#         return b
 
-minmum = reduce(min,l)
-print(minmum)
+# minmum = reduce(min,l)
+# print(minmum)
 
 
 # write a program to avg use to reduce function
 
 
-from functools import reduce
+# from functools import reduce
 
-l = [12, 771, 8474, 1, 74, 2345, 74887, 4544]
-total = reduce(lambda a, b: a + b, l)
-average = total / len(l)
-print("Average:", average)
+# l = [12, 771, 8474, 1, 74, 2345, 74887, 4544]
+# total = reduce(lambda a, b: a + b, l)
+# average = total / len(l)
+# print("Average:", average)
 
   
 
+#  write a program to perfect sqaure in filter function
 
+import math
+l = [1,2,3,4,5,6,7,8,9,25,49]
+def check_p_square(a):
+    if math.sqrt(a).is_integer():
+        return a
+
+k = filter(check_p_square,l)
+k = filter(lambda a : math.sqrt(a).is_integer(),l)
+print(list(k))
