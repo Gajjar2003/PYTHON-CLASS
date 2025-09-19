@@ -27,6 +27,7 @@ list = [10,15,1,12.2,125.8,"jenil","gajjar",True]
 print(list)
 print(type(list))
 
+print("*******************************************************************")
 
 # 2. Write a Python program to find the length of a list using the len() function.
 

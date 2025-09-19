@@ -37,6 +37,8 @@ list = ["apple", "banana","mango"]
 for i in list:
     print(i)
 
+print("*******************************************************************")
+
 
 # Write a Python program to insert elements into an empty list using a for loop and append()
 

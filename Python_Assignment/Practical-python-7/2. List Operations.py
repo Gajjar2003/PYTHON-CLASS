@@ -33,6 +33,8 @@ std = ["age","is"]
 std.insert(2,21)
 print(std)
 
+print("*******************************************************************")
+
 # Write a Python program to remove elements from a list using pop() and remove().
 
 student = ["jenil","gajjar"]
