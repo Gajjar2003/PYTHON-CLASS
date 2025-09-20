@@ -9,44 +9,44 @@ print("*           Grade Management System                *")
 print("*                                                  *")
 print("****************************************************")
 
-
-def calculate_grade(marks):
-    if marks >= 90:
-        return "A+ Grade"
-    elif marks >= 80:
-        return "A Grade"
-    elif marks >= 70:
-        return "B Grade"
-    elif marks >= 60:
-        return "C Grade"
-    elif marks >= 50:
-        return "D Grade"
-    elif marks >= 40:
-        return "E Grade"
-    else:
-        return "Fail!"
-
-
 students = []
+choice  = "y"
+while choice != "n":
 
-choice = "y"
 
-while choice.lower() == "y":
-    name = input("Enter your student name: ")
-    marks = int(input("Enter your marks (0-100): "))
-    
-    grade = calculate_grade(marks)
-    
- 
+    name =   input ("Enter your student name is : ")
+    marks = int(input("Please enter your marks : "))
+
+    if marks >= 90:
+        grade = "A+"
+    elif marks >= 80:
+        grade = "A"
+    elif marks >= 70:
+        grade = "B"
+    elif marks >= 60:
+        grade = "C"
+    elif marks >= 50:
+        grade = "D"
+    elif marks >= 40:
+        grade = "Pass"
+    else:
+        grade = "Fail"
+
+    print(f"You are {grade} Grade")
+
     students.append({"name": name, "marks": marks, "grade": grade})
-    
-    choice = input("Do you want to continue? (y/n): ")
 
-print("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-print("All Student Records:")
-print("Name\tMarks\tGrade")
-for student in students:
-    print(f"{student['name']}\t{student['marks']}\t{student['grade']}")
+    choice = input("Do you want continue ? (y/n): ")
+
+
+print("*******Student Marks Sheet *******")
+for s in students:
+    print(f"Student Name : {s['name']}, Marks : {s['marks']}, Grade : {s['grade']}")
+
+
+
+
+
 
 
 
