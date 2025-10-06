@@ -198,12 +198,83 @@
 
 #  write a program to perfect sqaure in filter function
 
-import math
-l = [1,2,3,4,5,6,7,8,9,25,49]
-def check_p_square(a):
-    if math.sqrt(a).is_integer():
-        return a
+# import math
+# l = [1,2,3,4,5,6,7,8,9,25,49]
+# def check_p_square(a):
+#     if math.sqrt(a).is_integer():
+#         return a
 
-k = filter(check_p_square,l)
-k = filter(lambda a : math.sqrt(a).is_integer(),l)
-print(list(k))
+# k = filter(check_p_square,l)
+# k = filter(lambda a : math.sqrt(a).is_integer(),l)
+# print(list(k))
+
+
+
+# di = {
+#     "name" : "jenil",
+#     "age" : 21,
+#     "email" : "jenil@gamil.com"
+# }
+
+# di["name"]= "ravi"
+# print(di)
+# di.update({"subject": "python"})
+# print(di)
+# print(di["name"][0])
+
+
+# d = {"name": "om",
+#      "Age" : 21
+     
+#     }
+
+# d["name"]= "meet"
+# print(d)
+
+# # d.update({"email" : "j@gamil.com"})
+# print(d)
+
+
+# def test(func):
+#     def wrapper():
+#         func()  
+#         print("testing...") 
+#     return wrapper
+
+# @test
+# def demo():
+#     print("testing for demo......")
+
+# demo()
+
+
+# class student:
+#     name = "jenil"
+#     age = 21
+#     email = "je@g ail.com"
+
+#     def display(self):
+#         print(self.name,self.age,self.email)
+
+
+# s = student()
+# s.display()
+# s.email = "jenil@gamil.com"
+# s.display()
+
+
+# class employee:
+#     def __init__(self,id,name,email,department):
+#         self.id= id
+#         self.name = name
+#         self.email = email
+#         self. departement = department
+
+#     def display(self):
+#         print("Emplyoee infromation")
+#         print(self.id,self.name,self.email,self.departement)
+        
+
+# e = employee(1, "jenil","emila@hamil.com","marketing ")
+# e.display()
+
