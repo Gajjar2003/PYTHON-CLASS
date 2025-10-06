@@ -278,3 +278,48 @@
 # e = employee(1, "jenil","emila@hamil.com","marketing ")
 # e.display()
 
+
+
+# *******************************************************************************************************
+
+# print("hello world!")
+
+
+# Write a program to swap two numbers.
+
+# a = 10 
+# b = 20
+# temp =a
+# a= b
+# b =temp
+
+# print(a,b)
+
+
+# Write a program to find the area of a circle.
+
+# r = int(input("Enter your circle of area : "))
+
+# total = r*r
+# print("total area of circle is: ",total)
+
+
+# Write a program to convert Celsius to Fahrenheit.
+
+# cel = int(input("Enter your celcius: "))
+
+# f = (cel*1.8)+32
+
+# print("fahrenheit",f)
+
+
+# 
+# Write a program to calculate the simple interest.
+
+# p = int(input("Enter your priciple : "))
+# r = int(input("Enter your rate: "))
+# t = int(input("Entert your time: "))
+
+# simple = (p*r*t) / 100
+
+# print(simple)
