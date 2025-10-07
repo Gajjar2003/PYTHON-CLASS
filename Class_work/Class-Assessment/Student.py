@@ -10,7 +10,7 @@ print(" -* Student Record System *- ")
 
 student = {}
 
-def add():
+def add_student():
     add_choice = "y"
     while add_choice != "n":
         roll = int(input("Enter your roll number : "))
@@ -43,19 +43,16 @@ while True:
     print("\n1. Add new student")
     print("2. View all students")
     print("3. Search by roll number")
-    print("4. Exit")
+   
 
-    option = int(input("Please enter your option (1-4): "))
+    option = int(input("Please enter your option (1-3): "))
 
     if option == 1:
-        add()
+        add_student()
     elif option == 2:
         view_students()
     elif option == 3:
         search_student()
-    elif option == 4:
-        print("👋 Exiting program...")
-        break
     else:
         print("❌ Invalid option, try again.")
 
