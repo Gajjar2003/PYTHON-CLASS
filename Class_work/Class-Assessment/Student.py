@@ -43,9 +43,9 @@ while True:
     print("\n1. Add new student")
     print("2. View all students")
     print("3. Search by roll number")
-   
+    print("4. Exit")
 
-    option = int(input("Please enter your option (1-3): "))
+    option = int(input("Please enter your option (1-4): "))
 
     if option == 1:
         add_student()
@@ -53,6 +53,9 @@ while True:
         view_students()
     elif option == 3:
         search_student()
+    elif option == 4:
+        print("👋 Exiting program...")
+        break
     else:
         print("❌ Invalid option, try again.")
 
