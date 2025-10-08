@@ -1,0 +1,668 @@
+Module 8 - Advance Python Programming
+
+1. Printing on Screen
+
+   1. Introduction to the print() function in Python.
+
+        🐍 Introduction to the print() Function in Python
+
+        The print() function is one of the most commonly used built-in functions in Python.
+        It is used to display output on the screen — such as text, numbers, variables, or results of expressions.
+
+        print("Hello, World!")
+
+
+    2.Formatting outputs using f-strings and format().
+
+         🐍 Formatting Outputs in Python — Using f-strings and format()
+
+        When you print variables, sometimes you want to control how the output looks — for example, align text, insert values in sentences, or limit decimal places.
+        Python provides two main ways to do this:
+
+            name = "Jenil"
+            age = 20
+            print(f"My name is {name} and I am {age} years old.")
+
+
+2. Reading Data from Keyboard
+
+    1.Using the input() function to read user input from the keyboard.
+
+        🐍 Using the input() Function in Python
+
+        The input() function is used to take user input from the keyboard.
+        It always returns the input as a string — even if you type numbers.
+
+        name = input("Enter your name: ")
+        print("Hello,", name)
+
+
+    2.Converting user input into different data types (e.g., int, float, etc.).
+
+         Converting User Input into Different Data Types in Python
+
+        When you use the input() function, the data entered by the user is always taken as a string (str type), even if they type a number.
+        To perform mathematical operations or comparisons, you must convert it into the correct data type.
+
+
+        num = int(input("Enter an integer: "))
+        print("You entered:", num)
+        print("Type:", type(num))
+
+        num = float(input("Enter a decimal number: "))
+        print("You entered:", num)
+
+        num = 100
+        text = str(num)
+        print("Converted to string:", text)
+
+
+3. Opening and Closing Files
+
+        1.Opening files in different modes ('r', 'w', 'a', 'r+', 'w+')
+
+            🐍 Opening Files in Different Modes in Python
+
+            In Python, you use the open() function to work with files — for reading, writing, or appending data.
+            Each mode determines how the file is accessed (read/write/append) and whether it’s created or erased.
+
+            f = open("example.txt", "r")
+            content = f.read()
+            print(content)
+            f.close()
+
+            f = open("example.txt", "w")
+            f.write("Hello, World!")
+            f.close()
+
+            f = open("example.txt", "a")
+            f.write("\nThis line was added later.")
+            f.close()
+
+            f = open("example.txt", "r+")
+            print("Before:", f.read())
+            f.seek(0)  
+            f.write("Updated content")
+            f.close()
+
+            f = open("example.txt", "w+")
+            f.write("New data written.")
+            f.seek(0)
+            print(f.read())
+            f.close()
+
+
+    2.Using the open() function to create and access files.
+
+        🐍 Using the open() Function to Create and Access Files in Python
+
+        Python provides the open() function to create, read, write, or append files.
+        It is one of the most important functions for file handling in Python.
+
+        file_object = open("filename", "mode")
+
+    3.Closing files using close().
+
+        🐍 Closing Files Using close() in Python
+
+        When working with files in Python, it’s important to close the file after you’re done.
+        This ensures all changes are saved properly and system resources are freed.
+
+            f = open("demo.txt", "w")
+            f.write("Learning Python file handling.")
+            f.close()     # Close the file
+            print("File closed successfully.")
+
+4. Reading and Writing Files
+
+
+    1.Reading from a file using read(), readline(), readlines().
+
+
+        🐍 Reading from a File Using read(), readline(), and readlines() in Python
+
+        After opening a file in read mode ('r'), Python provides three main methods to read its contents:
+        👉 read()
+        👉 readline()
+        👉 readlines()
+
+
+        f = open("demo.txt", "r")
+        data = f.read()
+        print(data)
+        f.close()
+
+
+        f = open("demo.txt", "r")
+        line1 = f.readline()
+        line2 = f.readline()
+        print("Line 1:", line1)
+        print("Line 2:", line2)
+        f.close()
+
+
+        f = open("demo.txt", "r")
+        lines = f.readlines()
+        print(lines)
+        f.close()
+
+    2.Writing to a file using write() and writelines().
+
+
+        🐍 Writing to a File Using write() and writelines() in Python
+
+        In Python, after opening a file in write ('w') or append ('a') mode, you can write data into it using:
+
+        write() → writes a single string
+
+        writelines() → writes multiple strings (list of strings)
+
+
+               1. write() → Write a Single String
+
+                🧩 Example 1: Writing a Single Line
+                f = open("demo.txt", "w")
+                f.write("Hello, this is my first line.\n")
+                f.write("This is the second line.\n")
+                f.close()
+
+
+                2. writelines() → Write Multiple Lines
+
+                Writes a list of strings to the file.
+
+                Does not add newline characters automatically; include \n in each string if needed.
+
+                🧩 Example 2: Writing Multiple Lines Using a List
+                lines = ["Line 1: Python\n", "Line 2: File handling\n", "Line 3: Write example\n"]
+                f = open("demo.txt", "w")
+                f.writelines(lines)
+                f.close()
+
+5. Exception Handling
+
+        1.Introduction to exceptions and how to handle them using try, except, and finally.
+
+            🐍 Introduction to Exceptions in Python
+
+            An exception is an error that occurs during the execution of a program.
+            Unlike syntax errors, which prevent the program from running, exceptions happen while the program is running.
+
+
+            try:
+            x = int(input("Enter a number: "))
+            print(10 / x)
+
+
+            try:
+                x = int(input("Enter a number: "))
+                print(10 / x)
+            except ZeroDivisionError:
+                print("Error: Cannot divide by zero!")
+            except ValueError:
+                print("Error: Invalid input! Enter a number.")
+
+
+            try:
+                f = open("demo.txt", "r")
+                data = f.read()
+                print(data)
+            except FileNotFoundError:
+                print("File not found!")
+            finally:
+                print("This block always executes.")
+                # f.close() can go here if file was opened
+
+    2.Understanding multiple exceptions and custom exceptions.
+
+        🐍 Understanding Multiple Exceptions and Custom Exceptions in Python
+
+        Python allows you to handle multiple exceptions and even create your own custom exceptions to handle special cases in your programs.
+
+
+                try:
+                    x = int(input("Enter a number: "))
+                    print(10 / x)
+                except ZeroDivisionError:
+                    print("Error: Cannot divide by zero!")
+                except ValueError:
+                    print("Error: Invalid input! Enter a number.")
+
+
+6. Class and Object (OOP Concepts)
+
+        1.Understanding the concepts of classes, objects, attributes, and methods in Python.
+
+            🐍 Understanding Classes, Objects, Attributes, and Methods in Python
+
+            Python is an object-oriented programming (OOP) language.
+            OOP is about modeling real-world entities in code using classes and objects.
+
+
+            class Car:
+                pass
+
+
+            2. Objects
+
+            An object is an instance of a class.
+
+            Think of the class as a blueprint, and the object as a real car built from that blueprint.
+
+            my_car = Car()
+
+
+            3. Attributes
+
+            Attributes are variables inside a class that hold data about the object.
+
+            They describe the properties of the object.
+
+            Example:
+            class Car:
+                def __init__(self, brand, color):
+                    self.brand = brand
+                    self.color = color
+
+            my_car = Car("Toyota", "Red")
+            print(my_car.brand)  # Toyota
+            print(my_car.color)  # Red
+
+
+            4. Methods
+
+            Methods are functions defined inside a class.
+
+            They define behavior of objects (what the object can do).
+
+            
+            class Car:
+                def __init__(self, brand, color):
+                    self.brand = brand
+                    self.color = color
+                
+                def drive(self):
+                    print(f"{self.brand} is driving.")
+                
+                def paint(self, new_color):
+                    self.color = new_color
+                    print(f"Car painted {self.color}")
+
+            my_car = Car("Honda", "Blue")
+            my_car.drive()           # Honda is driving.
+            my_car.paint("Black")    # Car painted Black
+
+
+        2.Difference between local and global variables.
+
+        | Feature          | Local Variable                      | Global Variable                                |
+        | ---------------- | ----------------------------------- | ---------------------------------------------- |
+        | **Defined**      | Inside a function                   | Outside all functions                          |
+        | **Scope**        | Only inside the function            | Anywhere in the program                        |
+        | **Lifetime**     | Exists only while function runs     | Exists as long as program runs                 |
+        | **Access**       | Cannot be accessed outside function | Can be accessed inside and outside functions   |
+        | **Modification** | Directly modifiable inside function | Use `global` keyword to modify inside function |
+
+
+7. Inheritance
+
+        1.Single, Multilevel, Multiple, Hierarchical, and Hybrid inheritance in Python.
+
+            🐍 Inheritance in Python
+
+            Inheritance allows a class (child class) to acquire properties and methods from another class (parent class).
+            It helps reusability of code and establishes a relationship between classes.
+
+                #single Inheritance
+                # Parent class
+                class Animal:
+                    def eat(self):
+                        print("Animal is eating")
+
+                # Child class
+                class Dog(Animal):
+                    def bark(self):
+                        print("Dog is barking")
+
+                d = Dog()
+                d.eat()   # Inherited from Animal
+                d.bark()  # Own method
+
+                #Multilevel inheritance
+                class Animal:
+                    def eat(self):
+                        print("Animal is eating")
+
+                class Mammal(Animal):
+                    def walk(self):
+                        print("Mammal is walking")
+
+                class Dog(Mammal):
+                    def bark(self):
+                        print("Dog is barking")
+
+                d = Dog()
+                d.eat()   # From Animal
+                d.walk()  # From Mammal
+                d.bark()  # From Dog
+
+
+                #Multiple Inheritance
+
+                class Father:
+                def skills_father(self):
+                    print("Father skill: Driving")
+
+                class Mother:
+                def skills_mother(self):
+                    print("Mother skill: Cooking")
+
+                class Child(Father, Mother):
+                def skills_child(self):
+                    print("Child skill: Programming")
+
+                c = Child()
+                c.skills_father()
+                c.skills_mother()
+                c.skills_child()
+
+            # Hierarchical Inheritance
+
+            class Animal:
+            def eat(self):
+                print("Animal is eating")
+
+           class Dog(Animal):
+            def bark(self):
+                print("Dog is barking")
+
+          class Cat(Animal):
+            def meow(self):
+                print("Cat is meowing")
+
+            d = Dog()
+            d.eat()   # From Animal
+            d.bark()
+
+            c = Cat()
+            c.eat()   # From Animal
+            c.meow()
+
+
+            #Hybrid Inheritance
+            class Vehicle:
+                def vehicle_type(self):
+                    print("Vehicle type")
+
+            class Car(Vehicle):
+                def car_brand(self):
+                    print("Car brand")
+
+            class Electric(Car):
+                def battery_type(self):
+                    print("Battery type")
+
+            class Bike(Vehicle):
+                def bike_brand(self):
+                    print("Bike brand")
+
+            e = Electric()
+            e.vehicle_type()
+            e.car_brand()
+            e.battery_type()
+
+    2.Using the super() function to access properties of the parent class
+
+        🐍 Using the super() Function in Python
+
+        In Python, the super() function is used to access methods or attributes of a parent class from a child class.
+        It is commonly used in inheritance, especially with overridden methods.
+
+
+            class Animal:
+                def __init__(self, name):
+                    self.name = name
+
+            class Dog(Animal):
+                def __init__(self, name, breed):
+                    super().__init__(name)  # Call parent constructor
+                    self.breed = breed
+
+            d = Dog("Buddy", "Golden Retriever")
+            print(d.name)   # Buddy
+            print(d.breed)  # Golden Retriever
+
+
+8. Method Overloading and Overriding
+
+
+        1.Method overloading: defining multiple methods with the same name but different
+        parameters
+
+            🐍 Method Overloading in Python
+
+            Method overloading means defining multiple methods with the same name but different parameters in a class.
+            It allows the same method to behave differently depending on the number or type of arguments passed.
+
+            🔹 Important Note in Python
+
+            Python does not support traditional method overloading like Java or C++.
+
+            If you define multiple methods with the same name, the last definition overwrites the previous ones.
+
+            Instead, Python achieves overloading using:
+
+            Default arguments
+
+            Variable-length arguments (*args, **kwargs)
+
+
+                    class Calculator:
+                    def add(self, a, b=0):
+                        return a + b
+
+                calc = Calculator()
+                print(calc.add(5))     
+                print(calc.add(5, 10))  
+
+
+            2. Method overriding: redefining a parent class method in the child class.
+
+
+                Method Overriding in Python
+
+                Method overriding occurs when a child class redefines a method of its parent class.
+                It allows the child class to provide its own specific implementation while keeping the same method name.
+
+                🔹 Key Points
+
+                The method in the child class has the same name as the one in the parent class.
+
+                The child class method overrides the parent class method.
+
+                You can still access the parent class method using super().
+
+
+                    class Animal:
+                    def speak(self):
+                        print("Animal makes a sound")
+
+                   class Dog(Animal):
+                    def speak(self):
+                        print("Dog barks")
+
+                    a = Animal()
+                    a.speak()  # Animal makes a sound
+
+                    d = Dog()
+                    d.speak()  # Dog barks
+
+
+                    class Animal:
+                    def speak(self):
+                        print("Animal makes a sound")
+
+                    class Dog(Animal):
+                    def speak(self):
+                        super().speak()  # Call parent method
+                        print("Dog barks")
+
+                        d = Dog()
+                        d.speak()
+
+9. SQLite3 and PyMySQL (Database Connectors)
+
+
+    1.Introduction to SQLite3 and PyMySQL for database connectivity.
+
+            🐍 Introduction to Database Connectivity in Python
+
+            Python can interact with databases to store, retrieve, and manipulate data.
+            Two commonly used libraries are:
+
+            SQLite3 → Lightweight, file-based database (built-in with Python)
+
+            PyMySQL → Connects to MySQL or MariaDB databases
+
+
+
+                import sqlite3
+
+                # 1. Connect to database (or create if not exists)
+                conn = sqlite3.connect("mydatabase.db")
+
+                # 2. Create a cursor object
+                cursor = conn.cursor()
+
+                # 3. Create a table
+                cursor.execute("""
+                CREATE TABLE IF NOT EXISTS students (
+                    id INTEGER PRIMARY KEY,
+                    name TEXT,
+                    age INTEGER
+                )
+                """)
+
+                # 4. Insert data
+                cursor.execute("INSERT INTO students (name, age) VALUES (?, ?)", ("Jenil", 21))
+
+                # 5. Commit changes
+                conn.commit()
+
+                # 6. Fetch data
+                cursor.execute("SELECT * FROM students")
+                print(cursor.fetchall())
+
+                # 7. Close connection
+                conn.close()
+
+
+                import pymysql
+
+                # 1. Connect to MySQL server
+                conn = pymysql.connect(
+                    host="localhost",
+                    user="root",
+                    password="your_password",
+                    database="testdb"
+                )
+
+                # 2. Create cursor
+                cursor = conn.cursor()
+
+                # 3. Create table
+                cursor.execute("""
+                CREATE TABLE IF NOT EXISTS students (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(50),
+                    age INT
+                )
+                """)
+
+                # 4. Insert data
+                cursor.execute("INSERT INTO students (name, age) VALUES (%s, %s)", ("Jenil", 21))
+                conn.commit()
+
+                # 5. Fetch data
+                cursor.execute("SELECT * FROM students")
+                print(cursor.fetchall())
+
+                # 6. Close connection
+                conn.close()
+
+
+    2.Creating and executing SQL queries from Python using these connectors
+
+            🐍 Executing SQL Queries from Python
+
+            Python can communicate with databases using connectors like SQLite3 and PyMySQL.
+            The process usually involves these steps:
+
+            Connect to the database
+
+            Create a cursor object
+
+            Execute SQL queries
+
+            Commit changes (for insert/update/delete)
+
+            Fetch results (for select)
+
+            Close connection
+
+
+            | Action           | SQLite3                         | PyMySQL                         |
+            | ---------------- | ------------------------------- | ------------------------------- |
+            | Connect          | `sqlite3.connect("db.db")`      | `pymysql.connect(...)`          |
+            | Placeholder      | `?`                             | `%s`                            |
+            | Execute query    | `cursor.execute(query, params)` | `cursor.execute(query, params)` |
+            | Commit changes   | `conn.commit()`                 | `conn.commit()`                 |
+            | Fetch data       | `cursor.fetchall()`             | `cursor.fetchall()`             |
+            | Close connection | `conn.close()`                  | `conn.close()`                  |
+
+
+
+10. Search and Match Functions
+
+        1. Using re.search() and re.match() functions in Python’s re module for pattern
+        matching.
+
+
+            Pattern Matching in Python Using re Module
+
+            The re module in Python is used for regular expressions.
+            It allows you to search, match, and manipulate strings based on patterns.
+
+            Two commonly used functions:
+
+            re.match() → Checks for a match only at the beginning of the string.
+
+            re.search() → Searches for a match anywhere in the string.
+
+                import re
+
+                text = "Hello World"
+
+                # Match pattern at the beginning
+                result = re.match("Hello", text)
+
+                if result:
+                    print("Match found:", result.group())
+                else:
+                    print("No match")
+
+
+      2.Difference between search and match.
+
+| Feature      | `re.match()`                                                                                | `re.search()`                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Purpose**  | Checks for a match **only at the beginning** of the string                                  | Searches for a match **anywhere** in the string                                                |
+| **Return**   | Returns a **match object** if found at the start; else `None`                               | Returns a **match object** if found anywhere; else `None`                                      |
+| **Use Case** | When the pattern **must start** the string                                                  | When the pattern can appear **anywhere** in the string                                         |
+| **Example**  | `re.match("Hello", "Hello World")` → Match<br>`re.match("World", "Hello World")` → No match | `re.search("World", "Hello World")` → Match<br>`re.search("Python", "Hello World")` → No match |
+
+
+
+
+
+
