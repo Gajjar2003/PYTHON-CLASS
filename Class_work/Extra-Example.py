@@ -326,53 +326,58 @@
 
 
 
-def only_number(num):
-    def wrapper(*a):
-        if not str(a[0]).isdigit():
-            print("Only number values are allowed!")
-        else:
-            num(*a)
-    return wrapper
+# def only_number(num):
+#     def wrapper(*a):
+#         if not str(a[0]).isdigit():
+#             print("Only number values are allowed!")
+#         else:
+#             num(*a)
+#     return wrapper
 
-@only_number
-def num(a):
-    print("Number:", a)
-
-
-num(10)      
-num("abc") 
+# @only_number
+# def num(a):
+#     print("Number:", a)
 
 
-def only_character(ch):
-    def wapper(*a):
-        if not str(a[0]).isalpha():
-            print("only character values are allowed!")
-        else:
-            ch(*a)
-    return wapper
-
-@only_character
-def ch(a):
-    print("character",a)
-
-ch(10)
-ch("j")
+# num(10)      
+# num("abc") 
 
 
-def only_sp(sp):
-    def wapper(*a):
-        if  str(a[0]).isalnum():
-            print("only sp value are allowed!")
-        else:
-            sp(*a)
-    return wapper
+# def only_character(ch):
+#     def wapper(*a):
+#         if not str(a[0]).isalpha():
+#             print("only character values are allowed!")
+#         else:
+#             ch(*a)
+#     return wapper
 
-@only_sp
-def sp(*a):
-    print("spe",a)
+# @only_character
+# def ch(a):
+#     print("character",a)
+
+# ch(10)
+# ch("j")
+
+
+# def only_sp(sp):
+#     def wapper(*a):
+#         if  str(a[0]).isalnum():
+#             print("only sp value are allowed!")
+#         else:
+#             sp(*a)
+#     return wapper
+
+# @only_sp
+# def sp(*a):
+#     print("spe",a)
 
 
 
-sp(10)
-sp("j")
-sp("@")
+# sp(10)
+# sp("j")
+# sp("@")
+
+
+
+
+
