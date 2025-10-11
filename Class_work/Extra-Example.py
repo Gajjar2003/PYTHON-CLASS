@@ -378,6 +378,33 @@
 # sp("@")
 
 
+# create to empty set and insret user input 
+
+
+# s = set ()
+# for i in range(1,9):
+#     num =int(input(f"Enter your number is {i+0}: "))
+#     s.add(num)
+    
+# print(s)
+
+
+# create to empty dicinoary to insert user input
+
+
+# d = {}
+
+# for i in range(0,4):
+#     name = input("Enter your name is: ")
+#     lang = input("Enter your language is: ")
+    
+#     d[name] = lang  
+    
+# print(d)
+
+
+
+
 
 
 
