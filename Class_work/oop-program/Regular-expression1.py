@@ -33,15 +33,16 @@ else:
 
 print("******** Password exapression********")
 
-
 import re
 
 password = input("Enter your password: ")
 
-pattern = r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%&]).{10,}$'
+pattern = r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$!]).{10,}$'
 
-p = re.match(pattern, password)  
+p = re.match(pattern, password)
+
 if p:
     print("✅ Password is correct")
 else:
     print("❌ Password is incorrect")
+

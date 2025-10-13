@@ -403,8 +403,49 @@
 # print(d)
 
 
+# number  = int(input("Enter your number is : "))
+
+# for i in range(1,11):
+#     print(f"{i} X {number} = {i*number}")
 
 
+# l = ["jenil","janvi","nil","love"]
+
+# for name in l:
+#     if(name.startswith("j")):
+#         print(f"hello {name}")
+
+
+# number  = int(input("Enter your number is : "))
+# i=1
+# while i  < 11:
+#      print(f"{i} X {number} = {i*number}")
+#      i+=1
+
+
+number  = int(input("Enter your number is : "))
+
+flage = 0
+
+for i in range(2,number):
+   if number%i==0:
+       flage=1
+       break
+   
+if flage == 0 :
+    print(number,"is prime number")
+else:
+    print(number, "is not prime number")        
+    
+
+
+
+number = input("Enter your number: ")
+
+if number == number[::-1]:
+    print("Palindrome number")
+else:
+    print("Not palindrome number")
 
 
 
