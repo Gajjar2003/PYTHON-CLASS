@@ -423,29 +423,79 @@
 #      i+=1
 
 
-number  = int(input("Enter your number is : "))
+# number  = int(input("Enter your number is : "))
 
-flage = 0
+# flage = 0
 
-for i in range(2,number):
-   if number%i==0:
-       flage=1
-       break
+# for i in range(2,number):
+#    if number%i==0:
+#        flage=1
+#        break
    
-if flage == 0 :
-    print(number,"is prime number")
-else:
-    print(number, "is not prime number")        
+# if flage == 0 :
+#     print(number,"is prime number")
+# else:
+#     print(number, "is not prime number")        
     
 
 
 
-number = input("Enter your number: ")
+# number = input("Enter your number: ")
 
-if number == number[::-1]:
-    print("Palindrome number")
-else:
-    print("Not palindrome number")
+# if number == number[::-1]:
+#     print("Palindrome number")
+# else:
+#     print("Not palindrome number")
 
 
 
+
+
+# number = int(input("Enter your number: "))  
+# fact = 1
+
+# for i in range(1, number + 1):
+#     fact = fact * i
+
+# print(f"Factorial is {number} is {fact}")
+
+
+# name = "jenil"
+# def goodday():
+#     print(f"Good day {name}")
+
+
+# goodday()
+
+
+# def greatest(a,b,c):
+#     if (a>b and a>c):
+#         print("a is greatets")
+#     elif(b>a and b >c):
+#         print("b is greatest")
+#     else:
+#         print("c is greatets")
+
+
+# greatest(1000,122,30)
+
+# f = int(input("Enter temperature in Celsius: "))
+
+# def celsius():
+#     return (f * 1.8) + 32
+
+# print("Fahrenheit:", celsius())
+
+# num = int(input("Enter your number in inches: "))
+
+# def inches():
+#     return num * 2.54
+
+# print("Centimeters:", inches())
+
+
+# def mutiple(n):
+#     for i in range(1,11):
+#         print(f"{n} X {i} = {i*n}")
+
+# mutiple(5)
