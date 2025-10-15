@@ -499,3 +499,29 @@
 #         print(f"{n} X {i} = {i*n}")
 
 # mutiple(5)
+
+
+
+
+# file = open("example.txt", "w")
+
+# file.write("Hello, this is my first line!\n")
+# file.write("Python file handling example.\n")
+
+# file.close()
+
+# print("✅ Data written successfully!")
+
+
+# file = open("example.txt", "r")
+
+# content = file.read()
+# print("File content:\n", content)
+
+# file.close()
+
+
+# f  = open("demo.txt")
+# data = f.read()
+# print(data)
+# f.close()
