@@ -120,7 +120,6 @@ d.method_d()
 
 # Write a Python program to demonstrate the use of super() in inheritance
 
-# Python program to demonstrate the use of super() in inheritance
 
 
 class Person:
