@@ -592,3 +592,42 @@ b= {2,6,7,8}
 #     print(i)
 #     for a, b in j.items():
 #         print(a,b)
+
+
+# -------------------------------------------------------------------------------------------------------
+
+# class programmer :
+#     company = "google"
+
+#     def __init__(self,id,name,email,pincode):
+#         self .id = id
+#         self.name = name
+#         self.email=email
+#         self.pincode=pincode
+
+#     def display(self):
+#         print(f"This employee id is {self.id} and name is {self.name} and  email is{self.email} and pincode is {self.pincode}")
+    
+
+# p = programmer(1,"jenil","jenil@gamil.com",395010)
+# p.display()
+
+
+class calc:
+
+    def __init__(self,number):
+        self.number=number
+
+    def squre(self):
+        print( f"This squer is {self.number*self.number}")
+    
+    def cude(self):
+        print( f"This cude is {self.number*self.number*self.number}")
+    
+    def squreroot(self):
+        print( f"This squer-root is {self.number**1/2}")
+    
+c =calc(5)
+c.squre()
+c.cude()
+c.squreroot()
