@@ -527,6 +527,68 @@
 # f.close()
 
 
+# s = {"jenil",12,12.5,True}
+
+# print(s)
+# print(type(s))
+# print(len(s))
+
+a = {1,2,3,4}
+b= {2,6,7,8}
+
+# c = a.union(b)   set1 and set2  na element jiont thaya che and ek line ma thay che 
+# print(c)
 
 
+# c = a.intersection(b)  set1 and set2 ma je same value hoy che te print thay che {2}
+# print(c)
 
+# c = a.difference(b) set1 and set2  same value remove kari de che and set1 ni value baki ni print thay che {1,3,4}
+# print(c)
+
+# c = a.symmetric_difference(b) set1 and set2 same value remove kar che and set1 and set2 ni value joint thay che 
+# print(c)
+
+
+# c = a.issubset(b) set1 and set2 na element same che to ture nahi to false thay che 
+# print(c)
+
+# c = a.issuperset(b) set1 and set2 na badha element andar che to ture nahi ti false thay che 
+# print(c)
+
+# c = a.isdisjoint(b) set1 and set2 koi pan value same nahi hoy to ture nahi to false thay che 
+# print(c)
+
+
+# d = {
+#     "name" : "jenil",
+#     "age" : 21,
+#     "email" : "j@gamil.com"
+# }
+
+# print(d)
+
+# d["name"] = "om"
+# print(d)
+
+# d.update({"suject" : "python"})
+# # print(d)
+
+
+# d = {
+
+#     "jenil ": {
+#         "age " : 21,
+#         "email" : "je@gamil.com"
+#     },
+
+#     "om" : {
+#         "age" : 22,
+#         "email" : "om@gamil.com"
+#     }
+# }
+
+# for i ,j in d.items():
+#     print(i)
+#     for a, b in j.items():
+#         print(a,b)
