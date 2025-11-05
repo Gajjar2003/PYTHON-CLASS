@@ -50,7 +50,7 @@ def show_topper():
         topper = max(students.items(), key=lambda x: x[1]["marks"])
         print(f"🏆 Topper → Roll: {topper[0]}, Name: {topper[1]['name']}, Marks: {topper[1]['marks']}\n")
 
-# Main Menu
+
 while True:
     print("===== Student Record System =====")
     print("1. Add Student")
