@@ -245,89 +245,89 @@
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------
 
-print("****************************************************")
-print("*                                                  *")
-print("*           Grade Management System                *")
-print("*                                                  *")
-print("****************************************************")
+# print("****************************************************")
+# print("*                                                  *")
+# print("*           Grade Management System                *")
+# print("*                                                  *")
+# print("****************************************************")
 
 
-def calculate_grade(marks):
-    if marks >= 90:
-        return "A+ Grade"
-    elif marks >= 80:
-        return "A Grade"
-    elif marks >= 70:
-        return "B Grade"
-    elif marks >= 60:
-        return "C Grade"
-    elif marks >= 50:
-        return "D Grade"
-    elif marks >= 40:
-        return "E Grade"
-    else:
-        return "Fail!"
+# def calculate_grade(marks):
+#     if marks >= 90:
+#         return "A+ Grade"
+#     elif marks >= 80:
+#         return "A Grade"
+#     elif marks >= 70:
+#         return "B Grade"
+#     elif marks >= 60:
+#         return "C Grade"
+#     elif marks >= 50:
+#         return "D Grade"
+#     elif marks >= 40:
+#         return "E Grade"
+#     else:
+#         return "Fail!"
 
 
-students = []
+# students = []
 
-choice = "y"
+# choice = "y"
 
-while choice.lower() == "y":
-    name = input("Enter your student name: ")
-    marks = int(input("Enter your marks (0-100): "))
+# while choice.lower() == "y":
+#     name = input("Enter your student name: ")
+#     marks = int(input("Enter your marks (0-100): "))
     
-    grade = calculate_grade(marks)
+#     grade = calculate_grade(marks)
     
  
-    students.append({"name": name, "marks": marks, "grade": grade})
+#     students.append({"name": name, "marks": marks, "grade": grade})
     
-    choice = input("Do you want to continue? (y/n): ")
+#     choice = input("Do you want to continue? (y/n): ")
 
-print("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-print("All Student Records:")
-print("Name\tMarks\tGrade")
-for student in students:
-    print(f"{student['name']}\t{student['marks']}\t{student['grade']}")
+# print("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
+# print("All Student Records:")
+# print("Name\tMarks\tGrade")
+# for student in students:
+#     print(f"{student['name']}\t{student['marks']}\t{student['grade']}")
 
-# ----------------------------------------------------------------------------------------------------------------------------------------------
+# # ----------------------------------------------------------------------------------------------------------------------------------------------
 
-print("****************************************************")
-print("*                                                  *")
-print("*         simple calculator system                 *")
-print("*                                                  *")
-print("****************************************************")
+# print("****************************************************")
+# print("*                                                  *")
+# print("*         simple calculator system                 *")
+# print("*                                                  *")
+# print("****************************************************")
 
-choice  = "y"
+# choice  = "y"
 
-while choice != "n":
+# while choice != "n":
 
-    print("Select operation : ")
-    print("Press 1 is addition (+): ")
-    print("Press 2 is Subtraction  (-): ")
-    print("Press 3 is Multiplication  (*): ")
-    print("Press 4 is Division  (/): ")
+#     print("Select operation : ")
+#     print("Press 1 is addition (+): ")
+#     print("Press 2 is Subtraction  (-): ")
+#     print("Press 3 is Multiplication  (*): ")
+#     print("Press 4 is Division  (/): ")
 
-    option = input("Enter your choice is (1-4) : ")
+#     option = input("Enter your choice is (1-4) : ")
 
-    num1 = int(input("Please enter your first  number : "))
-    num2 = int(input("Now secode number is : "))
+#     num1 = int(input("Please enter your first  number : "))
+#     num2 = int(input("Now secode number is : "))
 
-    if option == "1":
-        print(f"{num1} and {num2} addition is :  {num1+num2}")
+#     if option == "1":
+#         print(f"{num1} and {num2} addition is :  {num1+num2}")
 
-    elif option == "2":
-        print(f"{num1} and {num2} Subtraction is :  {num1-num2}")
+#     elif option == "2":
+#         print(f"{num1} and {num2} Subtraction is :  {num1-num2}")
 
-    elif option == "3":
-        print(f"{num1} and {num2} Multiplication is :  {num1*num2}")
+#     elif option == "3":
+#         print(f"{num1} and {num2} Multiplication is :  {num1*num2}")
 
-    elif option == "4":
-        print(f"{num1} and {num2} Division is :  {num1/num2}")
+#     elif option == "4":
+#         print(f"{num1} and {num2} Division is :  {num1/num2}")
         
-    else:
-        print("Invalid choice ! ")
+#     else:
+#         print("Invalid choice ! ")
   
     
-    choice = input("Do you want to continue? (y/n): ")
+#     choice = input("Do you want to continue? (y/n): ")
 
