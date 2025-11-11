@@ -25,6 +25,8 @@ def insert():
     print("Data inserted")
     con.close()
 
+
+
 l1 = Label(root, text="Name").place(x=200, y=100)
 l2 = Label(root, text="Email").place(x=200, y=150)
 l3 = Label(root, text="Phone").place(x=200, y=200)
@@ -42,3 +44,5 @@ b1 = Button(root, text="Submit", width=15, command=insert)
 b1.place(x=300, y=230)
 
 root.mainloop()
+
+
