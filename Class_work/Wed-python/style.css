@@ -1,0 +1,92 @@
+* {
+
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: #020024;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(46, 46, 99, 1) 0%, rgba(0, 212, 255, 1) 73%);
+}
+
+header {
+    height: 15%;
+    width: 100%;
+    background-color: rgb(15, 15, 15);
+}
+
+.logo{
+  width: 20%;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.title
+{
+    width: 80%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    color: #FFF;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.main {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer
+{
+    display: flex;
+    justify-content: center;
+    color: white
+}
+
+.login
+{
+    height: 250px;
+    width: 350px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #22C1C3;
+    background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgb(238, 197, 109) 100%);
+    border-radius: 10px;
+    box-shadow: 2px 2px;
+}
+
+.textfield {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.dropdown {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.btn{
+    width: 75px;
+    height:30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: bisque;
+}
