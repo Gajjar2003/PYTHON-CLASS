@@ -1,0 +1,30 @@
+.logo
+{
+  margin-left: 490px;
+  margin-top: 150px;
+  height: 200px;
+}
+.title
+{
+    margin-left:498px ;
+    margin-top: -55px;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-size: 28px;
+   letter-spacing: normal;
+   width: 700;
+   color: #373737;
+}
+
+.login
+{
+ 
+    height: 400px;
+    width: 380px;
+    border: 1px solid black;
+    margin-left: 1200px;
+    margin-top: -180px;
+   
+    
+    
+   
+}
