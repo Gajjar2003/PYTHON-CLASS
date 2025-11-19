@@ -616,21 +616,21 @@ b= {2,6,7,8}
 # p.display()
 
 
-class calc:
+# class calc:
 
-    def __init__(self,number):
-        self.number=number
+#     def __init__(self,number):
+#         self.number=number
 
-    def squre(self):
-        print( f"This squer is {self.number*self.number}")
+#     def squre(self):
+#         print( f"This squer is {self.number*self.number}")
     
-    def cude(self):
-        print( f"This cude is {self.number*self.number*self.number}")
+#     def cude(self):
+#         print( f"This cude is {self.number*self.number*self.number}")
     
-    def squreroot(self):
-        print( f"This squer-root is {self.number**1/2}")
+#     def squreroot(self):
+#         print( f"This squer-root is {self.number**1/2}")
     
-c =calc(5)
-c.squre()
-c.cude()
-c.squreroot()
+# c =calc(5)
+# c.squre()
+# c.cude()
+# c.squreroot()
