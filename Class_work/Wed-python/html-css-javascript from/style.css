@@ -1,0 +1,62 @@
+body{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+
+
+.main
+{
+    height: 500px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+.title{
+    font-size: 25px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 5px;
+}
+
+.text
+{
+    font-size: 22px;
+    margin-left: 19px;
+    font-family: 'Comic Sans MS', cursive;
+  
+}
+
+.input
+{
+    width: 90%;
+    height: 25px;
+    margin-left: 15px;
+    
+}
+
+.btn1{
+    height: 35px;
+     margin-left: 150px;
+   margin-top: 25px;
+   background-color: rgb(190, 241, 113);
+   border: greenyellow;
+   border-radius: 5px;
+}
+
+
+.btn2{
+    height: 35px;
+    margin-top: 25px;
+    background-color: rgb(170, 170, 243);
+    border-radius: 5px;
+    border:rgb(170, 170, 243) ;
+}
