@@ -113,3 +113,84 @@
 
 
 # ****************************************************************************************************************************************************************
+
+# Day2 in python praticals
+# if , if-else
+
+# age = int(input("Enter your age is : "))
+
+# if(age > 18):
+#     print("you are young...")
+
+
+# if(age >= 18):
+#     print("You are young men..")
+# else:
+#     print("You are child...")
+
+
+
+
+
+
+print("Press 1 is multipale table")
+print("Press 2 Fibonacci i series is  ")
+print("Press 3 is factorial is ")
+print("Press 4 is Palindrome number")
+
+option = int(input("Enter your chioce is(1-4): "))
+
+
+# OPTION 1: Multiplication Table
+if option == 1:
+    num = int(input("Enter your number: "))
+
+    for i in range(1, 11):
+        print(i, "X", num, "=", i * num)
+
+
+# OPTION 2: Fibonacci Series
+elif option == 2: 
+    num = int(input("Enter how many Fibonacci numbers you want: "))
+
+    pr = 0
+    pe = 1
+
+    print("Fibonacci series:")
+    print(pr)
+    print(pe)
+
+    for i in range(2, num):
+        temp = pr + pe
+        pr = pe
+        pe = temp
+        print(temp)
+
+
+# OPTION 3: factorial
+elif option == 3:
+    fact = int(input("Enter your number is: "))
+
+    for i in range(1,fact):
+        fact = fact*i
+
+    print(fact)
+
+
+# OPTION 4: (Palindrome number)
+elif option == 4:
+    num = input("Enter your number: ")
+
+    if num == num[::-1]:
+        print("Palindrome")
+    else:
+        print("Not Palindrome")
+
+
+
+else:
+    print("Invalid choice is...")
+ 
+
+
+    
