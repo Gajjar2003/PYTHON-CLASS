@@ -5,6 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student-From</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="sicon.ico"  type="imgae/x-icon">
+    <script>
+          function validation() 
+          {
+
+            
+            var name = document.getElementById("name").value
+            var email = document.getElementById("email").value
+            var password = document.getElementById("password").value
+            var cpassword = document.getElementById("cpassword").value
+
+
+
+            var nameerror = document.getElementById("nameerror");
+             var emailerror = document.getElementById("emailerror");
+            var passworderror  = document.getElementById("passworderror")
+            var cpassworderror = document.getElementById("cpassworderror")
+
+            var nameExp = /^[a-zA-Z]+$/
+            var emailExp = /^[A-Za-z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
+            var passwordExp = /^[A-z]+@[a-z0-9]{1,10}$/
+
+
+           
+
+
+            if (name == "" || name == null) 
+            {
+                nameerror.innerHTML = "Name is Required !!!";
+            }
+            else if(!nameExp.test(name))
+            {
+                nameerror.innerHTML="Only chars allowed !!"
+            }
+
+            else 
+            {
+                nameerror.innerHTML = "";
+            }
+
+
+            if(email== "" || email == null)
+            {
+                emailerror.innerHTML = "Email is Required !!!"
+            }
+            else if(!emailExp.test(email))
+            {
+                emailerror.innerHTML= "Invalid email format !!"
+            }
+            else
+            {
+                emailerror.innerHTML = "";
+            }
+
+             if(password== "" || password == null)
+            {
+                passworderror.innerHTML = "Password is Required !!!"
+            }
+            else if(!passwordExp.test(password))        
+            {
+                passworderror.innerHTML="Invaild password format !!!"
+            }
+            else
+            {
+                passworderror.innerHTML = "";
+            }
+
+
+
+             if(cpassword== "" || cpassword == null)
+            {
+                cpassworderror.innerHTML = "Confrim password is Required !!!"
+            }
+            else if (password !== cpassword) 
+            {
+                    cpassworderror.innerHTML = "Password & Confirm Password do not match !!!";
+            }
+            
+           
+            else
+            {
+                cpassworderror.innerHTML = "";
+            }
+
+
+          }
+
+    </script>
 </head>
 <body>
     
@@ -14,19 +102,28 @@
     </div><br><br>
     <div class="from-group">
         <label for=""class="text" >Name</label><br>
-        <input type="text" class="input"  placeholder="Please Enter Your Name"><br><br>
-
+        <input type="text" class="input"  placeholder="Please Enter Your Name" onkeyup="validation()" id="name">
+        
+        <span id="nameerror" class="text-danger" style="color:red;"></span>
+        <br><br>
          <label for=""class="text" >Email-id</label><br>
-        <input type="text" class="input"  placeholder="Enter Your Email-id"><br><br>
+        <input type="text" class="input"  placeholder="Enter Your Email-id" onkeyup="validation()" id="email">
+          <span id="emailerror" class="text-danger" style="color:red;"></span>
+        <br><br>
 
          <label for=""class="text" >Password</label><br>
-        <input type="password" class="input"  placeholder="Enter Your Password"><br><br>
+        <input type="password" class="input"  placeholder="Enter Your Password" onkeyup="validation() " id="password">
+         <span id="passworderror" class="text-danger" style="color:red;"></span>
+        <br><br>
 
          <label for=""class="text" >Confirm-Password</label><br>
-        <input type="password" class="input"  placeholder="Enter Your Confirm-Password">
+        <input type="password" class="input"  placeholder="Enter Your Confirm-Password" onkeyup="validation()" id="cpassword">
+         <span id="cpassworderror" class="text-danger" style="color:red;"></span>
 
-        <input type="submit" id="smbtn" class="btn1">
-        <input type="reset" class="btn2  ">
+       
+
+       <input type="submit" class="btn1">
+            <input type="reset" class="btn2">
 
     </div>
 </div>

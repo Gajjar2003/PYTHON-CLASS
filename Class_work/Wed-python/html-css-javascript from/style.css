@@ -3,17 +3,20 @@ body{
     align-items: center;
     display: flex;
     height: 100vh;
+    background: linear-gradient(90deg, rgb(156, 151, 243) 0%, rgba(46, 46, 99, 1) 0%, rgb(150, 233, 250) 73%);
+
 }
 
 
 .main
 {
-    height: 500px;
+    height: 520px;
     width: 400px;
     border: 2px solid black;
     border-radius: 6px;
     align-items: center;
     justify-content: center;
+    background-color: bisque;
   
 }
 
@@ -59,4 +62,10 @@ body{
     background-color: rgb(170, 170, 243);
     border-radius: 5px;
     border:rgb(170, 170, 243) ;
+}
+
+.text-danger
+{
+    margin-left: 19px;
+    
 }
