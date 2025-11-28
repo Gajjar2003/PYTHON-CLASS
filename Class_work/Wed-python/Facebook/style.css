@@ -2,7 +2,10 @@
 {
 
   height: 100vh;
-  width: 50%;
+  width: 60%;
+ 
+
+ 
  
 
 }
@@ -20,7 +23,7 @@
 {
  margin-left: 550px;
  margin-top: -50px;
- font-size: 32px;
+ font-size: 33px;
  font-family: SFProDisplay-Bold, Helvetica, Arial, sans-serif;
  font-weight: 700;
  line-height: 38px;
@@ -29,16 +32,25 @@
 
 
 }
+body
+{
+  background-color: rgb(224, 220, 220);
+}
+
+
 
 .login-box
 {
-  height: 350px;
+  height: 400px;
   width: 400px;
   border: 2px rgb(235, 232, 232) solid;
   float: right;
-  margin-top: -700px;
+  margin-top: -780px;
   margin-right: 350px;
   border-radius: 5px;
+  background-color: white;
+  box-shadow: rgb(161, 160, 160) 2px 2px  2px 2px;
+ 
 
 
 }
@@ -108,8 +120,8 @@
 
 .bottom-text
 {
- margin-left: 1180px;
- margin-top: -320px;
+ margin-left: 1390px;
+ margin-top: -360px;
         color: inherit;
     font-size: 17px;
     cursor: pointer;
@@ -121,4 +133,22 @@
 .create-btn:hover
 {
   background-color: #b4f7a7;
+}
+
+
+.text-danger
+{
+  margin-left: 35px;
+  padding: 5px;
+  
+}
+
+footer
+{
+  margin-left: 300px;
+  font-size: 25px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+  
+
 }

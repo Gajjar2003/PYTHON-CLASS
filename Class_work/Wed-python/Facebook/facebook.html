@@ -9,15 +9,86 @@
 
   <div class="main">
     <img src="f-logo.png" alt="loding" class="img">
-    <h1 class="title">Facebook helps you connect and share
+    <h1 class="title">Facebook helps you connect and share 
        with the people in your life.</h1>
     
   </div>
 
- <div class="login-box">
-        <input type="text" placeholder="Email address or phone number" class="text">
-        <input type="password" placeholder="Password" class="text1">
-        <button class="login-btn">Log in</button>
+  <script>
+      
+
+      function validtion()
+      { 
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var emailerror = document.getElementById("emailerror");
+        var passerror = document.getElementById("passerror");
+
+
+        var emailexp = /^[A-Za-z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
+        var passexp = /^[A-z]+@[a-z0-9]{1,10}$/
+
+
+
+        if(email == "" || email == null)
+        
+        {
+          emailerror.innerHTML= "Email is Required !!";
+
+        }
+
+        else if(!emailexp.test(email))
+        {
+          emailerror.innerHTML= "Invalid email format !!"
+        }
+
+        else
+        {
+          emailerror.innerHTML = "";
+        }
+        
+        if(password == "" || password == null)
+        {
+          passerror.innerHTML = "Password is Required !!";
+        }
+
+        
+        else if(!passexp.test(password))
+        {
+          passerror.innerHTML= "Invalid password format !!"
+        }
+
+        else
+        {
+          passerror.innerHTML = "";
+        }
+
+
+
+      }
+
+      function login() 
+      {
+        alert("Confirm email and password !!!");
+      }
+
+
+
+
+
+
+  </script>
+  </head>
+
+
+<body>
+  <div class="login-box">
+        <input type="text" placeholder="Email address or phone number" class="text" onkeyup="validtion()" id="email"><br>
+        <span id="emailerror" class="text-danger" style="color:red;"></span><br>
+        <input type="password" placeholder="Password" class="text1" onkeyup="validtion()" id="password">
+        <br><span id="passerror" class="text-danger" style="color:red;"></span><br>
+        <button class="login-btn" onclick="login()">Log in</button>
         <br><br>
         <a href="#" class="forgot">Forgotten password?</a>
 
@@ -31,11 +102,20 @@
     </p>
 
 </div>
+</body><br><br><br>
+<footer>English (UK)
+ગુજરાતી
+हिन्दी
+मराठी
+اردو
+ਪੰਜਾਬੀ
+தமிழ்
+తెలుగు
+বাংলা
+മലയാളം
+Español
+Sign UpLog inMessengerFacebook LiteVideoMeta PayMeta  <br>StoreMeta QuestRay-Ban MetaMeta AIMeta AI more contentInstagramThreadsVoting Information CentrePrivacy PolicyPrivacy CentreAboutCreate  <br>
+ adCreate PageDevelopersCareersCookiesAdChoicesTermsHelpContact uploading and non-usersSettingsActivity log
+Meta © 2025</footer>
 
-
-
-
-<body>
-  
-</body>
 </html>
