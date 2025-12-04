@@ -13,4 +13,4 @@ def register_student(request):
 
         student.objects.create(name=name,email=email,age=age)
 
-        return render(request, 'index.html')
+        return render(request, 'index.html',{'success':'student infromation successfully Done'})
