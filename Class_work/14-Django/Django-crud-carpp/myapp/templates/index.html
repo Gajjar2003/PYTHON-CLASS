@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carapp</title>
+</head>
+<body>
+    <h1 align ="center">Car detalis </h1>
+   
+    
+    <form action="{% url 'register'%}" align ="center" method="post">
+        {% csrf_token %}
+        <span>{{success}}</span><br>
+        <input type="hidden" name="id" value="{{car.id}}"><br><br>
+        <input type="text" placeholder="Enter you car name" name="name" value="{{car.name}}"><br><br>
+        <input type="text" placeholder="Enter your car model name" name="model" value="{{car.model}}"><br><br>
+        <input type="text" placeholder="Enter car price " name="price" value="{{car.price}}">
+        <br><br>
+        <input type="submit"><br><br>
+         <a href="{% url 'display'%}">View detalis for car</a>
+    </form>
+</body>
+</html>
