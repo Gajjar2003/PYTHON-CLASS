@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+</head>
+<body>
+    <h1 align ="center">Employee Table For Details</h1>
+    <table border="4px solid balck" cellspacing="10" cellpadding="10" align ="center">
+        <tr>
+            <th>Id</th>
+            <th>E-name</th>
+            <th>E-email</th>
+            <th>E-age</th>
+            <th>E-salary</th>
+            <th>E-department</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for e in employees %}
+        <tr>
+            
+              <td>{{e.id}}</td>
+              <td>{{e.name}}</td>
+              <td>{{e.email}}</td>
+              <td>{{e.age}}</td>
+              <td>{{e.salary}}</td>
+             <td>{{e.department}}</td>
+             <td><a href="">Delete</a></td>
+             <td><a href="">Edit</a></td>
+            
+           
+        </tr>
+         {%endfor%}
+    </table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1 align ="center">Product details </h1>
+   <form action="{% url 'register'%}" method="post" align ="center">
+    {% csrf_token %}
+    <span>{{success}}</span><br>
+
+    <input type="text" placeholder="Enter your name" name="name"><br><br>
+    <input type="text" placeholder="Enter your model" name="model"><br><br>
+    <input type="text" placeholder="Enter your qty" name="qty"><br><br>
+    <input type="text" placeholder="Enter your price" name="price"><br><br>
+    <input type="text" placeholder="Enter your gst" name="gst"><br><br>
+    <input type="text" placeholder="Enter your online/case" name="online"><br><br>
+    <input type="submit">
+    
+
+
+   </form>
+
+   <h3 align ="center"><a href="{% url 'display'%}">View all details</a></h3>
+
+</body>
+</html>

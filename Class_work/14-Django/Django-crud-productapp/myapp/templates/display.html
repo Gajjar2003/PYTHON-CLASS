@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align ="center">Product tabel</h1>
+    <table align="center" cellspacing ="10" cellpadding = "10" border="3px soild balck">
+        <tr>
+            <th>Id</th>
+            <th>P-name</th>
+            <th>P-model</th>
+            <th>P-qty</th>
+            <th>P-price</th>
+            <th>P-GST</th>
+            <th>P-payment</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for p in products%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.model}}</td>
+            <td>{{p.qty}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.gst}}</td>
+            <td>{{p.online}}</td>
+            <td><a href="">Detele</a></td>
+            <td><a href="">Edit</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2 align ="center"><a href="{% url 'index'%}">Back To Home page</a></h2>
+</body>
+</html>
