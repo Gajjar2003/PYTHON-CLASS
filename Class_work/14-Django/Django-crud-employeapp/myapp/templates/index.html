@@ -11,12 +11,12 @@
         {% csrf_token %}
 
         <span>{{success}}</span><br><br>
-
-        <input type="text" placeholder="Enter your employee name" name="name"><br><br>
-        <input type="text" placeholder="Enter your email id" name="email"><br><br>
-        <input type="text" placeholder="Enter your employee age" name="age"><br><br>
-        <input type="text" placeholder="Enter your employee salary" name="salary"><br><br>
-        <input type="text" placeholder="Enter your employee department" name="department"><br><br>
+        <input type="hidden" name="id" value="{{e.id}}">
+        <input type="text" placeholder="Enter your employee name" name="name" value="{{e.name}}"><br><br>
+        <input type="text" placeholder="Enter your email id" name="email" value="{{e.email}}"><br><br>
+        <input type="text" placeholder="Enter your employee age" name="age" value="{{e.age}}"><br><br>
+        <input type="text" placeholder="Enter your employee salary" name="salary" value="{{e.salary}}"><br><br>
+        <input type="text" placeholder="Enter your employee department" name="department" value="{{e.department}}"><br><br>
         <input type="submit" >
 
 
