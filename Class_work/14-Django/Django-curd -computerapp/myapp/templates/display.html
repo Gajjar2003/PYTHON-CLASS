@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display-App</title>
+</head>
+<body>
+    <h1 align ="center">Display-Tables</h1>
+    <table align="center" cellpadding = "10" border="4px soild balck" cellspacing = "10" style="background-color: bisque;">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+              <th>Email</th>
+            <th>Type(pc/laptop)</th>
+              <th>Model</th>
+            <th>Years</th>
+              <th>Qty</th>
+            <th>Price</th>
+              <th>Gst</th>
+              <th>online</th>
+            <th>Rating</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for c in computers%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.type}}</td>
+            <td>{{c.model}}</td>
+            <td>{{c.years}}</td>
+            <td>{{c.qty}}</td>
+            <td>{{c.price}}</td>
+            <td>{{c.gst}}</td>
+            <td>{{c.online}}</td>
+            <td>{{c.rating}}</td>
+            <th><a href="{% url 'delete'%}?id={{c.id}}">Detele</a></th>
+            <th><a href="{% url 'edit' %}?id={{c.id}}">Edit</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3 align="center"><a href="{%  url 'index'%}">Back To home pages</a></h3>
+
+</body>
+</html>

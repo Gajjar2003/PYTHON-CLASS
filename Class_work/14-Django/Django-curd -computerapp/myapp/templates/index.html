@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYAPP</title>
+</head>
+<body>
+   <h1 align="center">COMPUTER-APPLICATION</h1>
+
+   <form action="{% url 'register' %}" align="center" method="post">
+     {% csrf_token %}
+     <span>{{success}}</span><br><br>
+    <input type="hidden" name="id" value="{{c.id}}">
+    <input type="text" name="name" placeholder="Enter your Name" value="{{c.name}}"><br><br>
+    <input type="email" name="email" placeholder="Enter your email" value="{{c.email}}"><br><br>
+    <input type="text" name="type" placeholder="Enter your (PC/laptop)" value="{{c.type}}"><br><br>
+    <input type="text" name="model" placeholder="Enter your Model" value="{{c.model}}"><br><br>
+    <input type="number" name="years" placeholder="Enter your Warranty years" value="{{c.years}}"><br><br>
+    <input type="number" name="qty" placeholder="Enter your qty" value="{{c.qty}}"><br><br>
+    <input type="text" name="price" placeholder="Enter your price" value="{{c.price}}"><br><br>
+    <input type="text" name="gst" placeholder="Enter your gst" value="{{c.gst}}"><br><br>
+    <input type="text" name="online" placeholder="Enter payment-type" value="{{c.online}}"><br><br>
+    <input type="text" name="rating" placeholder="Enter your rating" value="{{c.rating}}"><br><br>
+
+    <input type="submit">
+
+   </form>
+   <h3 align ="center"><a href="{% url 'display' %}">View all details</a></h3>
+</body>
+</html>
