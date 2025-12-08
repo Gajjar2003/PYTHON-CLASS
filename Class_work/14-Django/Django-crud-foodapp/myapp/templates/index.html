@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD-APP</title>
+</head>
+<body>
+    <h1 align ="center">Food App</h1>
+    <form action="{% url 'register'%}" align ="center" method="post">
+        {% csrf_token %}
+        <span>{{success}}</span><br><br>
+        <input type="hidden" name="id" value="{{f.id}}">
+        <input type="text" placeholder="Enter Your Food-Name" name="name" value="{{f.name}}"><br><br>
+        <input type="text" placeholder="Enter Your Food-Veg/No-veg" name="veg" value="{{f.veg}}"><br><br>
+         <input type="text" placeholder="Enter Your Food-qty" name="qty" value="{{f.qty}}"><br><br>
+          <input type="text" placeholder="Enter Your Food-price" name="price" value="{{f.price}}"><br><br>
+           <input type="text" placeholder="Enter Your Food-GSt" name="gst" value="{{f.gst}}"><br><br>
+            <input type="text" placeholder="Enter Your Food-rating" name="rating" value="{{f.rating}}"><br><br>
+             <input type="submit">
+                          
+    </form>
+    <br>
+    <h3 align ="center"><a href="{% url 'display'%}">View all details</a></h3>
+</body>
+</html>

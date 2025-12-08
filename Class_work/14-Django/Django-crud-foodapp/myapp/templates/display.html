@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD Display</title>
+</head>
+<body>
+    <h1 align ="center">FOOD-APP-DETAILS</h1>
+    <table border="3px solid balck" cellpadding ="10" align="center" cellspacing = "10"  style="background-color: bisque;">
+        <tr>
+            <th>ID</th>
+            <th>Food-name</th>
+            <th>Food-type</th>
+            <th>Food-qty</th>
+            <th>Food-price</th>
+            <th>Food-gst</th>
+            <th>Food-rating</th>
+            <th colspan="2">Action</th>
+        </tr>
+        {% for f in foods %}
+        <tr>
+           <td>{{forloop.counter}}</td>
+            <td>{{f.name}}</td>
+             <td>{{f.veg}}</td>
+              <td>{{f.qty}}</td>
+               <td>{{f.price}}</td>
+                <td>{{f.gst}}</td>
+                 <td>{{f.rating}}</td>
+                 <td><a href="{% url 'delete'%}?id={{f.id}}">Detele</a></td>
+                  <td><a href="{% url 'edit'%}?id={{f.id}}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h3 align ="center"><a href="{% url 'index'%}">Back to home pages</a></h3>
+
+
+</body>
+</html>
