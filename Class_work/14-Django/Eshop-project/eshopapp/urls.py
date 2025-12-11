@@ -12,8 +12,9 @@ urlpatterns = [
     path("shop-details", shop_details, name="shop-details"),
     path("shop", shop, name="shop"),
     path("shopping-cart", shopping_cart, name="shopping-cart"),
-    path("login",login,name="login"),
+    path("login1",login1,name="login1"),
     path("user-register",user_register,name="user-register"),
-    path("user-login",user_login,name="user-login")
+    path("user-login",user_login,name="user-login"),
+    path("user-logout",user_logout,name="user-logout")
     
 ]
