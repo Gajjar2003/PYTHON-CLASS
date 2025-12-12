@@ -75,6 +75,11 @@ def user_logout(requset):
     logout(requset)
     return redirect("index") 
 
+def wishlist(requset):
+
+        return render(requset,"wishlist.html")
+  
+
  
 
 

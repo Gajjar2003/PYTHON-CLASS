@@ -40,3 +40,5 @@ def edit(requset):
         id = requset.GET['id']
         p = product.objects.get(id=id)
         return render(requset,"index.html",{'p':p,'products':products})
+    
+
