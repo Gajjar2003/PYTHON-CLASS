@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricketapp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="row mt-2 p-5 card">
+            <div class="col">
+                <form action="{% url 'register' %}" method="post">
+                     {% csrf_token %}
+
+                    <h2>Crickets App</h2>
+                    <span class="text-success">{{meg}}</span>
+                    <hr> 
+                    <input type="hidden" name="id" value="{{c.id}}">
+                    <input type="text" placeholder="Enter your No" class="form-control" name="no" value="{{c.no}}"><br>
+                    <input type="text" placeholder="Enter your Name" class="form-control" name="name"value="{{c.name}}"><br>
+                    <input type="text" placeholder="Enter your Age" class="form-control" name="age"value="{{c.age}}"><br>  
+                    <input type="text" placeholder="Enter your Email" class="form-control" name="email"value="{{c.email}}"><br>  
+                    <input type="text" placeholder="Enter your Types(Bat)" class="form-control" name="type"value="{{c.type}}"><br>  
+                    <input type="text" placeholder="Enter your Fromate" class="form-control" name="fromate"value="{{c.fromate}}"><br>  
+                    <input type="text" placeholder="Enter your Run" class="form-control" name="run"value="{{c.run}}"><br>  
+                    <input type="text" placeholder="Enter your 100/50" class="form-control" name="con"value="{{c.con}}"><br>  
+                    <input type="text" placeholder="Enter your Highest-scores" class="form-control" name="score"value="{{c.score}}"><br>
+                    <input type="text" placeholder="Enter your Avg " class="form-control" name="avg"value="{{c.avg}}"><br>
+                    <input type="text" placeholder="Enter your Four" class="form-control" name="four"value="{{c.four}}"><br>
+                    <input type="text" placeholder="Enter your Six" class="form-control" name="six"value="{{c.six}}"><br>  
+                    <input type="submit" class="btn btn-success">
+                    <input type="reset" class="btn btn-primary">
+                   <a href="{% url 'display'%}"class= "btn btn-warning">view</a>    
+                
+                                         
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
