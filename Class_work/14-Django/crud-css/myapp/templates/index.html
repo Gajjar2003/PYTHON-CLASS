@@ -15,16 +15,20 @@
             <div class="col-5 card p-3">
                 <h1>Product information</h1>
                 <hr>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{p.id}}">
-                    <section>
-                        <select>
-                            <option >Pen</option>
-                            <option >PC</option>
-                            <option >Laptop</option>
-                        </select>
-                    </section>
+
+                    <select class="form-control" name="cat" id="cat">
+                     
+                        {% for cat in categorys %}
+                        <option value="{{ cat.id }}" {% if p.cat.id == cat.id %} selected {% endif %}>
+                            {{ cat.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+
+
                     <br>
 
                     <input type="text" placeholder="Enter your name" name="name" class="form-control"
@@ -33,7 +37,12 @@
                         value="{{p.price}}"><br>
                     <input type="text" placeholder="Enter your qty" name="qty" class="form-control"
                         value="{{p.qty}}"><br>
-                    
+                    {% if p%}
+                    <img src="media/{{p.image}}" alt="" width="50px" height="50px">
+                    <span>{{p.image}}</span><br> <br>
+                    {% endif%}
+                    <input type="file" name="image" class="form-control"><br>
+
                     <input type="submit" class="btn btn-success">
                     <input type="reset" class="btn btn-primary">
                 </form>
@@ -51,6 +60,8 @@
                         <th>P-name</th>
                         <th>P-price</th>
                         <th>P-qty</th>
+                        <th>Category</th>
+                        <th>Image</th>
                         <th colspan="2">Action</th>
                     </tr>
                     {% for p in products %}
@@ -59,6 +70,8 @@
                         <td>{{p.name}}</td>
                         <td>{{p.price}}</td>
                         <td>{{p.qty}}</td>
+                        <td>{{p.category.name}}</td>
+                        <td><img src="media/{{p.image}}" alt="{{p.image}}" height="50px" width="50px"></td>
                         <td><a href="{% url 'delete' %}?id={{p.id}}" class="btn btn-danger">Delete</a></td>
                         <td><a href="{% url 'edit' %}?id={{p.id}}" class="btn btn-primary">Edit</a></td>
                     </tr>

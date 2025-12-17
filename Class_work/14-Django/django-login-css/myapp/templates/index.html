@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row-5 card mt-5 p-5">
+            <div class="col">
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <h1>Register</h1>
+                    <hr>
+                    <span class="text-success">{{ meg }}</span>
+                    <input type="text" placeholder="Enter your name" class="form-control" name="uname" ><br>
+                    <input type="email" placeholder="Enter your email" class="form-control" name="email" ><br>
+                    <input type="password" placeholder="Enter your password" class="form-control" name="pass"><br>
+                    <input type="submit" class="btn btn-success">
+                     <input type="reset" class="btn btn-primary">
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+     <div class="container">
+        <div class="row-5 card mt-5 p-5">
+            <div class="col">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <h1>Login</h1>
+                    <hr>
+                    <span class="text-success">{{ err }}</span>
+                    <input type="text" placeholder="Enter your name" class="form-control" name="uname" ><br>
+                    <input type="password" placeholder="Enter your password" class="form-control" name="pass"><br>
+                    <input type="submit" class="btn btn-success">
+                     <input type="reset" class="btn btn-primary">
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+</html>
