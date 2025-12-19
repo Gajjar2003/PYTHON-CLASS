@@ -1,0 +1,54 @@
+from django.shortcuts import render,redirect
+from myapp.models import  *
+
+
+def index(requset):
+    return render(requset,"index.html")
+
+def register(requset):
+    id = requset.POST.get('id')
+    name = requset.POST.get('name')
+    email = requset.POST.get('email')
+    age = requset.POST.get('age')
+    phone = requset.POST.get('phone')
+    image = requset.FILES.get('image')
+
+
+    if not id:
+
+        student.objects.create(name=name,email=email,age=age,phone=phone,image=image)
+
+        return render(requset,"index.html", {'meg':'successfully done by data !'})
+    else:
+        s = student.objects.get(pk=id)
+        image = requset.FILES.get('image')
+
+        s.name = name
+        s.email = email
+        s.age = age
+        s.phone = phone
+        if requset.FILES :
+         s.image= requset.FILES['image']
+        s.save()
+        
+        return render(requset,"index.html", {'meg':'successfully update done by data !'})
+
+def display(requset):
+    students = student.objects.all()
+    return render(requset,"display.html",{'students':students})
+
+def delete(requset):
+
+    id = requset.GET.get('id')
+    s = student.objects.get(pk=id)
+    s.delete()
+
+    return redirect ("display")
+
+
+def edit(requset):
+    id = requset.GET.get('id')
+    s = student.objects.get(pk=id)
+    
+
+    return render(requset,"index.html",{'s':s})
