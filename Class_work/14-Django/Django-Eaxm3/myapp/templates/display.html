@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Table</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>age</th>
+            <th colspan="2">action</th>
+
+            {% for s in students %}
+            <tr>
+                <td>{{s.id}}</td>
+                <td>{{s.name}}</td>
+                <td>{{s.email}}</td>
+                <td>{{s.age}}</td>
+                <td><img src="media/{{s.image}}" alt="{{s.image}}" height="25px" width="25px"></td>
+                <td><a href="{% url 'delete' %}?id={{s.id}}">Delete</a></td>
+                <td><a href="{% url 'edit' %}?id={{s.id}}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tr>
+    </table>
+    <a href="{% url 'index' %}">back</a>
+</body>
+</html>
