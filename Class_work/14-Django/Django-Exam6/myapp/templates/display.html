@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+<body>
+   <table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>image</th>
+        <th colspan="2">Action</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.email}}</td>
+        <td>{{s.age}}</td>
+        <th><img src="media/{{s.image}}" alt="{{s.image}}" height="50px" width="50px"></th>
+        <td><a href="{% url 'delete' %}?id={{s.id}}">Delete</a></td>
+         <td><a href="{% url 'edit' %}?id={{s.id}}">edit</a></td>
+   
+    </tr>
+    {% endfor %}
+   </table>
+   <a href="{% url 'index' %}">Back</a>
+</body>
+</html>
