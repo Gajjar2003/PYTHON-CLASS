@@ -7,3 +7,4 @@ class food(models.Model):
     price = models.FloatField()
     gst = models.FloatField()
     rating = models.CharField(max_length=30)
+    image = models.ImageField(upload_to="image", default="jenil.png")

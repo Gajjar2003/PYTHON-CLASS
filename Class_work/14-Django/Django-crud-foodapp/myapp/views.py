@@ -12,9 +12,10 @@ def register(requset):
     price =requset.POST.get('price')
     gst = requset.POST.get('gst')
     rating = requset.POST.get('rating')
+    image = requset.FILES.get('image')
 
     if not id :
-        food.objects.create(name=name,veg=veg,qty=qty,price=price,gst=gst,rating=rating)
+        food.objects.create(name=name,veg=veg,qty=qty,price=price,gst=gst,rating=rating,image=image)
         return render(requset,"index.html",{'success': 'successfully done !'})
     else:
         f = food.objects.get(id=id)
@@ -24,6 +25,8 @@ def register(requset):
         f.price =price
         f.gst = gst
         f.rating = rating
+        if image:
+            f.image = image
         f.save()
         return render(requset,"index.html",{'success': 'successfully update done !'})
 

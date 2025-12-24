@@ -12,9 +12,10 @@ def regitser(requset):
     age = requset.POST.get('age')
     salary = requset.POST.get('salary')
     department = requset.POST.get('department')
+    image = requset.FILES.get('image')
 
     if not id:
-        employee.objects.create(name = name,email = email, age = age,salary = salary,department = department)
+        employee.objects.create(name = name,email = email, age = age,salary = salary,department = department,image=image)
 
         return render(requset,"index.html",{'success' : 'successfully Done !'})
     else:
@@ -24,6 +25,8 @@ def regitser(requset):
          e.age = age
          e.salary = salary
          e.department = department
+         if image:
+            e.image = image
          e.save()
          return render(requset,"index.html",{'success' : 'successfully update Done !'})
 

@@ -13,4 +13,4 @@ class product(models.Model):
     image = models.ImageField(upload_to="cat_image")
 
 
-# Create your models here.
+

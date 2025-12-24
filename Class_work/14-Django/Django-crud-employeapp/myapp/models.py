@@ -8,3 +8,4 @@ class employee(models.Model):
     age = models.IntegerField()
     salary = models.FloatField()
     department = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="image",default="jenil.png")

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1 align ="center">Food App</h1>
-    <form action="{% url 'register'%}" align ="center" method="post">
+    <form action="{% url 'register'%}" align ="center" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <span>{{success}}</span><br><br>
         <input type="hidden" name="id" value="{{f.id}}">
@@ -17,6 +17,10 @@
           <input type="text" placeholder="Enter Your Food-price" name="price" value="{{f.price}}"><br><br>
            <input type="text" placeholder="Enter Your Food-GSt" name="gst" value="{{f.gst}}"><br><br>
             <input type="text" placeholder="Enter Your Food-rating" name="rating" value="{{f.rating}}"><br><br>
+            {% if f%}
+            <img src="media/{{f.image}}" alt="{{f.image}}" height="25px" width="25px">
+            {% endif %}
+            <input type="file" name="image"><br><br>
              <input type="submit">
                           
     </form>

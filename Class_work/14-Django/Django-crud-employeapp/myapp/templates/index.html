@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1 align ="center">Employee Detalis For</h1>
-    <form action="{% url 'regitser'%}" align =" center" method="post">
+    <form action="{% url 'regitser'%}" align =" center" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         <span>{{success}}</span><br><br>
@@ -17,6 +17,10 @@
         <input type="text" placeholder="Enter your employee age" name="age" value="{{e.age}}"><br><br>
         <input type="text" placeholder="Enter your employee salary" name="salary" value="{{e.salary}}"><br><br>
         <input type="text" placeholder="Enter your employee department" name="department" value="{{e.department}}"><br><br>
+        {% if e %}
+       <img src="media/{{e.image}}" alt="{{e.image}}" height="50px " width="50px">
+       {% endif %}
+        <input type="file" name="image"><br><br>
         <input type="submit" >
 
 

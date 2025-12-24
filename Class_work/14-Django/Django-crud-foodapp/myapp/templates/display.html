@@ -16,6 +16,7 @@
             <th>Food-price</th>
             <th>Food-gst</th>
             <th>Food-rating</th>
+            <th>Image</th>
             <th colspan="2">Action</th>
         </tr>
         {% for f in foods %}
@@ -27,6 +28,7 @@
                <td>{{f.price}}</td>
                 <td>{{f.gst}}</td>
                  <td>{{f.rating}}</td>
+                 <td><img src="media/{{f.image}}" alt="{{f.image}}" height="25px" width="25px"></td>
                  <td><a href="{% url 'delete'%}?id={{f.id}}">Detele</a></td>
                   <td><a href="{% url 'edit'%}?id={{f.id}}">Edit</a></td>
         </tr>
