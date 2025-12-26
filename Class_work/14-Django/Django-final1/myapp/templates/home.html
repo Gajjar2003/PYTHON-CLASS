@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <h1>wel come to {{user}}</h1>
+    <a href="{% url 'logout'%}" >Logout</a><br><br>
+    <a href="{% url 'register' %}">without logout</a>
+
+    <table border="2px silod balck " cellspacing="10" align="center" cellpadding="10">
+        <tr>
+            <th>Id</th>
+            <th>User-name</th>
+            <th>Password</th>
+           
+            <th colspan="2">Action</th>
+            
+        </tr>
+        {% for u in users%}
+        <tr>
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.password}}</td>
+            <td><a href="{% url 'delete'%}?id={{u.id}}">Delete</a></td>
+              <td><a href="{% url 'edit' %}?id={{u.id}}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
