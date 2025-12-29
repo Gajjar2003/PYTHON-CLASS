@@ -1,28 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        function send() {
-            var data = $('#data').val();
 
-            $.get('view', { data: data }, function (rt) {
-                alert(rt);
-            });
+        $(document).ready(function () {
+            countries()
+        })
+
+        function send() {
+            var data = $('#data').val()
+
+            $.get('view', { data }, function (rt) {
+
+                row = "<ul>"
+                rt.products.map(ele => {
+                    row += `<li>${ele.name}</li>`
+                })
+                row += "</ul>"
+                $("#tdata").html(row)
+            })
         }
+
+        function countries() {
+
+            $.get("countries", {}, function (rt) {
+                var options = "<option value='0'>---Select Country---</option>"
+                rt.countries.map(ele => {
+                    options += `<option value='${ele.id}'>${ele.name}</option>`
+                })
+                $("#country").html(options)
+            })
+        }
+
+
+        function states(cid) {
+
+            $.get("states", { cid }, function (rt) {
+                var options = "<option value='0'>---Select States---</option>"
+                rt.states.map(ele => {
+                    options += `<option value='${ele.id}'>${ele.name}</option>`
+                })
+                $("#state").html(options)
+            })
+        }
+
+
+        function cities(sid) {
+
+            $.get("cities", { sid }, function (rt) {
+                var options = "<option value='0'>---Select city---</option>"
+                rt.cities.map(ele => {
+                    options += `<option value='${ele.id}'>${ele.name}</option>`
+                })
+                $("#city").html(options)
+            })
+        }
+
     </script>
+
 </head>
 
 <body>
-    <input type="text" id="data">
-    <button onclick="send()">click me</button>
+
+    <input type="text" name="data" id="data" onkeyup="send()">
+    <div id="tdata"></div>
+
+    <br>
+    <hr>
+    <br>
+
+    <select name="country" id="country" onchange="states(value)">
+
+    </select>
+
+    <select name="state" id="state" onchange="cities(value)">
+        <option value="0">---select state---</option>
+    </select>
+
+    <select name="city" id="city">
+        <option value="0">---select city---</option>
+    </select>
+
+
 </body>
-</html>
 
 </html>
