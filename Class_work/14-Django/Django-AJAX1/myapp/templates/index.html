@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX CRUD</title>
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn {
+            border-radius: 10px;
+        }
+
+        table thead {
+            background-color: #4f46e5;
+            color: white;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+           viewstudent()
+        });
+
+        function addstudent()
+        {   
+            var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val()
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var phone = $("#phone").val()
+
+            $.post('register',{csrfmiddlewaretoken,name,email,phone},function (rt){
+                alert(rt)
+                 $("#name").val("")
+                 $("#email").val("")
+                 $("#phone").val("")
+
+                viewstudent()
+            })
+
+        }   
+        
+        function viewstudent()
+        {   
+            var row  = ""
+            $.get("display",{},function (rt){
+                rt.students.map(ele =>{
+                   row +=`<tr><td>${ele.id}</td><td>${ele.name}</td><td>${ele.email}</td><td>${ele.phone}</td></tr>`
+                })
+                $("#tdata").html(row)
+            })
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+               
+                <div class="card shadow-lg">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h3 class="mb-0">Student Registration</h3>
+                    </div>
+
+                    <div class="card-body">
+                           {% csrf_token %}
+
+                       
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="phone" placeholder="Enter phone">
+                            </div>
+
+                            <div class="col-12 text-center mt-3">
+                                <button class="btn btn-success px-4" type="submit" onclick="addstudent()">Submit</button>
+                                <button class="btn btn-secondary px-4 ms-2" type="reset">Reset</button>
+                            </div>
+                        </div>
+
+                        
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered table-hover text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tdata">
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
