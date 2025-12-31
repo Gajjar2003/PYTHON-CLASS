@@ -1,0 +1,2024 @@
+1. HTML in Python 
+
+    1 Introduction to embedding HTML within Python using web frameworks like Django or Flask. 
+
+        1. What Are Flask and Django?
+
+        Flask: A lightweight Python web framework. Great for beginners and small projects. It gives you flexibility to define routes and embed HTML easily.
+
+        Django: A more “batteries-included” framework. It comes with features like user authentication, admin panels, and an ORM for databases. Better for larger projects.
+
+        2. How Python and HTML Work Together
+
+        In web frameworks, Python doesn’t replace HTML. Instead:
+
+        Python handles the backend logic (e.g., fetching data from a database, processing forms).
+
+        HTML templates display that data to users.
+
+        Templates can include dynamic content, where Python values are embedded into HTML.
+
+    2. Generating dynamic HTML content using Django templates. 
+
+         What Are Django Templates?
+
+        Django templates are HTML files that allow dynamic content to be displayed by embedding Python-like variables and logic.
+
+        Key features:
+
+        Variables: Display Python data ({{ variable_name }})
+
+        Tags: Control flow, loops, conditions ({% for item in list %} ... {% endfor %})
+
+        Filters: Modify data before displaying ({{ variable|upper }})
+------------------------------------------------------------------------------------------------------------
+
+2. CSS in Python 
+
+    1. Integrating CSS with Django templates.
+
+            1. Understanding Static Files in Django
+
+        In Django, CSS, JavaScript, and images are called static files. They are separate from your templates (HTML) but can be linked to make your pages stylish.
+
+        Key Points:
+
+        CSS files live in a static folder inside your app.
+
+        Django needs you to load static files in templates using {% load static %}.
+
+        Use {% static 'path/to/file.css' %} to link your CSS.
+
+    2. How to serve static files (like CSS, JavaScript) in Django. 
+
+            1. What Are Static Files in Django?
+
+            Static files are files that don’t change dynamically — like CSS, JavaScript, images, fonts, etc.
+
+            Django provides a way to organize and serve static files for your apps.
+
+                myproject/
+                │
+                ├── myapp/
+                │   ├── static/
+                │   │   └── myapp/
+                │   │       ├── style.css
+                │   │       └── script.js
+                │   ├── templates/
+                │   │   └── dashboard.html
+                │   └── views.py
+                ├── myproject/
+                │   └── settings.py
+                └── manage.py
+------------------------------------------------------------------------------------------------------------
+
+3. JavaScript with Python 
+
+    1 Using JavaScript for client-side interactivity in Django templates. 
+
+            Understanding Client-Side vs Server-Side
+
+            Server-side (Python/Django): Handles data processing, database queries, and rendering HTML templates.
+
+            Client-side (JavaScript): Runs in the browser, handles interactivity, animations, and immediate feedback.
+
+            Django serves the HTML, CSS, and JavaScript, and the browser executes the JavaScript.
+
+            2. Project Structure for JavaScript
+
+            Place your JavaScript files in the static folder:
+
+            myapp/
+            ├── static/
+            │   └── myapp/
+            │       ├── style.css
+            │       └── script.js
+            ├── templates/
+            │   └── dashboard.html
+            ├── views.py
+
+    2. Linking external or internal JavaScript files in Django. 
+           Understanding the Two Types of JavaScript Files
+
+        Internal JavaScript – Written directly inside the HTML template using <script> tags.
+
+        External JavaScript – Stored in a separate .js file and linked in the HTML template.
+
+        2. Project Structure for External JavaScript
+
+        For Django, external JS files are placed in the static folder:
+
+        myapp/
+        ├── static/
+        │   └── myapp/
+        │       └── script.js
+        ├── templates/
+        │   └── dashboard.html
+
+
+        myapp/static/myapp/script.js → External JS file.
+
+        Keep JS outside templates for cleaner code and reusability.
+
+------------------------------------------------------------------------------------------
+
+4. Django Introduction 
+
+        `  1  Overview of Django: Web development framework. 
+
+                Overview of Django
+
+                Django is a high-level, open-source web framework written in Python. It is designed to help developers build secure, scalable, and maintainable web applications quickly and efficiently.
+
+                Key Features
+
+                MVC/MVT Architecture
+
+                Django follows the Model-View-Template (MVT) design pattern (similar to MVC).
+
+                Model: Handles database structure and data.
+
+                View: Processes data and business logic.
+
+                Template: Defines the HTML structure and presentation.
+
+                Built-in Admin Interface
+
+                Automatically generates a web-based admin panel to manage site content.
+
+                ORM (Object-Relational Mapping)
+
+                Allows developers to interact with the database using Python code instead of SQL queries.
+
+                Security Features
+
+                Protects against common threats like SQL injection, XSS, CSRF, and clickjacking.
+
+                Scalability and Reusability
+
+                Promotes modular apps that can be reused across projects.
+
+                Rapid Development
+
+                “Batteries included” philosophy: comes with authentication, routing, sessions, forms, and more built-in.
+
+                Extensive Community and Documentation
+
+                Large community support, tutorials, and a wide range of third-party packages.`
+
+    2.Advantages of Django (e.g., scalability, security). 
+            Advantages of Django
+
+            Rapid Development
+
+            Django’s “batteries included” philosophy provides built-in features like authentication, routing, and admin interfaces, allowing developers to build web applications faster.
+
+            Scalability
+
+            Django can handle high-traffic websites efficiently.
+
+            Its modular architecture allows adding new features or scaling parts of the app independently.
+
+            Security
+
+            Provides protection against common web threats such as:
+
+            SQL Injection
+
+            Cross-Site Scripting (XSS)
+
+            Cross-Site Request Forgery (CSRF)
+
+            Clickjacking
+
+            Encourages secure coding practices by default.
+
+            Versatile and Open-Source
+
+            Free to use and adaptable for a wide variety of web applications: from simple websites to complex, database-driven apps.
+
+            Reusability and Modularity
+
+            Code can be organized into reusable apps, making development and maintenance easier.
+
+            ORM (Object-Relational Mapping)
+
+            Allows developers to interact with databases using Python code rather than writing raw SQL.
+
+            Simplifies database operations and increases productivity.
+
+            Excellent Community Support
+
+            A large community provides:
+
+            Tutorials
+
+            Third-party packages
+
+            Solutions for common issues
+
+            Built-in Admin Interface
+
+            Automatically generates a ready-to-use admin panel for managing site content, saving development time.
+
+            Cross-Platform
+
+            Works on Windows, macOS, Linux, and supports multiple databases (PostgreSQL, MySQL, SQLite, Oracle).
+
+    3. Django vs. Flask comparison: Which to choose and why. 
+
+        | Feature         | **Django**                                               | **Flask**                                         |
+        | --------------- | -------------------------------------------------------- | ------------------------------------------------- |
+        | Type            | Full-stack framework                                     | Microframework                                    |
+        | Philosophy      | “Batteries included” – comes with many built-in features | Minimalist – lightweight and flexible             |
+        | Ideal for       | Large, complex projects                                  | Small to medium projects or APIs                  |
+        | Admin Interface | Built-in                                                 | None (requires third-party packages)              |
+        | ORM             | Built-in ORM                                             | Optional (requires SQLAlchemy or others)          |
+        | Security        | Built-in security features                               | Needs manual implementation for security features |
+        | Learning Curve  | Steeper                                                  | Easier for beginners                              |
+
+---------------------------------------------------------------------------------------------------------------
+
+ 
+5. Virtual Environment 
+
+    1.Understanding the importance of a virtual environment in Python projects.
+
+             What is a Virtual Environment?
+
+            A virtual environment is an isolated Python workspace that allows you to manage project-specific dependencies without affecting your system-wide Python installation.
+
+            In simple terms: each project can have its own Python packages and versions, independent of other projects.
+
+            Why Virtual Environments Are Important
+
+            Avoids Dependency Conflicts
+
+            Different projects may require different versions of the same library.
+
+            Example: Project A needs Django 4.2, but Project B needs Django 3.2.
+
+            Using a virtual environment ensures both projects work without breaking each other.
+
+            Keeps System Python Clean
+
+            Installing packages globally can clutter or break your main Python installation.
+
+            Virtual environments keep project packages contained.
+
+            Reproducible Environments
+
+            You can freeze the exact versions of packages with pip freeze > requirements.txt.
+
+            Other developers can recreate the same environment using pip install -r requirements.txt, ensuring the project behaves the same on any machine.
+
+            Better Project Management
+
+            Each project can have its own set of dependencies.
+
+            Makes it easier to upgrade or remove libraries without affecting other projects.
+
+            Enhanced Security
+
+            Limits the scope of installed packages to a single project, reducing the risk of system-wide issues from malicious or incompatible packages.
+
+    2.Using venv or virtualenv to create isolated environments. 
+
+            1. Using venv (built-in Python module)
+
+            venv comes with Python 3.3+ and is the easiest way to create virtual environments.
+
+            Steps:
+
+            Create a virtual environment
+
+            # Create a virtual environment named 'myenv'
+            python -m venv myenv
+
+
+            Activate the virtual environment
+
+            Windows:
+
+            myenv\Scripts\activate
+
+
+            macOS/Linux:
+
+            source myenv/bin/activate
+
+
+            Install packages
+
+            pip install Django==4.2
+
+
+            Check installed packages
+
+            pip list
+
+
+            Deactivate the environment
+
+            deactivate
+
+            2. Using virtualenv (third-party tool)
+
+            virtualenv works similarly to venv and is especially useful for older Python versions.
+
+            Install virtualenv
+            pip install virtualenv
+
+            Create a virtual environment
+            # Create a virtual environment named 'myenv'
+            virtualenv myenv
+
+------------------------------------------------------------------------------------------------------------
+
+ 
+6. Project and App Creation 
+
+    1.Steps to create a Django project and individual apps within the project. 
+
+                Set Up a Virtual Environment
+
+                It’s best to use a virtual environment to keep dependencies isolated.
+
+                # Create a virtual environment
+                python -m venv myenv
+
+                # Activate it
+                # Windows
+                myenv\Scripts\activate
+                # macOS/Linux
+                source myenv/bin/activate
+
+                2. Install Django
+                pip install django
+
+                3. Create a Django Project
+                # Replace 'myproject' with your project name
+                django-admin startproject myproject
+
+
+                This creates a folder myproject with the following structure:
+
+                myproject/
+                    manage.py
+                    myproject/
+                        __init__.py
+                        settings.py
+                        urls.py
+                        asgi.py
+                        wsgi.py
+
+
+                manage.py: Command-line utility to interact with the project.
+
+                settings.py: Configuration file (database, apps, static files, etc.).
+
+                urls.py: URL routing for the project.
+
+                4. Run the Development Server
+                cd myproject
+                python manage.py runserver
+
+
+                Open your browser and go to http://127.0.0.1:8000/ to see the Django welcome page.
+
+                5. Create a Django App
+
+                A project can have multiple apps. Each app handles a specific feature.
+
+                python manage.py startapp myapp
+
+
+                This creates a folder myapp with structure:
+
+                myapp/
+                    __init__.py
+                    admin.py
+                    apps.py
+                    models.py
+                    tests.py
+                    views.py
+                    migrations/
+
+                6. Register the App in the Project
+
+                Open myproject/settings.py.
+
+                Add your app to INSTALLED_APPS:
+
+                INSTALLED_APPS = [
+                    ...
+                    'myapp',
+                ]
+
+                7. Create a View and URL
+
+                In myapp/views.py:
+
+                from django.http import HttpResponse
+
+                def home(request):
+                    return HttpResponse("Hello, Django!")
+
+
+                In myproject/urls.py:
+
+                from django.contrib import admin
+                from django.urls import path
+                from myapp import views
+
+                urlpatterns = [
+                    path('admin/', admin.site.urls),
+                    path('', views.home),
+                ]
+
+
+                Visit http://127.0.0.1:8000/ to see “Hello, Django!”.
+
+
+    2.Understanding the role of manage.py, urls.py, and views.py. 
+
+                manage.py – Project Command-Line Utility
+
+                Automatically created when you start a Django project.
+
+                Acts as a command-line tool to interact with your project.
+
+                Common uses:
+
+                Start the development server:
+
+                python manage.py runserver
+
+
+                Apply database migrations:
+
+                python manage.py migrate
+
+
+                Create apps:
+
+                python manage.py startapp myapp
+
+
+                Create superuser/admin account:
+
+                python manage.py createsuperuser
+
+
+                Role: Makes managing your Django project easy from the terminal.
+
+                2. urls.py – URL Routing
+
+                Responsible for mapping URLs to views.
+
+                Think of it as a traffic director: it decides what happens when a user visits a certain URL.
+
+                Example (myproject/urls.py):
+
+                from django.contrib import admin
+                from django.urls import path
+                from myapp import views
+
+                urlpatterns = [
+                    path('admin/', admin.site.urls),  # URL for admin panel
+                    path('', views.home),             # Root URL mapped to home view
+                ]
+
+
+                Role: Defines how URLs connect to the corresponding view logic.
+
+                3. views.py – Handles Requests and Returns Responses
+
+                Contains functions or classes called views.
+
+                Each view receives a request and returns a response (HTML, JSON, redirect, etc.).
+
+                Example (myapp/views.py):
+
+                from django.http import HttpResponse
+
+                def home(request):
+                    return HttpResponse("Hello, Django!")
+
+
+                Role: Contains the logic for what the user sees when visiting a URL.
+
+                How They Work Together
+
+                User visits a URL in the browser.
+
+                urls.py checks which view should handle it.
+
+                views.py runs the logic and returns a response.
+
+                manage.py is used to run the server or perform project tasks during development.
+
+--------------------------------------------------------------------------------------------------------
+
+7. MVT Pattern Architecture 
+
+    1.Django’s MVT (Model-View-Template) architecture and how it handles request-response cycles.
+
+            What is MVT?
+
+            Django follows the Model-View-Template (MVT) design pattern, which is similar to MVC but with slight differences:
+
+            Component	Role
+            Model	Represents data and database structure. Defines how data is stored and retrieved.
+            View	Contains the business logic. Receives requests, processes data, and returns responses.
+            Template	Handles presentation (HTML, CSS). Defines how the data is displayed to users.
+            2. How MVT Handles a Request-Response Cycle
+
+            User Sends a Request
+
+            A user visits a URL in their browser (e.g., http://example.com/home).
+
+            URL Routing (urls.py)
+
+            Django checks urls.py to find which view should handle this request.
+
+            View Processes the Request (views.py)
+
+            The view retrieves or processes data, often using the Model.
+
+            It may prepare data to send to a Template for rendering.
+
+            Model Interacts with Database (models.py)
+
+            If the view needs data, it queries the database through the Model.
+
+            Example: Article.objects.all() retrieves all articles.
+
+            Template Renders the Response (templates/)
+
+            The view passes data to a template.
+
+            The template generates HTML dynamically to display to the user.
+
+            Response Sent to User
+
+            Django sends the rendered HTML back to the browser.
+
+            User sees the web page.
+
+---------------------------------------------------------------------------------------------------------
+
+8. Django Admin Panel 
+
+    1.Introduction to Django’s built-in admin panel. 
+
+            1. What is Django Admin?
+
+            Django comes with a ready-to-use web-based administrative interface.
+
+            It allows you to manage database content (add, edit, delete records) without writing any code for the frontend.
+
+            Mainly used by site administrators to manage apps and data.
+
+            2. Key Features
+
+            Automatic Interface
+
+            Admin panel is generated automatically from your models.
+
+            CRUD Operations
+
+            Create, Read, Update, Delete records from the database easily.
+
+            User Authentication
+
+            Built-in login system; only registered staff users can access it.
+
+            Search and Filtering
+
+            Quickly search and filter database entries.
+
+            Customizable
+
+            You can customize which models appear and how they’re displayed.
+
+            3. How to Use the Admin Panel
+            Step 1: Create a Superuser
+            python manage.py createsuperuser
+
+
+            You’ll provide a username, email, and password.
+
+            This user will have full access to the admin panel.
+
+            Step 2: Register Models
+
+            In your app’s admin.py file, register the models you want to manage:
+
+            from django.contrib import admin
+            from .models import Article
+
+            admin.site.register(Article)
+
+            Step 3: Run the Server
+            python manage.py runserver
+
+
+            Visit http://127.0.0.1:8000/admin/.
+
+            Log in with the superuser credentials.
+
+            4. Example Use
+
+            If you have an Article model:
+
+            You can add new articles, edit existing ones, or delete them from the admin panel.
+
+            No need to write separate forms or views for basic content management.
+    
+    2.Customizing the Django admin interface to manage database records. 
+
+    1. Why Customize the Admin Interface?
+
+                By default, Django admin provides a basic interface for managing models. Customizing it allows you to:
+
+                Display only relevant fields
+
+                Add search and filters for easier navigation
+
+                Improve usability for administrators
+
+                2. Basic Customization
+                Step 1: Import your model
+
+                In your app’s admin.py file:
+
+                from django.contrib import admin
+                from .models import Article
+
+                Step 2: Create a ModelAdmin class
+                class ArticleAdmin(admin.ModelAdmin):
+                    list_display = ('title', 'published_date', 'author')  # Fields to show in the list
+                    search_fields = ('title', 'content')                 # Add search box
+                    list_filter = ('published_date', 'author')           # Add filter sidebar
+
+                Step 3: Register the model with the admin class
+                admin.site.register(Article, ArticleAdmin)
+
+                3. Advanced Customization Options
+                Feature	Description	Example
+                list_display	Fields shown in the table view	('title', 'author')
+                search_fields	Add a search bar	('title', 'content')
+                list_filter	Sidebar filters	('status', 'category')
+                ordering	Default sorting	ordering = ('-published_date',)
+                readonly_fields	Fields that can’t be edited	readonly_fields = ('created_at',)
+                fieldsets	Organize fields into sections	Group related fields together for clarity
+
+-----------------------------------------------------------------------------------------------------------------
+
+9. URL Patterns and Template Integration 
+
+    1.Setting up URL patterns in urls.py for routing requests to views. 
+
+            1. What is URL Routing?
+
+            URL routing determines which view function handles a specific URL requested by the user.
+
+            Think of it as a traffic director: it sends incoming requests to the correct view.
+
+            2. Basic Setup in urls.py
+            Step 1: Import Required Modules
+            from django.contrib import admin
+            from django.urls import path
+            from myapp import views  # Import views from your app
+
+            Step 2: Define URL Patterns
+            urlpatterns = [
+                path('admin/', admin.site.urls),       # Admin panel URL
+                path('', views.home, name='home'),    # Root URL mapped to home view
+                path('about/', views.about, name='about'),  # About page
+            ]
+
+
+            path(route, view, name):
+
+            route → URL pattern (e.g., 'about/')
+
+            view → Function or class-based view that handles the request
+
+            name → Optional identifier for the URL (used in templates)
+
+            3. Using URL Parameters
+
+            You can pass dynamic data through the URL.
+
+            Example (urls.py):
+
+            path('article/<int:id>/', views.article_detail, name='article_detail')
+
+
+            View (views.py):
+
+            from django.shortcuts import render
+            from .models import Article
+
+            def article_detail(request, id):
+                article = Article.objects.get(pk=id)
+                return render(request, 'article_detail.html', {'article': article})
+
+
+            <int:id> captures an integer from the URL and passes it to the view.
+
+            4. Including App URLs
+
+            For larger projects, each app can have its own urls.py.
+
+            Main urls.py can include app URLs:
+
+            Project urls.py:
+
+            from django.contrib import admin
+            from django.urls import path, include
+
+            urlpatterns = [
+                path('admin/', admin.site.urls),
+                path('', include('myapp.urls')),  # Include app URLs
+            ]
+
+
+            App urls.py (myapp/urls.py):
+
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('', views.home, name='home'),
+                path('about/', views.about, name='about')]
+
+    2.Integrating templates with views to render dynamic HTML content. 
+
+
+            1. What Are Templates?
+
+            Templates in Django are HTML files that define how content is displayed to the user.
+
+            They can include dynamic data, using Django’s template language (variables, loops, conditions).
+
+            2. Folder Structure
+
+            By default, templates are stored in a folder named templates inside your app or project:
+
+            myapp/
+                templates/
+                    home.html
+
+
+            You can also organize templates per app:
+
+            myapp/templates/myapp/home.html
+
+            3. Example: Using Templates with Views
+            Step 1: Create a Template
+
+            home.html
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>My Django Site</title>
+            </head>
+            <body>
+                <h1>Welcome, {{ user_name }}!</h1>
+                <ul>
+                    {% for item in items %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </body>
+            </html>
+
+
+            {{ user_name }} → Placeholder for dynamic data
+
+            {% for item in items %} ... {% endfor %} → Loop over a list
+
+            Step 2: Create a View
+
+            views.py
+
+            from django.shortcuts import render
+
+            def home(request):
+                context = {
+                    'user_name': 'Alice',
+                    'items': ['Django', 'Python', 'Web Development']
+                }
+                return render(request, 'home.html', context)
+
+
+            render(request, template_name, context):
+
+            request → HTTP request object
+
+            template_name → Path to HTML template
+
+            context → Dictionary of dynamic data passed to the template
+
+            Step 3: Map the URL
+
+            urls.py
+
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('', views.home, name='home'),
+]
+
+-----------------------------------------------------------------------------------------------------------------
+
+10. Form Validation using JavaScript 
+
+        1.Using JavaScript for front-end form validation.
+
+            1. What is Front-End Form Validation?
+
+            Front-end validation occurs in the browser before the form is sent to the server.
+
+            Its main purpose is to check input correctness and provide instant feedback to the user.
+
+            2. Benefits of Front-End Validation
+
+            Provides instant error messages.
+
+            Reduces unnecessary server requests.
+
+            Enhances user experience.
+
+            Can enforce basic formatting rules (email, phone, required fields).
+
+            ⚠️ Note: Front-end validation cannot replace server-side validation because users can bypass it.
+
+            3. Basic Example
+            HTML Form
+            <form id="signupForm" onsubmit="return validateForm()">
+            Name: <input type="text" id="name"><br><br>
+            Email: <input type="text" id="email"><br><br>
+            Password: <input type="password" id="password"><br><br>
+            <input type="submit" value="Sign Up">
+            </form>
+
+            <p id="errorMsg" style="color:red;"></p>
+
+            JavaScript Validation
+            function validateForm() {
+                let name = document.getElementById("name").value;
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+                let error = "";
+
+                // Check if name is empty
+                if (name === "") {
+                    error += "Name is required.\n";
+                }
+
+                // Check email format using regex
+                let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    error += "Invalid email address.\n";
+                }
+
+                // Check password length
+                if (password.length < 6) {
+                    error += "Password must be at least 6 characters long.\n";
+                }
+
+                if (error !== "") {
+                    document.getElementById("errorMsg").innerText = error;
+                    return false; // Prevent form submission
+                }
+
+                return true; // Allow form submission
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+ 
+11. Django Database Connectivity (MySQL or SQLite) 
+
+    1.Connecting Django to a database (SQLite or MySQL). 
+
+            Django’s Database Support
+
+            Django supports multiple databases, including:
+
+            SQLite (default, built-in)
+
+            MySQL
+
+            PostgreSQL
+
+            Oracle
+
+            2. Using SQLite (Default)
+
+            When you create a Django project, SQLite is automatically configured in settings.py.
+
+            settings.py example:
+
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': BASE_DIR / "db.sqlite3",
+                }
+            }
+
+            Steps to Use SQLite
+
+            No installation required (SQLite comes with Python).
+
+            Apply migrations to create tables:
+
+            python manage.py migrate
+
+
+            Your database file (db.sqlite3) will be created automatically in the project folder.
+
+            3. Using MySQL
+            Step 1: Install MySQL and Python Connector
+            pip install mysqlclient
+
+
+            On Windows, you might need precompiled wheels or use PyMySQL:
+
+            pip install PyMySQL
+
+            Step 2: Configure settings.py
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.mysql',  # Use MySQL backend
+                    'NAME': 'mydatabase',                  # Database name
+                    'USER': 'root',                        # MySQL username
+                    'PASSWORD': 'password123',             # MySQL password
+                    'HOST': 'localhost',                   # Server host
+                    'PORT': '3306',                        # Default MySQL port
+                }
+            }
+
+            Step 3: Apply Migrations
+            python manage.py migrate
+
+    2.Using the Django ORM for database queries. 
+
+            1. What is Django ORM?
+
+            Django ORM allows you to interact with your database using Python code instead of raw SQL.
+
+            It maps models (Python classes) to database tables, and instances of models to table rows.
+
+            Supports CRUD operations (Create, Read, Update, Delete) and complex queries.
+
+            2. Basic Setup
+
+            Example Model (models.py)
+
+            from django.db import models
+
+            class Article(models.Model):
+                title = models.CharField(max_length=100)
+                content = models.TextField()
+                published_date = models.DateTimeField(auto_now_add=True)
+                author = models.CharField(max_length=50)
+
+                def __str__(self):
+                    return self.title
+
+
+            After creating a model, run:
+
+            python manage.py makemigrations
+            python manage.py migrate
+
+            3. CRUD Operations Using ORM
+            Create
+            # Method 1
+            article = Article(title="Django ORM", content="ORM tutorial", author="Alice")
+            article.save()
+
+            # Method 2
+            Article.objects.create(title="Python Tips", content="Tips for Python", author="Bob")
+
+            Read
+            # Get all articles
+            articles = Article.objects.all()
+
+            # Get a single article by ID
+            article = Article.objects.get(id=1)
+
+            # Filter articles
+            django_articles = Article.objects.filter(title__contains="Django")
+
+            # Order articles by published date
+            recent_articles = Article.objects.order_by('-published_date')
+
+            Update
+            article = Article.objects.get(id=1)
+            article.title = "Updated Title"
+            article.save()
+
+            Delete
+            article = Article.objects.get(id=1)
+            article.delete()
+
+            4. Advanced Queries
+
+            Field lookups:
+
+            # Case-insensitive search
+            Article.objects.filter(title__icontains="django")
+
+            # Articles published after a certain date
+            Article.objects.filter(published_date__gte="2025-01-01")
+
+
+            Aggregation and Counting
+
+            from django.db.models import Count
+            Article.objects.values('author').annotate(count=Count('id'))
+
+--------------------------------------------------------------------------------------------------
+
+12. ORM and QuerySets 
+
+    1.Understanding Django’s ORM and how QuerySets are used to interact with the database.
+
+            What is Django ORM?
+
+            ORM (Object-Relational Mapping) allows Django to map Python classes (models) to database tables.
+
+            Instead of writing raw SQL, you interact with the database using Python code.
+
+            Each model class represents a table, and each model instance represents a row.
+
+            2. What is a QuerySet?
+
+            A QuerySet is a collection of database queries that returns objects from the database.
+
+            QuerySets are lazy, meaning the query is executed only when the data is needed.
+
+            You can filter, order, and manipulate QuerySets to retrieve exactly what you need.
+
+            3. Basic Usage
+            Example Model (models.py)
+            from django.db import models
+
+            class Article(models.Model):
+                title = models.CharField(max_length=100)
+                content = models.TextField()
+                published_date = models.DateTimeField(auto_now_add=True)
+                author = models.CharField(max_length=50)
+
+                def __str__(self):
+                    return self.title
+
+            Creating Objects
+            # Create a new article
+            article = Article.objects.create(title="Django ORM", content="Learn ORM", author="Alice")
+
+            Reading Data
+            # Get all articles
+            all_articles = Article.objects.all()  # Returns a QuerySet
+
+            # Filter articles by author
+            alice_articles = Article.objects.filter(author="Alice")  # QuerySet with matching records
+
+            # Get a single article
+            article = Article.objects.get(id=1)  # Returns a single model instance
+
+            # Exclude certain records
+            non_alice = Article.objects.exclude(author="Alice")
+
+            Ordering and Limiting
+            # Order by published date descending
+            recent_articles = Article.objects.order_by('-published_date')
+
+            # Limit results
+            latest_three = Article.objects.all()[:3]
+
+            Updating Objects
+            article = Article.objects.get(id=1)
+            article.title = "Updated Title"
+            article.save()
+
+            Deleting Objects
+            article = Article.objects.get(id=1)
+            article.delete()
+
+            4. Key Features of QuerySets
+
+            Chaining: Combine filters and orders
+
+            Article.objects.filter(author="Alice").order_by('-published_date')
+
+
+            Lazy evaluation: Query runs only when you iterate or access data.
+
+            Methods: all(), filter(), exclude(), get(), order_by(), count(), first(), last().
+
+---------------------------------------------------------------------------------------------
+
+ 
+13. Django Forms and Authentication 
+
+    1.Using Django’s built-in form handling.
+
+            What is Django Form Handling?
+
+            Django provides a high-level way to create, validate, and process forms using Python code.
+
+            Handles:
+
+            Generating HTML forms automatically
+
+            Validating input data
+
+            Saving data to the database (for ModelForm)
+
+            2. Types of Django Forms
+
+            Form (django.forms.Form)
+
+            Used when you want to create a form not directly tied to a model.
+
+            ModelForm (django.forms.ModelForm)
+
+            Automatically creates a form based on a model.
+
+            Handles saving data to the database easily.
+
+            3. Example: Using a Simple Form
+            Step 1: Create a Form (forms.py)
+            from django import forms
+
+            class ContactForm(forms.Form):
+                name = forms.CharField(max_length=50)
+                email = forms.EmailField()
+                message = forms.CharField(widget=forms.Textarea)
+
+            Step 2: Create a View (views.py)
+            from django.shortcuts import render
+            from .forms import ContactForm
+
+            def contact(request):
+                if request.method == 'POST':
+                    form = ContactForm(request.POST)
+                    if form.is_valid():
+                        # Process form data
+                        name = form.cleaned_data['name']
+                        email = form.cleaned_data['email']
+                        message = form.cleaned_data['message']
+                        # Here, you could save to DB or send an email
+                        return render(request, 'success.html', {'name': name})
+                else:
+                    form = ContactForm()
+                return render(request, 'contact.html', {'form': form})
+
+            Step 3: Create a Template (contact.html)
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}  <!-- Renders the form fields -->
+                <input type="submit" value="Submit">
+            </form>
+
+
+            {{ form.as_p }} renders the form fields wrapped in <p> tags.
+
+            CSRF token is required for security when submitting forms.
+
+            4. Using ModelForm
+            Step 1: Create a Model (models.py)
+            from django.db import models
+
+            class Feedback(models.Model):
+                name = models.CharField(max_length=50)
+                email = models.EmailField()
+                message = models.TextField()
+
+            Step 2: Create a ModelForm (forms.py)
+            from django.forms import ModelForm
+            from .models import Feedback
+
+            class FeedbackForm(ModelForm):
+                class Meta:
+                    model = Feedback
+                    fields = ['name', 'email', 'message']
+
+            Step 3: Handle the Form in View
+            def feedback(request):
+                if request.method == 'POST':
+                    form = FeedbackForm(request.POST)
+                    if form.is_valid():
+                        form.save()  # Automatically saves to DB
+                        return render(request, 'success.html')
+                else:
+                    form = FeedbackForm()
+                return render(request, 'feedback.html', {'form': form})
+
+    2.Implementing Django’s authentication system (sign up, login, logout, password ,management). 
+
+            Overview of Django Authentication
+
+            Django comes with a ready-to-use authentication system in django.contrib.auth that supports:
+
+            User registration (sign up)
+
+            Login and logout
+
+            Password hashing and management
+
+            User permissions and groups
+
+            2. Setting Up Authentication
+            Step 1: Add Auth App
+
+            django.contrib.auth and django.contrib.sessions are included in INSTALLED_APPS by default.
+
+            Step 2: Apply Migrations
+            python manage.py migrate
+
+
+            Creates necessary tables for users, sessions, and permissions.
+
+            3. User Registration (Sign Up)
+            View Using Django’s UserCreationForm
+            from django.shortcuts import render, redirect
+            from django.contrib.auth.forms import UserCreationForm
+
+            def signup(request):
+                if request.method == 'POST':
+                    form = UserCreationForm(request.POST)
+                    if form.is_valid():
+                        form.save()  # Saves the user with hashed password
+                        return redirect('login')  # Redirect to login page
+                else:
+                    form = UserCreationForm()
+                return render(request, 'signup.html', {'form': form})
+
+            Template (signup.html)
+            <h2>Sign Up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Sign Up">
+            </form>
+
+            4. User Login
+            View Using Django’s AuthenticationForm
+            from django.contrib.auth import authenticate, login
+            from django.contrib.auth.forms import AuthenticationForm
+
+            def user_login(request):
+                if request.method == 'POST':
+                    form = AuthenticationForm(request, data=request.POST)
+                    if form.is_valid():
+                        username = form.cleaned_data.get('username')
+                        password = form.cleaned_data.get('password')
+                        user = authenticate(username=username, password=password)
+                        if user is not None:
+                            login(request, user)  # Log the user in
+                            return redirect('home')
+                else:
+                    form = AuthenticationForm()
+                return render(request, 'login.html', {'form': form})
+
+            5. User Logout
+            View
+            from django.contrib.auth import logout
+            from django.shortcuts import redirect
+
+            def user_logout(request):
+                logout(request)  # Logs the user out
+                return redirect('login')
+
+            6. Password Management
+
+            Django provides built-in views for password reset and change:
+
+            Password change: Allows logged-in users to change their password
+
+            Password reset: Sends an email link to reset password
+
+            URL example (in urls.py)
+
+            from django.contrib.auth import views as auth_views
+
+            urlpatterns = [
+                path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+                path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+                path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+                path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+                path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+                path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+            ]
+
+
+            These views handle forms, validation, and email sending automatically.
+
+            7. Tips
+
+            Use @login_required decorator to restrict access to logged-in users:
+
+            from django.contrib.auth.decorators import login_required
+
+            @login_required
+            def dashboard(request):
+                return render(request, 'dashboard.html')
+
+
+            Use request.user to access the currently logged-in user in views or templates.
+
+            Passwords are hashed automatically—never store raw passwords.
+
+
+-------------------------------------------------------------------------------------------------------
+
+14. CRUD Operations using AJAX 
+
+    1.Using AJAX for making asynchronous requests to the server without reloading the page.
+
+
+            What is AJAX?
+
+            AJAX allows you to send requests to the server and receive responses without reloading the web page.
+
+            Improves user experience by making web pages faster and more interactive.
+
+            2. How AJAX Works
+
+            JavaScript sends an HTTP request (GET or POST) to the server.
+
+            The server processes the request and sends a response (often JSON or HTML).
+
+            JavaScript updates part of the web page dynamically with the response.
+
+            3. Example: AJAX in Django
+            Step 1: HTML Form
+            <form id="myForm">
+                <input type="text" id="name" placeholder="Enter your name">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result"></div>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+            $("#myForm").submit(function(e){
+                e.preventDefault();  // Prevent normal form submission
+                let name = $("#name").val();
+                $.ajax({
+                    url: "/ajax/submit/",
+                    method: "POST",
+                    data: {
+                        'name': name,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $("#result").html("Hello, " + response.name + "!");
+                    }
+                });
+            });
+            </script>
+
+            Step 2: Django View (views.py)
+            from django.http import JsonResponse
+            from django.views.decorators.csrf import csrf_exempt
+
+            @csrf_exempt  # Only for demonstration; use CSRF token in production
+            def ajax_submit(request):
+                if request.method == 'POST':
+                    name = request.POST.get('name')
+                    return JsonResponse({'name': name})
+
+            Step 3: URL Routing (urls.py)
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('ajax/submit/', views.ajax_submit, name='ajax_submit'),
+]
+
+--------------------------------------------------------------------------------------
+
+ 
+15. Customizing the Django Admin Panel 
+
+    1.Techniques for customizing the Django admin panel. 
+
+            Why Customize the Admin Panel?
+
+            The default admin panel shows all fields of a model, which can be overwhelming.
+
+            Customization allows you to:
+
+            Show only relevant fields
+
+            Add search, filters, and ordering
+
+            Group related fields and improve layout
+
+            Display computed fields or related objects
+
+            2. Basic Customization Techniques
+            Step 1: Register Model with a Custom Admin Class
+            from django.contrib import admin
+            from .models import Article
+
+            class ArticleAdmin(admin.ModelAdmin):
+                list_display = ('title', 'author', 'published_date')  # Columns to show
+                search_fields = ('title', 'content')                 # Searchable fields
+                list_filter = ('author', 'published_date')           # Sidebar filters
+                ordering = ('-published_date',)                      # Default ordering
+
+            admin.site.register(Article, ArticleAdmin)
+
+            Step 2: Organize Fields Using fieldsets
+            class ArticleAdmin(admin.ModelAdmin):
+                fieldsets = (
+                    ('Basic Info', {'fields': ('title', 'content')}),
+                    ('Publication', {'fields': ('author', 'published_date')}),
+                )
+
+
+            Groups fields into sections for better readability.
+
+            Step 3: Make Fields Read-Only
+            class ArticleAdmin(admin.ModelAdmin):
+                readonly_fields = ('published_date',)  # Cannot edit these fields
+
+            Step 4: Add Computed Fields
+            class ArticleAdmin(admin.ModelAdmin):
+                list_display = ('title', 'author', 'published_date', 'word_count')
+
+                def word_count(self, obj):
+                    return len(obj.content.split())
+                word_count.short_description = 'Word Count'
+
+
+            Displays a custom column computed from the model’s data.
+
+            3. Inline Models
+
+            Useful for managing related objects in the same form.
+
+            from django.contrib import admin
+            from .models import Article, Comment
+
+            class CommentInline(admin.TabularInline):
+                model = Comment
+                extra = 1  # Number of extra empty forms
+
+            class ArticleAdmin(admin.ModelAdmin):
+                inlines = [CommentInline]
+
+            admin.site.register(Article, ArticleAdmin)
+
+
+            Shows related Comment objects inline when editing an Article.
+
+            4. Advanced Customizations
+
+            Custom Actions: Add buttons to perform actions on multiple objects.
+
+            def make_published(modeladmin, request, queryset):
+                queryset.update(status='published')
+            make_published.short_description = "Mark selected articles as published"
+
+            class ArticleAdmin(admin.ModelAdmin):
+                actions = [make_published]
+
+-----------------------------------------------------------------------------------------------------------------------
+
+16. Payment Integration Using Paytm 
+
+    1. Introduction to integrating payment gateways (like Paytm) in Django projects.
+
+             1. What is a Payment Gateway?
+
+            A payment gateway is a service that allows websites or apps to accept online payments securely.
+
+            Examples: Paytm, Razorpay, Stripe, PayPal.
+
+            Handles:
+
+            Transaction processing
+
+            Payment security
+
+            Communication with banks or wallets
+
+            2. Why Integrate a Payment Gateway in Django?
+
+            To enable online purchases, subscriptions, or donations.
+
+            Ensures secure and verified transactions.
+
+            Provides real-time feedback to users (success, failure, or pending).
+
+            3. Basic Flow of Payment Integration
+
+            User clicks “Pay” on your website.
+
+            Django prepares payment details (amount, order ID, customer ID).
+
+            Send details to the payment gateway (Paytm, Razorpay, etc.).
+
+            User completes payment on the gateway page or popup.
+
+            Gateway sends a callback/response to Django with payment status.
+
+            Django verifies the response and updates order/payment records.
+
+            4. Steps to Integrate a Gateway (Example: Paytm)
+            Step 1: Sign Up & Get Credentials
+
+            Register as a merchant on the payment gateway.
+
+            Obtain Merchant ID, Merchant Key, Website name.
+
+            Step 2: Install SDK / Utility
+
+            Some gateways provide Python SDK or checksum utilities (Paytm).
+
+            Install via pip if required.
+
+            Step 3: Create Payment Request View
+
+            Django view generates payment data and checksum/signature for security.
+
+            Step 4: Create Payment Form
+
+            HTML form or JavaScript popup to redirect user to the gateway.
+
+            Include hidden fields with order info and checksum.
+
+            Step 5: Handle Payment Response
+
+            Create a callback URL in Django.
+
+            Gateway posts payment status (success/failure) to this URL.
+
+            Verify checksum/signature and update your database/order status.
+
+            5. Key Considerations
+
+            Security: Always verify the response to prevent tampering.
+
+            Testing: Use the staging/test environment before going live.
+
+            Record Keeping: Store all transactions in your database.
+
+            User Feedback: Show clear messages for success or failure.
+
+            6. Benefits of Integrating Payment Gateways
+
+            Enables online transactions seamlessly.
+
+            Ensures secure and verified payments.
+
+            Supports multiple payment methods (cards, UPI, wallets).
+
+            Provides transaction status updates for both user and admin.
+
+-------------------------------------------------------------------------------------------------
+
+17. GitHub Project Deployment 
+
+    1.Steps to push a Django project to GitHub.
+
+            1. Create a GitHub Repository
+
+            Go to GitHub
+            and log in.
+
+            Click New repository.
+
+            Enter a repository name (e.g., my-django-project).
+
+            Choose Public or Private.
+
+            Click Create repository.
+
+            You will get a repository URL, e.g., https://github.com/username/my-django-project.git.
+
+            2. Initialize Git in Your Django Project
+
+            Open terminal in your project folder and run:
+
+            git init
+
+
+            Initializes a local Git repository.
+
+            3. Create a .gitignore File
+
+            Prevent unnecessary files from being pushed (like virtual environments, database files).
+
+            Example .gitignore for Django:
+
+            *.pyc
+            __pycache__/
+            db.sqlite3
+            *.sqlite3
+            venv/
+            .env
+            /staticfiles/
+
+            4. Add Files to Git
+            git add .
+
+
+            Adds all files (except those in .gitignore) to the staging area.
+
+            5. Commit Changes
+            git commit -m "Initial commit: Add Django project"
+
+
+            Saves the snapshot to the local repository.
+
+            6. Link Local Repo to GitHub
+            git remote add origin https://github.com/username/my-django-project.git
+
+
+            Connects your local repo with the GitHub repository.
+
+            7. Push to GitHub
+            git push -u origin main
+
+
+            Sends your code to GitHub.
+
+            If your default branch is master, replace main with master.
+
+            8. Verify
+
+            Go to your GitHub repository in a browser.
+
+            You should see all your Django project files uploaded.
+
+----------------------------------------------------------------------------------
+
+18. Live Project Deployment (PythonAnywhere) 
+
+    1.Introduction to deploying Django projects to live servers like PythonAnywhere. 
+
+             What is Deployment?
+
+            Deployment means making your Django project accessible online via a web server.
+
+            Unlike development (localhost), deployment involves hosting on a live server with proper domain, database, and static files configuration.
+
+            2. Why Use PythonAnywhere?
+
+            PythonAnywhere is a cloud platform specifically for Python web apps.
+
+            Advantages:
+
+            Easy to set up for Django projects
+
+            Provides free and paid plans
+
+            Handles web server, database, and domain
+
+            Supports MySQL and SQLite databases
+
+            3. Steps to Deploy Django on PythonAnywhere
+            Step 1: Prepare Your Django Project
+
+            Make sure all dependencies are in requirements.txt:
+
+            pip freeze > requirements.txt
+
+
+            Collect static files:
+
+            python manage.py collectstatic
+
+
+            Ensure ALLOWED_HOSTS in settings.py includes your PythonAnywhere domain:
+
+            ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
+
+            Step 2: Create an Account and Log In
+
+            Sign up at PythonAnywhere
+
+            Log in to your dashboard
+
+            Step 3: Upload Project Files
+
+            You can upload ZIP or use GitHub to clone the project:
+
+            git clone https://github.com/username/my-django-project.git
+
+            Step 4: Set Up a Virtual Environment
+            mkvirtualenv myenv --python=python3.10
+            pip install -r requirements.txt
+
+
+            Ensures project dependencies are isolated.
+
+            Step 5: Configure the Web App
+
+            Go to Web tab → Add a new web app
+
+            Choose Manual configuration → Python version
+
+            Set the source code directory and virtual environment path
+
+            Specify WSGI file to point to your Django project
+
+            Step 6: Database Configuration
+
+            For SQLite, upload the .sqlite3 file
+
+            For MySQL, set up a database in PythonAnywhere and update settings.py accordingly
+
+            Step 7: Static Files
+
+            In PythonAnywhere Web tab → Static files:
+
+            URL /static/ → path to static folder
+
+            Make sure you run:
+
+            python manage.py collectstatic
+
+            Step 8: Reload the Web App
+
+            After configuration, click Reload
+
+            Visit https://yourusername.pythonanywhere.com to see your live Django site
+
+            4. Tips for Deployment
+
+            Use .env for sensitive info (SECRET_KEY, DB password)
+
+            Debug off in settings.py for production:
+
+            DEBUG = False
+
+
+            Check logs in PythonAnywhere for errors
+
+            Regularly commit and push updates if using GitHub
+    
+-------------------------------------------------------------------------------------------------------------
+
+19. Social Authentication 
+
+    1.Setting up social login options (Google, Facebook, GitHub) in Django using OAuth2. 
+
+            What is Social Login and OAuth2?
+
+            Social login allows users to log in using accounts from Google, Facebook, GitHub, etc.
+
+            OAuth2 is a protocol that securely authorizes users without sharing passwords with your site.
+
+            Benefits:
+
+            Simplifies registration/login for users
+
+            No need to manage passwords
+
+            Reduces friction and increases signups
+
+            2. Recommended Django Package
+
+            django-allauth is the most popular library for social authentication.
+
+            Features:
+
+            Supports multiple providers
+
+            Handles sign up, login, and account linking
+
+            Easy integration with Django admin
+
+            3. Installation
+            pip install django-allauth
+
+            4. Django Settings Configuration
+            Step 1: Add Installed Apps
+            INSTALLED_APPS = [
+                # Default Django apps
+                'django.contrib.sites',
+                'django.contrib.sessions',
+                'django.contrib.messages',
+                'django.contrib.staticfiles',
+                
+                # Allauth apps
+                'allauth',
+                'allauth.account',
+                'allauth.socialaccount',
+                'allauth.socialaccount.providers.google',
+                'allauth.socialaccount.providers.facebook',
+                'allauth.socialaccount.providers.github',
+            ]
+
+            Step 2: Site ID
+            SITE_ID = 1
+
+            Step 3: Authentication Backends
+            AUTHENTICATION_BACKENDS = (
+                'django.contrib.auth.backends.ModelBackend',  # default
+                'allauth.account.auth_backends.AuthenticationBackend',  # allauth
+            )
+
+            Step 4: Redirect URLs
+            LOGIN_REDIRECT_URL = '/'   # After successful login
+            LOGOUT_REDIRECT_URL = '/'  # After logout
+
+            5. URL Configuration (urls.py)
+            from django.urls import path, include
+
+            urlpatterns = [
+                path('accounts/', include('allauth.urls')),  # Allauth handles login/logout
+            ]
+
+
+            http://localhost:8000/accounts/login/ will show login options.
+
+            6. Register Applications on Providers
+
+            Google
+
+            Go to Google Developers Console
+
+            Create OAuth 2.0 Client ID
+
+            Add redirect URL: http://localhost:8000/accounts/google/login/callback/
+
+            Facebook
+
+            Go to Facebook for Developers
+
+            Create App → Add OAuth redirect URL
+
+            GitHub
+
+            Go to GitHub Developer Settings
+
+            Create OAuth App → Add callback URL: http://localhost:8000/accounts/github/login/callback/
+
+            Copy Client ID and Client Secret for each provider.
+
+            7. Add Credentials in Django Admin
+
+            Go to Django Admin → Social Applications
+
+            Add a new social application for each provider:
+
+            Provider: Google/Facebook/GitHub
+
+            Name: e.g., “Google Login”
+
+            Client ID and Secret from provider
+
+            Add the site (example: example.com)
+
+            8. Test Social Login
+
+            Run server:
+
+            python manage.py runserver
+
+
+            Visit: http://localhost:8000/accounts/login/
+
+            You should see Google, Facebook, and GitHub buttons.
+
+            Clicking a button redirects to the provider for authentication.
+
+----------------------------------------------------------------------------------------------
+
+20. Google Maps API 
+
+    1.Integrating Google Maps API into Django projects. 
+
+            What is Google Maps API?
+
+            Google Maps API allows you to embed interactive maps in your web applications.
+
+            Features include:
+
+            Displaying maps with markers
+
+            Showing routes or directions
+
+            Geocoding (convert addresses into coordinates)
+
+            Custom overlays and layers
+
+            2. Get a Google Maps API Key
+
+            Go to Google Cloud Console
+            .
+
+            Create a new project or select an existing one.
+
+            Navigate to APIs & Services → Credentials.
+
+            Click Create API Key.
+
+            Enable required APIs (e.g., Maps JavaScript API, Geocoding API).
+
+            Keep the API key secret; restrict it to your domain in production.
+
+            3. Create a Django Template for Map
+
+            templates/map.html
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>My Google Map</title>
+                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+                <script>
+                function initMap() {
+                    var location = {lat: 28.6139, lng: 77.2090};  // Example: New Delhi
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 10,
+                        center: location
+                    });
+                    var marker = new google.maps.Marker({
+                        position: location,
+                        map: map,
+                        title: 'Marker Example'
+                    });
+                }
+                </script>
+            </head>
+            <body onload="initMap()">
+                <h1>My Google Map</h1>
+                <div id="map" style="height: 500px; width: 100%;"></div>
+            </body>
+            </html>
+
+
+            Replace YOUR_API_KEY with the API key from Google.
+
+            lat and lng define the center of the map.
+
+            4. Create a Django View
+
+            views.py
+
+            from django.shortcuts import render
+
+            def map_view(request):
+                return render(request, 'map.html')
+
+            5. Add URL Mapping
+
+            urls.py
+
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('map/', views.map_view, name='map_view'),
+            ]
+
+
+            Visit http://localhost:8000/map/ to see the map.
+
+            6. Adding Dynamic Markers
+
+            You can pass a list of locations from Django to the template:
+
+            def map_view(request):
+                locations = [
+                    {'name': 'Delhi', 'lat': 28.6139, 'lng': 77.2090},
+                    {'name': 'Mumbai', 'lat': 19.0760, 'lng': 72.8777},
+                ]
+                return render(request, 'map.html', {'locations': locations})
+
+
+            Template Modification
+
+            <script>
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 5,
+                    center: {lat: 20.5937, lng: 78.9629} // Center of India
+                });
+
+                var locations = {{ locations|safe }};
+                locations.forEach(function(loc){
+                    var marker = new google.maps.Marker({
+                        position: {lat: loc.lat, lng: loc.lng},
+                        map: map,
+                        title: loc.name
+                    });
+                });
+            }
+            </script>
