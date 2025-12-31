@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from myapp.models import *
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(requset):
@@ -16,8 +18,8 @@ def register(requset):
     image = requset.FILES.get('image')
 
 
-
-
+  
+    
     if not id:
 
         student.objects.create(fname=fname,lname=lname,username=username,password=password,image=image)
@@ -65,9 +67,6 @@ def user_login(requset):
         else:
             login(requset,user)
             return redirect("home")
-
-
-
     return render(requset,"login.html")
 
 
@@ -81,3 +80,5 @@ def user_logout(request):
     return redirect('login')
   
 
+def view1(requset):
+    return render(requset,"view.html")

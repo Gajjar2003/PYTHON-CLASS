@@ -10,7 +10,7 @@ class product(models.Model):
     price= models.FloatField()
     qty = models.IntegerField()
     decs = models.TextField()
-    image = models.ImageField(upload_to="cat_image")
+    image = models.ImageField(upload_to="cat_image",default="test.png")
 
 
 
