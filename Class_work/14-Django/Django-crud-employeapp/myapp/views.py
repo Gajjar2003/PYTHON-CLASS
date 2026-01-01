@@ -32,7 +32,6 @@ def regitser(requset):
 
 
 def display(requset):
-
     employees = employee.objects.all()
     return render(requset,"display.html",{'employees' : employees})
 

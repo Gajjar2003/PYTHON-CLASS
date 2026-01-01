@@ -12,7 +12,12 @@ urlpatterns = [
     path("user-login",user_login,name="user-login"),
     path("home",home,name="home"),
     path("user-logout",user_logout,name="user-logout"),
-    path("view1",view1,name="view1")
+    path("view1",view1,name="view1"),
+    path("view2",view2,name="view2"),
+    path("profile",profile,name="profile"),
+     path('dashboard', dashboard_home, name='dashboard'),
+   
+
 ]
 
 if settings.DEBUG:

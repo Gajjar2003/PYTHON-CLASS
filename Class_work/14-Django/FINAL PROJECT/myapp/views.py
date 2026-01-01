@@ -82,3 +82,15 @@ def user_logout(request):
 
 def view1(requset):
     return render(requset,"view.html")
+
+def view2(requset):
+    return render(requset,"view2.html")
+
+def profile(requset):
+    return render(requset,"profile.html")
+
+
+def dashboard_home(request):
+    return render(request, 'dashboard_home.html')
+
+

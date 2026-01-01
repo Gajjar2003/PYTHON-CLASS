@@ -68,15 +68,15 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="#">MyProject</a>
+        <a class="navbar-brand" href="{% url 'index' %}">MyProject</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'profile'%}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard'%}">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'user-login' %}">Logout</a></li>
             </ul>
         </div>
@@ -116,7 +116,7 @@
             <div class="card feature-card p-4 text-center">
                 <h5>CRUD Operations</h5>
                 <p class="text-muted">Create, Read, Update & Delete records</p>
-                 <a href="" style="text-decoration: none;">view</a>
+                 <a href="{% url 'view2' %}" style="text-decoration: none;">view</a>
             </div>
         </div>
     </div>

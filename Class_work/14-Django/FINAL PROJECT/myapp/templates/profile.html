@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #caa6f0, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 25px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #1d2671;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-button:hover {
+            background-color: #1d2671;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+        }
+
+
+        .profile-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s;
+            color: #fff;
+            background: linear-gradient(135deg, #b37bef, #95b7f2);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+        }
+
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+
+        h2 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .text-muted {
+            color: #121212 !important;
+            font-size: 0.95rem;
+        }
+
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            border: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #ee0979, #ff6a00);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid #fff;
+            color: #fff;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-outline-secondary:hover {
+            background: #fff;
+            color: #ee0979;
+            transform: translateY(-2px);
+        }
+
+
+        .stats h5 {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #0d0d0d;
+        }
+
+        .stats p {
+            margin-bottom: 0;
+            color: #131212;
+        }
+
+
+        hr {
+            margin: 30px 0;
+            border: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+
+        }
+
+        h5 {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #090909;
+        }
+
+        p {
+            color: #0c0c0c;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="{% url 'home' %}" class="back-button">Back</a>
+
+    <div class="profile-card">
+        <img src="{% static 'image/IRNH7652.JPG' %}" alt="Profile Picture" class="profile-img">
+
+        <h2 style="color: black;">Jenil Gajjar</h2>
+        <p class="text-muted">Backend Developer | Python</p>
+
+        <div class="d-flex justify-content-center my-3">
+            <button class="btn btn-primary me-2">Follow</button>
+            <button class="btn btn-outline-secondary">Message</button>
+        </div>
+
+        <div class="row text-center stats mt-4">
+            <div class="col">
+                <h5>150</h5>
+                <p>Posts</p>
+            </div>
+            <div class="col">
+                <h5>300</h5>
+                <p>Followers</p>
+            </div>
+            <div class="col">
+                <h5>180</h5>
+                <p>Following</p>
+            </div>
+        </div>
+
+        <hr>
+        <h5>About Me</h5>
+        <p>Hi! I'm Jenil Gajjar, a passionate Backend Developer. I specialize in Python and Django, building robust and
+            scalable web applications. I love solving complex problems and creating efficient, high-performance systems.
+            Always eager to learn and improve, server-side solutions.</p>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
