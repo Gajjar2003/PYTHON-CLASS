@@ -3849,3 +3849,58 @@ ol {
 		height: 250px;
 	}
 }
+
+/* ===== Category Section ===== */
+
+.category-title {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    margin: 40px 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.overlay-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+	
+}
+
+.overlay-box img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    text-align: center;
+}
+
+.overlay-text h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.overlay-box:hover .overlay-text {
+    opacity: 1;
+}
+
+.overlay-box:hover img {
+    transform: scale(1.1);
+}

@@ -2,8 +2,16 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from eshopapp.models import *
+
+
 def index(request):
-    return render(request,"index.html")
+      
+      Categorys = Category.objects.all()
+      products = product.objects.all()
+
+      return render(request,"index.html",{'Categorys':Categorys,'products':products})
+
 @login_required(login_url="login1")
 def about(request):
     return render(request,"about.html")
@@ -76,8 +84,12 @@ def user_logout(requset):
     return redirect("index") 
 
 def wishlist(requset):
-
         return render(requset,"wishlist.html")
+
+def add(requset):
+     return render(requset,"add.html")
+
+
   
 
  

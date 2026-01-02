@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Shopping Cart</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .cart-title {
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+        .cart-table th, .cart-table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+        .cart-table img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .cart-summary {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .btn-checkout {
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: white;
+            border: none;
+        }
+        .btn-checkout:hover {
+            opacity: 0.9;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="cart-title">Your Shopping Cart</h2>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="table-responsive">
+                <table class="table table-bordered cart-table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td>
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            </td>
+                            <td>{{ item.product.name }}</td>
+                            <td>₹ {{ item.product.price }}</td>
+                            <td>
+                                <input type="number" class="form-control" value="{{ item.quantity }}" min="1">
+                            </td>
+                            <td>₹ {{ item.total_price }}</td>
+                            <td>
+                                <a href="{% url 'remove-cart-item' item.id %}" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="cart-summary">
+                <h5>Cart Summary</h5>
+                <hr>
+                <p>Subtotal: <span class="float-right">₹ {{ cart_subtotal }}</span></p>
+                <p>Shipping: <span class="float-right">₹ {{ shipping_cost }}</span></p>
+                <hr>
+                <h4>Total: <span class="float-right">₹ {{ cart_total }}</span></h4>
+                <a href="{% url 'checkout' %}" class="btn btn-checkout btn-block mt-3">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'shop' %}" class="btn btn-outline-primary">Continue Shopping</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
