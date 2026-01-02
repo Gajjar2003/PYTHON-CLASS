@@ -1,30 +1,25 @@
-from django.shortcuts import render,redirect
-from myapp.models import *
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
+from django.shortcuts import render, redirect
+from myapp.models import student
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
+def index(request):
+    return render(request, "index.html")
 
-# Create your views here.
-def index(requset):
-    return render(requset,"index.html")
+def register(request):
+    id = request.POST.get('id')
+    fname = request.POST.get('fname')
+    lname = request.POST.get('lname')
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    image = request.FILES.get('image')
 
-def register(requset):
-    id  = requset.POST.get('id')
-    fname = requset.POST.get('fname')
-    lname = requset.POST.get('lname')
-    username = requset.POST.get('username')
-    password = requset.POST.get('password')
-    image = requset.FILES.get('image')
-
-
-  
-    
+   
     if not id:
-
-        student.objects.create(fname=fname,lname=lname,username=username,password=password,image=image)
-        return render(requset,"index.html",{'meg':'Successfully Done'})
-    
+      
+        student.objects.create(fname=fname, lname=lname, username=username, password=password, image=image)
+        return render(request, "index.html", {'meg': 'Successfully Done'})
     else:
         s = student.objects.get(pk=id)
         s.fname = fname
@@ -34,63 +29,52 @@ def register(requset):
         if image:
             s.image = image
         s.save()
+        return render(request, "index.html", {'meg': 'Successfully Data update Done'})
 
-        return render(requset,"index.html",{'meg':'Successfully Data update Done'})
-
-
-def display(requset):
+def display(request):
     students = student.objects.all()
-    return render(requset,"display.html",{'students':students})
+    return render(request, "display.html", {'students': students})
 
-
-def delete(requset):
-    id = requset.GET.get('id')
+def delete(request):
+    id = request.GET.get('id')
     s = student.objects.get(pk=id)
     s.delete()
     return redirect("display")
 
-def edit(requset):
-    id = requset.GET.get('id')
+def edit(request):
+    id = request.GET.get('id')
     s = student.objects.get(pk=id)
-    return render(requset,"index.html",{'s':s})
+    return render(request, "index.html", {'s': s})
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-def user_login(requset):
-    if requset.method == 'POST':
-        username = requset.POST['username']
-        password = requset.POST['password']
-
-        user=authenticate(requset,username=username,password=password)
-
+        user = authenticate( username=username, password=password)
         if user is None:
-             return render(requset,"login.html",{'err':'Invalid username and password !!'})
+            return render(request, "login.html", {'err': 'Invalid credentials!'})
         else:
-            login(requset,user)
+            login(request, user)
             return redirect("home")
-    return render(requset,"login.html")
-
+    return render(request, "login.html")
 
 @login_required(login_url="user-login")
-def home(requset):
-    return render(requset,"home.html")
-
+def home(request):
+    return render(request, "home.html")
 
 def user_logout(request):
     logout(request)
-    return redirect('login')
-  
+    return redirect('user-login')
 
-def view1(requset):
-    return render(requset,"view.html")
+def view1(request):
+    return render(request, "view.html")
 
-def view2(requset):
-    return render(requset,"view2.html")
+def view2(request):
+    return render(request, "view2.html")
 
-def profile(requset):
-    return render(requset,"profile.html")
-
+def profile(request):
+    return render(request, "profile.html")
 
 def dashboard_home(request):
     return render(request, 'dashboard_home.html')
-
-

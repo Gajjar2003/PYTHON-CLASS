@@ -11,3 +11,5 @@ class student(models.Model):
     password = models.IntegerField()
     image = models.ImageField(upload_to="image",default="test.png")
 
+def __str__(self):
+        return self.username
