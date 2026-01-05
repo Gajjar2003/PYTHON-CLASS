@@ -3,14 +3,40 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from eshopapp.models import *
-
+from django.http import HttpResponse,JsonResponse
 
 def index(request):
-      
-      Categorys = Category.objects.all()
-      products = product.objects.all()
+    # categorys = Category.objects.all()   
 
-      return render(request,"index.html",{'Categorys':Categorys,'products':products})
+    # if request.GET.get('cid'):
+    #     cid = request.GET.get('cid')
+    #     products = Product.objects.filter(category_id=cid)
+    # else:
+    #     products = Product.objects.all()
+
+    return render(request, 'index.html')
+
+
+
+def get_products(request):
+    catid = request.GET.get('catid')
+
+    if int(catid) > 0:
+        products = Product.objects.filter(category_id=catid).values()
+    else:
+        products = Product.objects.all().values()
+
+    return JsonResponse({"products": list(products)})
+
+
+def get_categorys(request):
+    categorys = Category.objects.all().values()
+    return JsonResponse({"categorys": list(categorys)})
+
+
+
+
+
 
 @login_required(login_url="login1")
 def about(request):
@@ -45,8 +71,27 @@ def shop(request):
 
 @login_required(login_url="login1")
 def shopping_cart(request):
-    return render(request,"shopping-cart.html")
+    carts = Cart.objects.filter(user=request.user)
+    return render(request,"shopping-cart.html",{'carts':carts})
 
+def addtocard(requset):
+    pid = requset.GET['pid']
+    product = Product.objects.get(pk=pid)
+    user = requset.user
+
+    isexist = Cart.objects.filter(user=user,product=product)
+   
+    if user.is_anonymous:
+            return HttpResponse(user)
+    else:
+            isexist = Cart.objects.filter(user=user,product=product)
+            if(len(isexist)>=1):
+                isexist[0].qty = isexist[0].qty+1
+                isexist[0].save()
+                return HttpResponse("Product added into cart")
+            else:
+                Cart.objects.create(product=product,user=user,qty=1)
+                return HttpResponse("Product added into cart")
 def login1(requset):
     return render(requset,"login1.html")
 
@@ -86,8 +131,8 @@ def user_logout(requset):
 def wishlist(requset):
         return render(requset,"wishlist.html")
 
-def add(requset):
-     return render(requset,"add.html")
+
+
 
 
   

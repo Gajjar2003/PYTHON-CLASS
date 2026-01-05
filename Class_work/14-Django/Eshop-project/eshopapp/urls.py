@@ -19,8 +19,11 @@ urlpatterns = [
     path("user-login",user_login,name="user-login"),
     path("user-logout",user_logout,name="user-logout"),
     path("wishlist",wishlist,name="wishlist"),
-    path("add",add,name="add"),
- 
+   
+
+    path('getproducts', get_products, name='getproducts'),
+    path('getcategories',get_categorys, name='getcategories'),
+    path("addtocard",addtocard,name="addtocard")
     
 ]
 

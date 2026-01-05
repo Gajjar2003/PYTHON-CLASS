@@ -14,6 +14,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/themify-icons@0.1.2/css/themify-icons.css">
+
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
@@ -24,7 +30,7 @@
     <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/style.css" type="text/css">
     <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}">
-<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
 
 
 
@@ -44,14 +50,14 @@
 
         </div>
         <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="/static/img/icon/search.png" alt=""></a>
+            <a href="#" class="search-switch" ><img src="/static/img/icon/search.png" alt=""></a>
             <a href="#"><img src="/static/img/icon/heart.png" alt=""></a>
             <a href="#"><img src="/static/img/icon/cart.png" alt=""> <span>1</span></a>
 
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
-  
+
 
 
         </div>
@@ -91,7 +97,7 @@
                         <ul>
                             <li class="active"><a href="{}">Home</a></li>
                             <li><a href="{% url 'shop' %}">Shop</a></li>
-                            
+
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="{% url 'about' %}">About Us</a></li>
@@ -99,7 +105,7 @@
                                     <li><a href="{% url 'shopping-cart' %}">Shopping Cart</a></li>
                                     <li><a href="{% url 'checkout' %}">Check Out</a></li>
                                     <li><a href="{% url 'blog-details' %}">Blog Details</a></li>
-                                    
+
                                 </ul>
                             </li>
 
@@ -110,31 +116,31 @@
                             {% else %}
                             <li><a href="{% url 'login1'%}">login</a></li>
                             {% endif %}
-                             
+
                         </ul>
 
-                        
+
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="/static/img/icon/search.png" alt=""></a>
                         <a href="{% url 'wishlist' %}"><img src="/static/img/icon/heart.png" alt="">1</a>
-                        <a href="{% url 'add' %}"><img src="/static/img/icon/cart.png" alt=""> <span>1</span></a>
-                         
+                        <a href="{% url 'shopping-cart'%}"><img src="/static/img/icon/cart.png" alt=""> <span>1</span></a>
+
 
                     </div>
                 </div>
             </div>
-           
-            
+
+
         </div>
-       
+
     </header>
     <!-- Header Section End -->
 
 
- 
+
 
 
 
@@ -229,86 +235,47 @@
         </div>
     </section>
     <!-- Banner Section End -->
-<h1 class="category-title">Category</h1>
+    <h1 class="category-title">Category</h1>
 
-<section class="banner spad">
-    <div class="container">
-        <div class="row">
+    <section class="banner spad">
+        <div class="container">
+            <div class="row" id="catdata">
 
-            {% for cat in Categorys %}
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="banner__item mb-4">
+              
+            
+           
 
-                    <div class="banner__item__pic overlay-box">
-                        <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
 
-                        <div class="overlay-text">
-                            <h2>{{ cat.name }}</h2>
-                            <a href="{% url 'shop' %}?category={{ cat.slug }}" class="btn btn-light btn-sm">
-                                Shop Now
-                            </a>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">Best Sellers</li>
+
+
+                    </ul>
                 </div>
             </div>
-            {% endfor %}
 
+            <div class="row product__filter" id="prodata">
+             
+              
+               
+            
         </div>
-    </div>
-</section>
-
-   <!-- Product Section Begin -->
-   <section class="product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">Best Sellers</li>
-                    
-                   
-                </ul>
-            </div>
-        </div>
-
-        <div class="row product__filter">
-            {% for product in products %}
-            <div class="col-lg-3 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                         data-setbg="{{ product.image.url }}">
-                        <span class="label">New</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="/static/img/icon/search.png"></a></li>
-                            <li><a href="#"><img src="/static/img/icon/heart.png"></a></li>
-                            <li><a href="#"><img src="/static/img/icon/cart.png"></a></li>
-                        </ul>
-                    </div>
-
-                    <div class="product__item__text">
-                        <h6>{{ product.name }}</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>₹ {{ product.price }}</h5>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Product Section End -->
 
     <!-- Banner Section Begin -->
 
-<!-- Banner Section End -->
+    <!-- Banner Section End -->
 
     <!-- Categories Section Begin -->
     <section class="categories spad">
@@ -364,8 +331,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="instagram__pic">
-                        {% load static %}
-
+                       
                         <div class="instagram__pic__item set-bg"
                             data-setbg="{% static 'img/instagram/instagram-1.jpg' %}"></div>
                         <div class="instagram__pic__item set-bg"
@@ -496,10 +462,10 @@
                 <div class="col-lg-12 text-center">
                     <div class="footer__copyright__text">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                                    <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                       
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                 </div>
@@ -530,6 +496,113 @@
     <script src="/static/js/mixitup.min.js"></script>
     <script src="/static/js/owl.carousel.min.js"></script>
     <script src="/static/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+          getproducts()
+          getcategorys()
+         
+
+        })
+
+       function getproducts(catid) {
+
+        if (catid ==undefined)
+       {
+        catid = 0
+       }
+        
+        $.get("getproducts", {catid}, function (rt) {
+
+        var pro = "";
+
+        rt.products.map(ele => {
+            pro += `
+            <div class="col-lg-3 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="product__item">
+
+                    <div class="product__item__pic"
+                         style="background-image:url('/media/${ele.image}')">
+                        <span class="label">New</span>
+                        <ul class="product__hover">
+                            <li><a href="#"><img src="/static/img/icon/search.png"></a></li>
+                            <li><a href="#"><img src="/static/img/icon/heart.png"></a></li>
+                            <li><a href="#"><img src="/static/img/icon/cart.png"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="product__item__text">
+                        <h6>${ele.name}</h6>
+                        <a class="add-cart" onclick = 'addtocard(${ele.id})'style ="cursor: pointer;">+ Add To Cart</a>
+                        <div class="rating">
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <h5>₹ ${ele.price}</h5>
+                    </div>
+
+                </div>
+            </div>`;
+        });
+
+        $("#prodata").html(pro);
+    });
+}
+
+        function getcategorys() {
+    $.get("getcategories", {}, function (rt) {
+
+        var cats = "";
+
+        rt.categorys.map(ele => {
+
+            cats += `
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="banner__item mb-4">
+                    <div class="banner__item__pic overlay-box">
+
+                        <img src="/media/${ele.image}" alt="" style="width:100%">
+
+                        <div class="overlay-text">
+                            <h2>${ele.name}</h2>
+                            <a  class="btn btn-light" onclick='getproducts(${ele.id})'>
+                                View Products
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        $("#catdata").html(cats);
+    });
+}
+
+
+function search(q)
+{
+    alert(q)
+}
+
+function addtocard(pid)
+{
+   $.get('addtocard',{pid},function(rt){
+        if (rt == 'AnonymousUser')
+        {
+            location.href="login1"
+        }
+        else{
+            alert(rt)
+        }
+   })
+}
+
+
+    </script>
 </body>
 
 </html>
