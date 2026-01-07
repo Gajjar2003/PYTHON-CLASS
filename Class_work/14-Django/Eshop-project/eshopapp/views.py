@@ -97,31 +97,35 @@ def login1(requset):
 
 def user_register(request):
     if request.method == 'POST':
-        data = request.POST
-        name = data.get('name')
-        email = data.get('email')
-        password = data.get("pass")
-      
-        u = User(username=name, email=email)
-        u.set_password(password)
-        u.save()
-    
-        return render(request, "login1.html", {'meg': 'Successfully done!'})
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if User.objects.filter(username=username).exists():
+            return render(request, "login1.html", {'err': 'Username already exists!'})
+
+        User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+
+        return render(request, "login1.html", {'meg': 'Registration successful Done !!'})
 
     
 
 def user_login(request):
-        if request.method == 'POST':
-            data = request.POST
-            name = data.get('name')
-            password = data.get("pass")
-            u = authenticate(username=name, password=password)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            if u is not None:
-                login(request,u)
-                return redirect("index")  
-            else:
-                return render(request, "login1.html", {'err': 'Invalid credentials!'})
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("index")
+        else:
+            return render(request, "login1.html", {'err': 'Invalid username or password'})
 
 
 def user_logout(requset):

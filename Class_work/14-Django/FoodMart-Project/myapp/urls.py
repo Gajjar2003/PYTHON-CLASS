@@ -1,0 +1,22 @@
+from django.urls import path
+from myapp.views import *
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+urlpatterns = [
+    path("",index,name="index"),
+    path("about",about,name="about"),
+    path("cart",cart,name="cart"),
+    path("contact",contact,name="contact"),
+    path("myaccount",myaccount,name="myaccount"),
+    path("user-login",user_login,name="user-login"),
+    path("user-logout",user_logout,name="user-logout"),
+    path("getproducts",get_products,name="getproducts"),
+    path("getcategorys",get_categorys,name="getcategorys")
+
+
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
