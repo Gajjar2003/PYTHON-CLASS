@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from myapp.models import student
+from myapp.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -14,23 +14,23 @@ def register(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
     image = request.FILES.get('image')
-
-   
+           
     if not id:
       
-        student.objects.create(fname=fname, lname=lname, username=username, password=password, image=image)
-        return render(request, "index.html", {'meg': 'Successfully Done'})
+            student.objects.create(fname=fname, lname=lname, username=username, password=password, image=image)
+            return render(request, "index.html", {'meg': 'Successfully Done'})
     else:
-        s = student.objects.get(pk=id)
-        s.fname = fname
-        s.lname = lname
-        s.username = username
-        s.password = password
-        if image:
-            s.image = image
-        s.save()
-        return render(request, "index.html", {'meg': 'Successfully Data update Done'})
+                s = student.objects.get(pk=id)
+                s.fname = fname
+                s.lname = lname
+                s.username = username
+                s.password = password
+                if image:
+                    s.image = image
+                s.save()
+                return render(request, "index.html", {'meg': 'Successfully Data update Done'})
 
+   
 def display(request):
     students = student.objects.all()
     return render(request, "display.html", {'students': students})
@@ -55,8 +55,9 @@ def user_login(request):
         if user is None:
             return render(request, "login.html", {'err': 'Invalid credentials!'})
         else:
-            login(request, user)
-            return redirect("home")
+            login(request,user)
+            return redirect('home')
+        
     return render(request, "login.html")
 
 @login_required(login_url="user-login")

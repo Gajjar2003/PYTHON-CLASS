@@ -102,7 +102,7 @@
 <div class="glass-card">
     <h3 class="form-title">Login to Your Account</h3>
 
-    <form method="post" action="">
+    <form method="post" action="{% url 'user-login'%}">
         {% csrf_token %}
         <span class="text-danger">{{err}}</span>
 
