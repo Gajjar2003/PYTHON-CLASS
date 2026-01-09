@@ -6,7 +6,7 @@ from myapp.models import *
 from django.http import HttpResponse,JsonResponse
 
 # Create your views here.
-login_required(login_url="myaccount")
+
 def index(requset):
 
     # products = Product.objects.all()
@@ -23,6 +23,11 @@ def get_products(requset):
     else:
         products = Product.objects.all()
         return JsonResponse({'products':list(products.values())})
+    
+def searchproduct(requset):
+    q = requset.GET['q']
+    products = Product.objects.filter(name__startswith=q)
+    return JsonResponse({'products':list(products.values())})
 
 def get_categorys(requset):
     categorys = Category.objects.all()
@@ -34,10 +39,28 @@ def about(requset):
 
 login_required(login_url="myaccount")
 def cart(requset):
-    return render(requset,"cart.html")
+    carts = Cart.objects.filter(user=requset.user)
+    return render(requset,"cart.html",{'carts':carts})
+
+def addtocart(requset):
+    pid = requset.GET['pid']
+    product = Product.objects.get(pk=pid)
+    user =requset.user
+    
+    if user.is_anonymous:
+            return HttpResponse(user)
+    else:
+            isexist = Cart.objects.filter(user=user,product=product)
+            if(len(isexist)>=1):
+                isexist[0].qty =  isexist[0].qty+1
+                isexist[0].save()  
+                return HttpResponse("Products add into cart !!") 
+            else:
+                Cart.objects.create(product=product , user = user,qty =1)
+                return HttpResponse("Products add into cart !!")
 
 def contact(requset):
-    return render(requset,"contact.html"),
+    return render(requset,"contact.html")
 
 def myaccount(request):
     if request.method == 'POST':
@@ -73,7 +96,7 @@ def user_login(request):
 
 def user_logout(requset):
     logout(requset)
-    return render(requset,"myaccount.html")
+    return redirect('index')
 
 
         

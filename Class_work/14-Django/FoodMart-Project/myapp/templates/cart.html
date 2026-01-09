@@ -89,44 +89,33 @@
 
             <tbody>
               <!-- ITEM -->
+               {% for c in carts%}
               <tr>
                 <td>
                   <div class="d-flex align-items-center">
-                    <img src="/static/images/post-thumb-1.jpg" class="cart-img me-3">
-                    <strong>Fresh Apple</strong>
+                    <img src="media/{{c.product.image}}" class="cart-img me-3">
+                    <strong>{{c.product.name}}</strong>
                   </div>
                 </td>
-                <td class="price">₹120</td>
+                <td class="price">Rs : {{c.product.price}}</td>
                 <td>
-                  <input type="number" value="1" min="1" class="form-control qty-input">
+                  <input type="number" value="{{c.qty}}" min="1" class="form-control qty-input">
                 </td>
-                <td class="price">₹120</td>
+                <td class="price">Rs : {{c.total_price}}</td>
                 <td>
                   <button class="btn btn-sm btn-danger">×</button>
                 </td>
               </tr>
-
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img src="/static/images/post-thumb-2.jpg" class="cart-img me-3">
-                    <strong>Organic Tomato</strong>
-                  </div>
-                </td>
-                <td class="price">₹60</td>
-                <td>
-                  <input type="number" value="2" min="1" class="form-control qty-input">
-                </td>
-                <td class="price">₹120</td>
-                <td>
-                  <button class="btn btn-sm btn-danger">×</button>
-                </td>
-              </tr>
+              {% endfor %}
+            
 
             </tbody>
           </table>
         </div>
       </div>
+
+     
+
 
       <!-- SUMMARY -->
       <div class="col-md-4">
@@ -135,7 +124,7 @@
           <hr>
           <p class="d-flex justify-content-between">
             <span>Subtotal</span>
-            <span>₹240</span>
+            <span>₹250</span>
           </p>
           <p class="d-flex justify-content-between">
             <span>Delivery</span>
@@ -144,18 +133,21 @@
           <hr>
           <h5 class="d-flex justify-content-between">
             <span>Total</span>
-            <span>₹270</span>
+            <span>₹280</span>
           </h5>
 
           <a href="/checkout" class="btn btn-success w-100 mt-3">
-            Proceed to Checkout
-          </a>
+                        Proceed to Checkout
+          </a><br>
+          <a href="{% url 'index'%}" class="btn btn-primary w-100 mt-3">Shop now </a>
         </div>
       </div>
 
     </div>
   </div>
 </section>
+
+
 
 <!-- FOOTER -->
 

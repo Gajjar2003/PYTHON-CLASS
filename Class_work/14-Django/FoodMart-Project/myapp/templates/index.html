@@ -134,9 +134,10 @@
 
 
         <div class="col-11 col-md-7">
-          <form id="search-form" class="text-center" action="index.html" method="post">
+          <form id="search-form" class="text-center" action="index.html" method="post"
+            style="border: 1px solid rgb(166, 163, 163);">
             <input type="text" class="form-control border-0 bg-transparent"
-              placeholder="Search for more than 20,000 products" />
+              placeholder="Search for more than 20,000 products" onkeyup="search(value)">
           </form>
         </div>
         <div class="col-1">
@@ -214,11 +215,14 @@
 
                   <li class="nav-item">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'user-logout' %}" class="nav-link ">Logout</a>
+                    <a href="{% url 'user-logout' %}" class="nav-link">Logout</a>
                     {% else %}
                     <a href="{% url 'myaccount' %}" class="nav-link">My Account</a>
                     {% endif %}
                   </li>
+
+
+
 
                 </ul>
 
@@ -366,9 +370,9 @@
           <!-- Category items -->
 
           <div class="category-carousel swiper">
-            <div class="swiper-wrapper" id="catdata"  style =' cursor: pointer;'>
-             
-            
+            <div class="swiper-wrapper" id="catdata" style=' cursor: pointer;'>
+
+
 
 
             </div>
@@ -385,10 +389,10 @@
   <h2 class="section-title " style="margin-left: 190px;">Produtcs</h2>
   <section class="py-5">
     <div class="container-fluid">
-      <div class="row" id="prodata" >
+      <div class="row" id="prodata">
 
-      
-      
+
+
 
 
       </div>
@@ -1165,31 +1169,7 @@
           </div>
         </div>
 
-        <div class="col-md-2 col-sm-6">
-          <div class="footer-menu">
-            <h5 class="widget-title">Ultras</h5>
-            <ul class="menu-list list-unstyled">
-              <li class="menu-item">
-                <a href="#" class="nav-link">About us</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Conditions </a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Our Journals</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Careers</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Affiliate Programme</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Ultras Press</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
         <div class="col-md-2 col-sm-6">
           <div class="footer-menu">
             <h5 class="widget-title">Customer Service</h5>
@@ -1207,7 +1187,7 @@
                 <a href="#" class="nav-link">Returns & Refunds</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="nav-link">Cookie Guidelines</a>
+                <a href="#" class="nav-link">About Us </a>
               </li>
               <li class="menu-item">
                 <a href="#" class="nav-link">Delivery Information</a>
@@ -1215,31 +1195,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="footer-menu">
-            <h5 class="widget-title">Customer Service</h5>
-            <ul class="menu-list list-unstyled">
-              <li class="menu-item">
-                <a href="#" class="nav-link">FAQ</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Contact</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Privacy Policy</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Returns & Refunds</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Cookie Guidelines</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Delivery Information</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="footer-menu">
             <h5 class="widget-title">Subscribe Us</h5>
@@ -1274,25 +1230,22 @@
   <script src="/static/js/script.js"></script>
 
   <script>
-    $(document).ready(function ()
-    {
-        getproducts()
-        getcategorys()
-       
+    $(document).ready(function () {
+      getproducts()
+      getcategorys()
+
     })
 
-  function getproducts(catid)
-  {
-    if (catid == undefined)
-    {
-      catid =0
-    }
-    $.get('getproducts',{catid}, function(rt){
-      
-      var pro =""
-      rt.products.map(ele=>{
-        
-        pro+= `  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4">
+    function getproducts(catid) {
+      if (catid == undefined) {
+        catid = 0
+      }
+      $.get('getproducts', { catid }, function (rt) {
+
+        var pro = ""
+        rt.products.map(ele => {
+
+          pro += `  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4">
 
           <div class="product-item border p-3 rounded">
             <span class="badge bg-success position-absolute m-2">-30%</span>
@@ -1308,14 +1261,84 @@
 
               <!-- RIGHT CONTENT -->
               <div class="col-7">
-                <h5 class="mb-1">${ ele.name }</h5>
+                <h5 class="mb-1">${ele.name}</h5>
 
 
                 <span class="rating text-primary">
                   ★ 4.5
                 </span>
 
-                <h6 class="price mt-2">₹ ${ ele.price }</h6>
+                <h6 class="price mt-2">₹ ${ele.price}</h6>
+
+                <div class="d-flex align-items-center mt-2">
+
+                 
+
+                  <a  class="btn btn-outline-primary btn-sm" onclick='addtocart(${ele.id})'>
+                    <iconify-icon icon="uil:shopping-cart">Add to Cart</iconify-icon>
+                  </a>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>`
+        })
+        $("#prodata").html(pro)
+
+      })
+    }
+
+    function getcategorys() {
+      $.get('getcategorys', {}, function (rt) {
+        var cats = ""
+        rt.categorys.map(ele => {
+
+          cats += `  <a class="nav-link category-item swiper-slide "  onclick='getproducts(${ele.id})'>
+                <img src="media/${ele.image}" style="height: 100px; " alt="Category Thumbnail" >
+                <h3 class="category-title" >${ele.name}</h3>
+              </a>
+             `
+
+
+
+        })
+        $("#catdata").html(cats)
+      })
+    }
+
+    function search(q) {
+      $.get('searchproduct', { q }, function (rt) {
+
+        var pro = ""
+        rt.products.map(ele => {
+
+          pro += `  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4">
+
+          <div class="product-item border p-3 rounded">
+            <span class="badge bg-success position-absolute m-2">-30%</span>
+
+            <div class="row align-items-center">
+
+              <!-- LEFT IMAGE -->
+              <div class="col-5">
+                <figure class="mb-0">
+                  <img src="media/${ele.image}" class="img-fluid rounded" alt="{{ product.name }}">
+                </figure>
+              </div>
+
+              <!-- RIGHT CONTENT -->
+              <div class="col-7">
+                <h5 class="mb-1">${ele.name}</h5>
+
+
+                <span class="rating text-primary">
+                  ★ 4.5
+                </span>
+
+                <h6 class="price mt-2">₹ ${ele.price}</h6>
 
                 <div class="d-flex align-items-center mt-2">
 
@@ -1336,32 +1359,24 @@
           </div>
 
         </div>`
-      })
-      $("#prodata").html(pro)
-
-    })
-  }
-
-    function getcategorys()
-  {
-    $.get('getcategorys',{}, function(rt){
-        var cats = ""
-        rt.categorys.map(ele=>{
-
-          cats+=`  <a class="nav-link category-item swiper-slide "  onclick='getproducts(${ele.id})'>
-                <img src="media/${ele.image}" style="height: 100px; " alt="Category Thumbnail" >
-                <h3 class="category-title" >${ele.name}</h3>
-              </a>
-             `
-
-
-
         })
-        $("#catdata").html(cats)
-     })
-  }
-   
-   
+        $("#prodata").html(pro)
+
+      })
+    }
+
+    function addtocart(pid) {
+      $.get('addtocart', { pid }, function (rt) {
+        if (rt == 'AnonymousUser') {
+          location.href = "myaccount"
+        }
+        else {
+          alert(rt)
+        }
+      })
+    }
+
+
   </script>
 </body>
 
