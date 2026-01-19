@@ -72,7 +72,7 @@ def shopping_cart(request):
     for c in carts:
         sum+=c.total_price()
 
-    return render(request, 'shopping-cart.html',{"carts":carts,"total":sum})
+    return render(request, 'shopping-cart.html',{"carts":carts,"total":int(sum)})
 
 
 def addtocard(requset):
