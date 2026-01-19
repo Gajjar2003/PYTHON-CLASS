@@ -12,7 +12,7 @@ urlpatterns = [
     path("contact", contact, name="contact"),
     path("main", main, name="main"),
     path("shop-details", shop_details, name="shop-details"),
-    path("shop", shop, name="shop"),
+    
     path("shopping-cart", shopping_cart, name="shopping-cart"),
     path("login1",login1,name="login1"),
     path("user-register",user_register,name="user-register"),
@@ -23,7 +23,12 @@ urlpatterns = [
 
     path('getproducts', get_products, name='getproducts'),
     path('getcategories',get_categorys, name='getcategories'),
-    path("addtocard",addtocard,name="addtocard")
+    path("addtocard",addtocard,name="addtocard"),
+    path("removecart",removecart,name="removecart"),
+    path("changeqty", changeqty, name="changeqty"),
+    path("payment",payment,name="payment"),
+
+
     
 ]
 

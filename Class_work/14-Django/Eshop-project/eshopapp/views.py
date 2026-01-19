@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from eshopapp.models import *
 from django.http import HttpResponse,JsonResponse
+import razorpay
 
 def index(request):
     # categorys = Category.objects.all()   
@@ -35,9 +36,6 @@ def get_categorys(request):
 
 
 
-
-
-
 @login_required(login_url="login1")
 def about(request):
     return render(request,"about.html")
@@ -65,14 +63,17 @@ def main(request):
 def shop_details(request):
     return render(request,"shop-details.html")
 
-@login_required(login_url="login1")
-def shop(request):
-    return render(request,"shop.html")
 
 @login_required(login_url="login1")
 def shopping_cart(request):
     carts = Cart.objects.filter(user=request.user)
-    return render(request,"shopping-cart.html",{'carts':carts})
+
+    sum = 0
+    for c in carts:
+        sum+=c.total_price()
+
+    return render(request, 'shopping-cart.html',{"carts":carts,"total":sum})
+
 
 def addtocard(requset):
     pid = requset.GET['pid']
@@ -134,6 +135,39 @@ def user_logout(requset):
 
 def wishlist(requset):
         return render(requset,"wishlist.html")
+
+def removecart(requset):
+    cid = requset.GET['cid']
+    cart = Cart.objects.get(pk=cid)
+    cart.delete()
+    return HttpResponse("Cart into delete")
+
+
+def changeqty(request):
+    cid = request.GET.get('cid')
+    qty = request.GET.get('qty')
+    cart = Cart.objects.get(id=cid)
+    if int(qty)<=0:
+        cart.delete()
+    else:
+        cart.qty = qty
+        cart.save()
+
+    return HttpResponse("Cart updated")
+
+def payment(request):
+
+    amt = request.GET['amt']
+    client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+
+    
+    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) # Amount is in currency subunits.
+    
+    return JsonResponse(payment)
+
+
+
 
 
 
