@@ -243,6 +243,31 @@
 #     print()    
 
 
+# -------------------------------------------------------------------------------------------------------------
+
+# Pyhton variables
+
+a = 10
+v = 20
+print(a)
+print(v)
+
+# ---------------------------------------------------------------------------------------------------------
+
+# Python Datatypes (int,str, float,boolean)
+
+n = 10
+n1 = "jenil"
+n2 = 12.5
+n3 = True
+print(type(n))
+print(type(n1))
+print(type(n2))
+print(type(n3))
+
+import random
+
+print(random.randrange(1, 10))
 
 
 

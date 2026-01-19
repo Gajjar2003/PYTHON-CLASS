@@ -1,636 +1,197 @@
-# extra example foe if-else statement
-# student marks sheet program
-
-# print("------Student marks program--------")
-
-# marks = int(input("Please enter your marks is: "))
-
-# if marks > 90:
-#     print("You are A grade")
-# elif marks < 90 and marks > 85:
-#     print("You are B grade")    
-# elif marks < 80 and  marks > 70:
-#     print("You are C garde")
-# elif marks < 70 and marks > 50:
-#     print("You are D grade")
-# else:
-#     print("You are fail it !")
+# Day 1 in python praticals
+# data-types,variables,opretors,user-inputs
 
-# **********************************************************************************************
+# data-types(int,float,bool)
 
-#extra example for looping statement 
-#student marks sheet program
+# int = 12
+# float = 12.5
+# bool = True
 
-# print("****** student marks *******")
+# print(int,float,bool)
+# print(type(int),type(float),type(bool))
 
-# choice = "y"
-# while choice != "n":
-#     marks = int(input("Please enter your marks : "))
-#     if marks > 90 and marks < 100:
-#         print("Your are A+ grade ")
-#     elif marks > 80  and marks < 90:
-#         print("You are A garde")
-#     elif marks > 70 and marks < 80:
-#         print("You are B garde")
-#     elif marks > 60 and marks < 70:
-#         print("You are C garde ")
-#     elif marks > 50 and marks < 60:
-#         print("You are D garde ")
-#     elif marks > 30 and marks < 40:
-#         print("You are pass")
-#     else:
-#         print("You are fail") 
+# user-input data-types
 
-#     choice = input("Do you want continue ? (y/n): ")
+# n = int(input("Enter your number is : "))
+# print(n)
 
-#---------------------------------------------------------------------------------------------------
+# --------------------------------------------data-type end--------------------------------------------------
 
-#extra example for prime number check
+# Arithmetic Operators
 
-# number = 11
-# flage = 0 
+# a = int(input("Enter your number is : "))
+# b = int(input("enter your number is : "))
 
-# for i in range(2,number):
-#     if number%i==0:
-#        flage=1
-#        break
-# if flage == 0 :
-#     print(number,"is prime number")
-# else:
-#     print(number, "is not prime number")        
-    
+# print("addition is : ",a+b)
 
-# for j in range(3,400):
-#     number = j
-#     flage = 0 
+# print("Subtraction is : ",a-b)
 
-#     for i in range(3,number):
-#         if number %i==0:
-#             flage=1
-#             break
-#     if flage == 0 :
-#         print(number,"is prime number")
-#     else:
-#         pass    
+# print("Multiplication is : ",a*b)
 
+# print("Division is : ",a/b)
 
-#----------------------------------------------------------------------------------------------------
+# print("Modulus is : ",a%b)
 
+# print("Floor Division is : ",a//b)
 
-# *
-# * * 
-# * * *
-# * * * *
-# * * * * *
+# print("Exponentiation is : ",a**b)
 
-# for i in range(1,6):
-#     for j in range(i):
-#         print("*",end="")
-#     print()    
 
+# Comparison Operators
 
-# -------------------------------------------------------------------------------
+# a = int(input("Enter your number is : "))
+# b = int(input("enter your number is : "))
 
-# * * * * *
-# * * * * *
-# * * * * *
-# * * * * *
-# * * * * *
+# print(a==b)
+# print(a<b)
+# print(a>b)
+# print(a<=b)
+# print(a>=b)
+# print(a!=b)
 
 
-# for i in range(1,6):
-#     for j in range(1,6):
-#         print("*",end="")
-#     print()
+# Logical Operators
 
+# a = True
+# b = False
 
-# -------------------------------------------------------------------------------
+# print(a and b)
+# print(a or b)
+# print(not a)
 
+# Bitwise Operators
 
-# * * * * *
-# * * * *
-# * * *
-# * *
-# *
+# a = int(input("Enter your number is : "))
+# b = int(input("enter your number is : "))
 
+# print(a & b )
+# print(a | b )
+# print(~a)
+# print(a >> b )
+# print(a << b )
 
-# for i in range(5 ,0 ,-1):
-#     for j in range(i):
-#         print("*",end="")
-#     print()    
 
-#---------------------------------------------------------------------------------
+# Assignment Operators
 
-    #            *
-    #          * *
-    #        * * *
-    #      * * * *
-    #    * * * * * 
 
+# a = int(input("Enter your number is : "))
+# b=a
+# print(b)
 
-# for i in range(1, 6):       
-#     for j in range(5, i, -1):   
-#         print(" ", end=" ")
-#     for k in range(1, i+1):     
-#         print("*", end=" ")
-#     print()   
- 
+# b +=a
+# print(b)
 
-# for i in range(1, 6):   
-#     print("  " * (5 - i), end="")   
-#     print("* " * i)     
+# b -=a
+# print(b)
 
+# b *=a
+# print(b)
 
-# ----------------------------------------------------------------------------------
+# b << a
+# print(b)
 
-#   * * * * *
-#     * * * *
-#       * * *
-#         * *
-#           *
 
+# Identity Operators
 
-# for i in range(6, 0, -1):      
-#     for j in range(6, i, -1):    
-#         print(" ", end=" ")
-#     for k in range(1, i+1):      
-#         print("*", end=" ")
-#     print()  
-
-
-# write a program find min and max number use to function reduce ()
-
-
-# from functools import reduce
-
-# l = [12,771,8474,1,74,2345,74887,4544]
-
-# def max(a,b):
-#     if a > b:
-#         return a
-#     else :
-#         return b 
-    
-# maxmum = reduce(max,l)    
-# print(maxmum)
-
-# def min(a,b):
-#     if a < b :
-#         return a
-#     else :
-#         return b
-
-# minmum = reduce(min,l)
-# print(minmum)
-
-
-# write a program to avg use to reduce function
-
-
-# from functools import reduce
-
-# l = [12, 771, 8474, 1, 74, 2345, 74887, 4544]
-# total = reduce(lambda a, b: a + b, l)
-# average = total / len(l)
-# print("Average:", average)
-
-  
-
-#  write a program to perfect sqaure in filter function
-
-# import math
-# l = [1,2,3,4,5,6,7,8,9,25,49]
-# def check_p_square(a):
-#     if math.sqrt(a).is_integer():
-#         return a
-
-# k = filter(check_p_square,l)
-# k = filter(lambda a : math.sqrt(a).is_integer(),l)
-# print(list(k))
-
-
-
-# di = {
-#     "name" : "jenil",
-#     "age" : 21,
-#     "email" : "jenil@gamil.com"
-# }
-
-# di["name"]= "ravi"
-# print(di)
-# di.update({"subject": "python"})
-# print(di)
-# print(di["name"][0])
-
-
-# d = {"name": "om",
-#      "Age" : 21
-     
-#     }
-
-# d["name"]= "meet"
-# print(d)
-
-# # d.update({"email" : "j@gamil.com"})
-# print(d)
-
-
-# def test(func):
-#     def wrapper():
-#         func()  
-#         print("testing...") 
-#     return wrapper
-
-# @test
-# def demo():
-#     print("testing for demo......")
-
-# demo()
-
-
-# class student:
-#     name = "jenil"
-#     age = 21
-#     email = "je@g ail.com"
-
-#     def display(self):
-#         print(self.name,self.age,self.email)
-
-
-# s = student()
-# s.display()
-# s.email = "jenil@gamil.com"
-# s.display()
-
-
-# class employee:
-#     def __init__(self,id,name,email,department):
-#         self.id= id
-#         self.name = name
-#         self.email = email
-#         self. departement = department
-
-#     def display(self):
-#         print("Emplyoee infromation")
-#         print(self.id,self.name,self.email,self.departement)
-        
-
-# e = employee(1, "jenil","emila@hamil.com","marketing ")
-# e.display()
-
-
-
-# *******************************************************************************************************
-
-# print("hello world!")
-
-
-# Write a program to swap two numbers.
-
-# a = 10 
+# a = 10
 # b = 20
-# temp =a
-# a= b
-# b =temp
+# c = a
 
-# print(a,b)
+# print(a is not b)
+# print(a is c)
 
+# Membership Operators
 
-# Write a program to find the area of a circle.
+# x = 20
 
-# r = int(input("Enter your circle of area : "))
+# list = [10, 20, 30, 40, 50]
 
-# total = r*r
-# print("total area of circle is: ",total)
-
-
-# Write a program to convert Celsius to Fahrenheit.
-
-# cel = int(input("Enter your celcius: "))
-
-# f = (cel*1.8)+32
-
-# print("fahrenheit",f)
+# if(x in list):
+#     print("good")
+# elif(x not in list):
+#     print("error")
 
 
-# 
-# Write a program to calculate the simple interest.
+# ****************************************************************************************************************************************************************
 
-# p = int(input("Enter your priciple : "))
-# r = int(input("Enter your rate: "))
-# t = int(input("Entert your time: "))
+# Day2 in python praticals
+# if , if-else
 
-# simple = (p*r*t) / 100
+# age = int(input("Enter your age is : "))
 
-# print(simple)
-
+# if(age > 18):
+#     print("you are young...")
 
 
-# def only_number(num):
-#     def wrapper(*a):
-#         if not str(a[0]).isdigit():
-#             print("Only number values are allowed!")
-#         else:
-#             num(*a)
-#     return wrapper
-
-# @only_number
-# def num(a):
-#     print("Number:", a)
-
-
-# num(10)      
-# num("abc") 
-
-
-# def only_character(ch):
-#     def wapper(*a):
-#         if not str(a[0]).isalpha():
-#             print("only character values are allowed!")
-#         else:
-#             ch(*a)
-#     return wapper
-
-# @only_character
-# def ch(a):
-#     print("character",a)
-
-# ch(10)
-# ch("j")
-
-
-# def only_sp(sp):
-#     def wapper(*a):
-#         if  str(a[0]).isalnum():
-#             print("only sp value are allowed!")
-#         else:
-#             sp(*a)
-#     return wapper
-
-# @only_sp
-# def sp(*a):
-#     print("spe",a)
-
-
-
-# sp(10)
-# sp("j")
-# sp("@")
-
-
-# create to empty set and insret user input 
-
-
-# s = set ()
-# for i in range(1,9):
-#     num =int(input(f"Enter your number is {i+0}: "))
-#     s.add(num)
-    
-# print(s)
-
-
-# create to empty dicinoary to insert user input
-
-
-# d = {}
-
-# for i in range(0,4):
-#     name = input("Enter your name is: ")
-#     lang = input("Enter your language is: ")
-    
-#     d[name] = lang  
-    
-# print(d)
-
-
-# number  = int(input("Enter your number is : "))
-
-# for i in range(1,11):
-#     print(f"{i} X {number} = {i*number}")
-
-
-# l = ["jenil","janvi","nil","love"]
-
-# for name in l:
-#     if(name.startswith("j")):
-#         print(f"hello {name}")
-
-
-# number  = int(input("Enter your number is : "))
-# i=1
-# while i  < 11:
-#      print(f"{i} X {number} = {i*number}")
-#      i+=1
-
-
-# number  = int(input("Enter your number is : "))
-
-# flage = 0
-
-# for i in range(2,number):
-#    if number%i==0:
-#        flage=1
-#        break
-   
-# if flage == 0 :
-#     print(number,"is prime number")
+# if(age >= 18):
+#     print("You are young men..")
 # else:
-#     print(number, "is not prime number")        
+#     print("You are child...")
+
+
+
+choice = "y"
+while choice != "n":
+
+
+    print("Press 1 is multipale table")
+    print("Press 2 Fibonacci i series is  ")
+    print("Press 3 is factorial is ")
+    print("Press 4 is Palindrome number")
+
+    option = int(input("Enter your chioce is(1-4): "))
+
+
+    # OPTION 1: Multiplication Table
+    if option == 1:
+        num = int(input("Enter your number: "))
+
+        for i in range(1, 11):
+            print(i, "X", num, "=", i * num)
+
+
+    # OPTION 2: Fibonacci Series
+    elif option == 2: 
+        num = int(input("Enter how many Fibonacci numbers you want: "))
+
+        pr = 0
+        pe = 1
+
+        print("Fibonacci series:")
+        print(pr)
+        print(pe)
+
+        for i in range(2, num):
+            temp = pr + pe
+            pr = pe
+            pe = temp
+            print(temp)
+
+
+    # OPTION 3: factorial
+    elif option == 3:
+        fact = int(input("Enter your number is: "))
+
+        for i in range(1,fact):
+            fact = fact*i
+
+        print(fact)
+
+
+    # OPTION 4: (Palindrome number)
+    elif option == 4:
+        num = input("Enter your number: ")
+
+        if num == num[::-1]:
+            print("Palindrome")
+        else:
+            print("Not Palindrome")
+
+
+
+    else:
+        print("Invalid choice is...")
     
+    choice = input("Do you want continue ? (y/n): ")
 
-
-
-# number = input("Enter your number: ")
-
-# if number == number[::-1]:
-#     print("Palindrome number")
-# else:
-#     print("Not palindrome number")
-
-
-
-
-
-# number = int(input("Enter your number: "))  
-# fact = 1
-
-# for i in range(1, number + 1):
-#     fact = fact * i
-
-# print(f"Factorial is {number} is {fact}")
-
-
-# name = "jenil"
-# def goodday():
-#     print(f"Good day {name}")
-
-
-# goodday()
-
-
-# def greatest(a,b,c):
-#     if (a>b and a>c):
-#         print("a is greatets")
-#     elif(b>a and b >c):
-#         print("b is greatest")
-#     else:
-#         print("c is greatets")
-
-
-# greatest(1000,122,30)
-
-# f = int(input("Enter temperature in Celsius: "))
-
-# def celsius():
-#     return (f * 1.8) + 32
-
-# print("Fahrenheit:", celsius())
-
-# num = int(input("Enter your number in inches: "))
-
-# def inches():
-#     return num * 2.54
-
-# print("Centimeters:", inches())
-
-
-# def mutiple(n):
-#     for i in range(1,11):
-#         print(f"{n} X {i} = {i*n}")
-
-# mutiple(5)
-
-
-
-
-# file = open("example.txt", "w")
-
-# file.write("Hello, this is my first line!\n")
-# file.write("Python file handling example.\n")
-
-# file.close()
-
-# print("✅ Data written successfully!")
-
-
-# file = open("example.txt", "r")
-
-# content = file.read()
-# print("File content:\n", content)
-
-# file.close()
-
-
-# f  = open("demo.txt")
-# data = f.read()
-# print(data)
-# f.close()
-
-
-# s = {"jenil",12,12.5,True}
-
-# print(s)
-# print(type(s))
-# print(len(s))
-
-a = {1,2,3,4}
-b= {2,6,7,8}
-
-# c = a.union(b)   set1 and set2  na element jiont thaya che and ek line ma thay che 
-# print(c)
-
-
-# c = a.intersection(b)  set1 and set2 ma je same value hoy che te print thay che {2}
-# print(c)
-
-# c = a.difference(b) set1 and set2  same value remove kari de che and set1 ni value baki ni print thay che {1,3,4}
-# print(c)
-
-# c = a.symmetric_difference(b) set1 and set2 same value remove kar che and set1 and set2 ni value joint thay che 
-# print(c)
-
-
-# c = a.issubset(b) set1 and set2 na element same che to ture nahi to false thay che 
-# print(c)
-
-# c = a.issuperset(b) set1 and set2 na badha element andar che to ture nahi ti false thay che 
-# print(c)
-
-# c = a.isdisjoint(b) set1 and set2 koi pan value same nahi hoy to ture nahi to false thay che 
-# print(c)
-
-
-# d = {
-#     "name" : "jenil",
-#     "age" : 21,
-#     "email" : "j@gamil.com"
-# }
-
-# print(d)
-
-# d["name"] = "om"
-# print(d)
-
-# d.update({"suject" : "python"})
-# # print(d)
-
-
-# d = {
-
-#     "jenil ": {
-#         "age " : 21,
-#         "email" : "je@gamil.com"
-#     },
-
-#     "om" : {
-#         "age" : 22,
-#         "email" : "om@gamil.com"
-#     }
-# }
-
-# for i ,j in d.items():
-#     print(i)
-#     for a, b in j.items():
-#         print(a,b)
-
-
-
-
-
-# -------------------------------------------------------------------------------------------------------
-
-# class programmer :
-#     company = "google"
-
-#     def __init__(self,id,name,email,pincode):
-#         self .id = id
-#         self.name = name
-#         self.email=email
-#         self.pincode=pincode
-
-#     def display(self):
-#         print(f"This employee id is {self.id} and name is {self.name} and  email is{self.email} and pincode is {self.pincode}")
     
-
-# p = programmer(1,"jenil","jenil@gamil.com",395010)
-# p.display()
-
-
-# class calc:
-
-#     def __init__(self,number):
-#         self.number=number
-
-#     def squre(self):
-#         print( f"This squer is {self.number*self.number}")
-    
-#     def cude(self):
-#         print( f"This cude is {self.number*self.number*self.number}")
-    
-#     def squreroot(self):
-#         print( f"This squer-root is {self.number**1/2}")
-    
-# c =calc(5)
-# c.squre()
-# c.cude()
-# c.squreroot()
