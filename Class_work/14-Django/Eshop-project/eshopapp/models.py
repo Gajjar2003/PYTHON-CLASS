@@ -25,3 +25,19 @@ class Cart(models.Model):
 
     def total_price(self):
         return self.qty * self.product.price
+    
+class Order(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    date = models.DateField()
+    total = models.FloatField()
+    status = models.CharField(max_length=50,default="Pending")
+    pattype = models.CharField(max_length=50,default="online")
+    payid = models.CharField(max_length=50)
+
+
+class Orderdetils(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty = models.IntegerField()
+    price = models.FloatField()
+
