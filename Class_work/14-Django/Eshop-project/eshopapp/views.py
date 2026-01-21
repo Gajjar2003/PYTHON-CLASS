@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from eshopapp.models import *
 from django.http import HttpResponse,JsonResponse
 import razorpay
+import datetime
 
 def index(request):
     # categorys = Category.objects.all()   
@@ -50,7 +51,8 @@ def blog(request):
 
 @login_required(login_url="login1")
 def checkout(request):
-    return render(request,"checkout.html")
+    orders = Order.objects.filter(user = request.user)
+    return render(request,"checkout.html",{'orders':orders})
 
 @login_required(login_url="login1")
 def contact(request):
@@ -165,6 +167,24 @@ def payment(request):
     payment = client.order.create(data=data) # Amount is in currency subunits.
     
     return JsonResponse(payment)
+
+def makeorder(requset):
+    payid = requset.GET['payid']
+    date = datetime.datetime.now()
+    user = requset.user
+
+    carts = Cart.objects.filter(user=user)
+    sum = 0
+    for i in carts:
+        sum += i.total_price()
+
+    order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+
+    for c in carts:
+        Orderdetils.objects.create(order=order,product= c.product,qty=c.qty,price=c.product.price)
+        c.delete()
+
+    return HttpResponse("Order placed successfully done !")
 
 
 
