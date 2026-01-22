@@ -36,8 +36,25 @@ class Order(models.Model):
 
 
 class Orderdetils(models.Model):
-    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name="detalis")
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     qty = models.IntegerField()
     price = models.FloatField()
 
+
+class Bils(models.Model):
+    fname = models.CharField(max_length=30)
+    lname = models.CharField(max_length=30)
+    country = models.CharField(max_length=30)
+    address = models.CharField(max_length=100)
+    town =  models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    code = models.CharField(max_length=50)
+    phone = models.IntegerField()
+    email = models.CharField(max_length=50)
+  
+
+
+
+def total_price(self):
+    return self.price * self.qty

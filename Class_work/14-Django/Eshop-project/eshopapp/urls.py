@@ -28,6 +28,9 @@ urlpatterns = [
     path("changeqty", changeqty, name="changeqty"),
     path("payment",payment,name="payment"),
     path("makeorder",makeorder,name="makeorder"),
+    path("placeorder",placeorder,name="placeorder"),
+    
+     
 
 
     

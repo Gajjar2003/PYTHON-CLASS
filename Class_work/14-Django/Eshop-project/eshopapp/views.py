@@ -6,6 +6,12 @@ from eshopapp.models import *
 from django.http import HttpResponse,JsonResponse
 import razorpay
 import datetime
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
+
 
 def index(request):
     # categorys = Category.objects.all()   
@@ -180,13 +186,39 @@ def makeorder(requset):
 
     order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
 
+    row = ""
+    count = 0
     for c in carts:
         Orderdetils.objects.create(order=order,product= c.product,qty=c.qty,price=c.product.price)
+        row+=f"<tr><td>{count}</td><td>{c.product.name}</td><td>{c.product.price}</td><td>{c.qty}</td><td>{c.total_price()}</td></tr>"
         c.delete()
+        count+=1
 
+        table = f"  <table border = '1'><thead><tr><th>PayID:{order.payid}</th><th>PayType:{order.pattype}</th><th>Total</th></tr><tr><th>Order-Date:{order.date}</th><th>Status:{order.status}</th><th>Total:{order.total}</th></tr><tr><th>ID</th><th>Name</th><th>Price</th><th>Qty</th><th>Total</th></tr></thead><tbody>{row}</tbody></table>"
+           
+        try:
+            send_mail("Order confimation", "Your order placed successfully done", settings.EMAIL_HOST_USER, [user.email],html_message=table)
+        except Exception as e:
+            print(e)
     return HttpResponse("Order placed successfully done !")
 
+def placeorder(requset):
+    if requset.method == 'POST':
+        fname = requset.POST['fname']
+        lname =requset.POST['lname'] 
+        country =requset.POST['country']
+        address =requset.POST['address']
+        town = requset.POST['town'] 
+        state = requset.POST['state']
+        code = requset.POST['code']
+        phone =requset.POST['phone']
+        email = requset.POST['email']
+        note = requset.POST['note']
 
+        Bils.objects.create(fname = fname,lname = lname,country=country,address=address,town=town,state=state,
+                            code=code,phone=phone,email=email,note=note)
+        return render("checkout.html",{'meg':'Billing Details submited'})
+        
 
 
 
