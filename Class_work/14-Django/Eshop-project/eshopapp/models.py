@@ -52,6 +52,8 @@ class Bils(models.Model):
     code = models.CharField(max_length=50)
     phone = models.IntegerField()
     email = models.CharField(max_length=50)
+
+    
   
 
 

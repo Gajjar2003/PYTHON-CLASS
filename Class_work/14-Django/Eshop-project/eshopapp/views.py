@@ -10,6 +10,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+import random
+
 
 
 
@@ -202,23 +204,60 @@ def makeorder(requset):
             print(e)
     return HttpResponse("Order placed successfully done !")
 
-def placeorder(requset):
-    if requset.method == 'POST':
-        fname = requset.POST['fname']
-        lname =requset.POST['lname'] 
-        country =requset.POST['country']
-        address =requset.POST['address']
-        town = requset.POST['town'] 
-        state = requset.POST['state']
-        code = requset.POST['code']
-        phone =requset.POST['phone']
-        email = requset.POST['email']
-        note = requset.POST['note']
 
-        Bils.objects.create(fname = fname,lname = lname,country=country,address=address,town=town,state=state,
-                            code=code,phone=phone,email=email,note=note)
-        return render("checkout.html",{'meg':'Billing Details submited'})
-        
+def placeorder(request):
+    if request.method == "POST":
+        bill_no = generate_bill_no()
+
+        bill = Bils.objects.create(
+            fname=request.POST.get('fname'),
+            lname=request.POST.get('lname'),
+            country=request.POST.get('country'),
+            address=request.POST.get('address'),
+            town=request.POST.get('town'),
+            state=request.POST.get('state'),
+            code=request.POST.get('code'),
+            phone=request.POST.get('phone'),
+            email=request.POST.get('email'),
+           
+        )
+
+        # 📧 Email content
+        subject = f"Your Order Bill - {bill_no}"
+        message = f"""
+Hello {bill.fname},
+
+Your order has been placed successfully.
+
+Bill No : {bill_no}
+Name    : {bill.fname} {bill.lname}
+Address : {bill.address}, {bill.town}, {bill.state},{bill.code},
+Phone   : {bill.phone},
+Email : {bill.email}
+
+
+Thank you for shopping with us!
+"""
+
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [bill.email],
+            fail_silently=False,
+        )
+
+        return render(request, "checkout.html", {
+            'meg': f'Order placed & Bill sent to Email-Id'
+        })
+
+    return render(request, "checkout.html")
+
+
+
+def generate_bill_no():
+    return f"BILL-{random.randint(100000,999999)}"
+
 
 
 
