@@ -43,6 +43,7 @@ class Orderdetils(models.Model):
 
 
 class Bils(models.Model):
+    order = models.ForeignKey( Order,on_delete=models.CASCADE,null=True,blank=True)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
     country = models.CharField(max_length=30)
@@ -52,6 +53,7 @@ class Bils(models.Model):
     code = models.CharField(max_length=50)
     phone = models.IntegerField()
     email = models.CharField(max_length=50)
+    
 
     
   

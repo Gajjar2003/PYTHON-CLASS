@@ -233,7 +233,10 @@ Bill No : {bill_no}
 Name    : {bill.fname} {bill.lname}
 Address : {bill.address}, {bill.town}, {bill.state},{bill.code},
 Phone   : {bill.phone},
-Email : {bill.email}
+Email : {bill.email},
+
+
+
 
 
 Thank you for shopping with us!
