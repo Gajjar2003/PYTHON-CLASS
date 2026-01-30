@@ -7,6 +7,9 @@ urlpatterns = [
     path("dp/<id>",cricketbyid.as_view()),
 
     path("cri/dp/<id>",addcricket,name="addcricket"),
-    path("getcricket",getcricket,name="getcricket")
+    path("getcricket",getcricket,name="getcricket"),
+
+      path('cricket/<id>', cricketbyid.as_view()),
+      path("cri/dp/<id>/<cid>",updatecricket,name="updatecricket"),
 
 ]
