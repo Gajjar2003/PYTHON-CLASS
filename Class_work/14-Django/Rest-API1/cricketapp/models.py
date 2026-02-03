@@ -16,3 +16,4 @@ class Cricketdetalis(models.Model):
     run = models.IntegerField()
     four = models.IntegerField()
     six = models.IntegerField()
+    image = models.ImageField(upload_to="image",null=True)
