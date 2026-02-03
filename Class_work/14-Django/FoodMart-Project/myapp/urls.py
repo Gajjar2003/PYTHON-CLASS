@@ -16,6 +16,10 @@ urlpatterns = [
     path("getcategorys",get_categorys,name="getcategorys"),
     path("searchproduct",searchproduct,name="searchproduct"),
     path("addtocart",addtocart,name="addtocart"),
+    path("removecard",removecard,name="removecard"),
+    path("changeqty",changeqty,name="changeqty"),
+    path("payment",payment,name="payment"),
+    path("makeorder",makeorder,name="makeorder"),
 
 
 ]

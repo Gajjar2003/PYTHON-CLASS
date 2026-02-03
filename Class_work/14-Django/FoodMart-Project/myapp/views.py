@@ -4,7 +4,8 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from myapp.models import *
 from django.http import HttpResponse,JsonResponse
-
+import razorpay
+import datetime
 # Create your views here.
 
 def index(requset):
@@ -40,13 +41,17 @@ def about(requset):
 login_required(login_url="myaccount")
 def cart(requset):
     carts = Cart.objects.filter(user=requset.user)
-    return render(requset,"cart.html",{'carts':carts})
+
+    sum = 0
+    for c in carts:
+        sum+=c.total_price()
+
+    return render(requset, 'cart.html',{"carts":carts,"total":int(sum)})
 
 def addtocart(requset):
     pid = requset.GET['pid']
     product = Product.objects.get(pk=pid)
     user =requset.user
-    
     if user.is_anonymous:
             return HttpResponse(user)
     else:
@@ -99,8 +104,50 @@ def user_logout(requset):
     return redirect('index')
 
 
-        
+def removecard(requset):
+    cid = requset.GET['cid']
+    cart = Cart.objects.get(pk=cid)
+    cart.delete()
+    return HttpResponse("Remove for Card")
 
+def changeqty(requset):
+    cid = requset.GET['cid']
+    qty =requset.GET['qty']
+    cart = Cart.objects.get(pk=cid)
+    if int(qty) <= 0 :
+        cart.delete()
+    else:
+        cart.qty=qty
+        cart.save()
+    return HttpResponse("Cart updated")
+
+
+def payment(request):
+
+    amt = request.GET['amt']
+    client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+
+    
+    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) # Amount is in currency subunits.
+    
+    return JsonResponse(payment)
+
+def makeorder(requset):
+    payid = requset.GET['payid']
+    date = datetime.datetime.now()
+    user = requset.user
+
+    carts = Cart.objects.filter(user=user)
+    sum = 0
+    for i in carts:
+        sum +=i.total_price()
+
+    order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+    for c in carts:
+        OredrDetails.objects.create(order=order,product=c.product,qty = c.qty,price = c.product.price)
+        c.delete()
+    return HttpResponse("Order placed successfully")
 
 
 
