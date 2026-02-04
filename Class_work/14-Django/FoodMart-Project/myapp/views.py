@@ -6,6 +6,9 @@ from myapp.models import *
 from django.http import HttpResponse,JsonResponse
 import razorpay
 import datetime
+from django.core.mail import send_mail
+from django.conf import settings
+
 # Create your views here.
 
 def index(requset):
@@ -144,10 +147,29 @@ def makeorder(requset):
         sum +=i.total_price()
 
     order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+    count = 1
+    row  = ""
     for c in carts:
         OredrDetails.objects.create(order=order,product=c.product,qty = c.qty,price = c.product.price)
+        row +=f" <tr><td>{ count }</td><td>{ c.product.name }</td><td>₹{ c.product.price }</td><td>{ c.qty }</td><td>₹{ c.total_price() }</td></tr>"
         c.delete()
+        count +=1
+
+
+        tb = f"<table border=2px><tbody><tr><td>{ order.payid }</td><td>{ order.paytype }</td><td>{ order.date }</td><td>{ order.status }</td><td>₹{ order.total }</td></tr></tbody>{row}</table>"
+        try:
+            send_mail("Order confimation", "Your Order Placed successfully done !", settings.EMAIL_HOST_USER, [user.email],html_message=tb)
+        except Exception as e:
+            print(e)
     return HttpResponse("Order placed successfully")
+
+
+login_required(login_url="myaccount")
+def checkout(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request, "checkout.html", {'orders': orders})
+
+
 
 
 

@@ -39,10 +39,26 @@ class Order(models.Model):
 
 
 class OredrDetails(models.Model):
-    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name="details")
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     qty = models.IntegerField()
     price = models.FloatField()
+
+    def total_price(self):
+        return self.price*self.qty
+    
+
+class Address(models.Model):
+    order = models.ForeignKey(OredrDetails,on_delete=models.CASCADE,null=True)
+    fname = models.CharField(max_length=40)
+    phone = models.IntegerField()
+    house = models.CharField(max_length=50)
+    area = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    code = models.IntegerField()
+    land = models.CharField(max_length=100)
+
+    
 
 
 
