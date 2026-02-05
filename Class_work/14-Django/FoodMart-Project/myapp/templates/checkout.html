@@ -24,9 +24,11 @@
             border-radius: 12px 12px 0 0;
         }
 
-        .total-box {
-            font-size: 22px;
-            font-weight: bold;
+        .address-box {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 5px solid #198754;
         }
     </style>
 </head>
@@ -35,102 +37,97 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-9">
 
                 <div class="card bill-card shadow">
+
                     <!-- Header -->
                     <div class="bill-header text-center">
                         <h3>🍴 Food Mart</h3>
-                        <p class="mb-0">Order Bill Details</p>
+                        <p class="mb-0">Order Bill & Address Details</p>
                     </div>
 
-                    <!-- Order Info -->
                     <div class="card-body">
-                        <div class="row mb-3">
+
+                        <!-- Customer + Address -->
+                        <div class="row mb-4">
                             <div class="col-md-6">
-
-
+                                <h5>👤 Customer Details</h5>
+                                <p class="mb-1"><strong>Name:</strong> {{ user.username }}</p>
+                                <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
                             </div>
-                            <div class="col-md-6 text-md-end">
-                                <p><strong>Customer-Name:</strong> {{user}}</p>
+
+                          
 
 
-                                </p>
+                            <!-- Orders -->
+                            {% for od in orders %}
+                            <table class="table table-bordered mb-4">
+
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>Pay ID</th>
+                                        <th>Pay Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>{{ od.payid }}</td>
+                                        <td>{{ od.paytype }}</td>
+                                        <td>{{ od.date }}</td>
+                                        <td>{{ od.status }}</td>
+                                        <td>₹{{ od.total }}</td>
+                                    </tr>
+                                </tbody>
+
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for i in od.details.all %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ i.product.name }}</td>
+                                        <td>₹{{ i.price }}</td>
+                                        <td>{{ i.qty }}</td>
+                                        <td>₹{{ i.total_price }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5" class="text-center">No Items</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                            {% empty %}
+                            <p class="text-center">No Orders Found</p>
+                            {% endfor %}
+
+                            <!-- Buttons -->
+                            <div class="text-center mt-4">
+                                <a href="{% url 'address'%}" class="btn btn-success">➕ Add / Change Address</a>
+                                <a href="{% url 'index' %}" class="btn btn-outline-secondary">🛒 Shop Now</a>
+                               
                             </div>
+
                         </div>
-
-                        <!-- Order Table -->
-                        {% for od in orders %}
-                        <table class="table table-bordered mb-4">
-
-                            <thead class="table-success">
-                                <tr>
-                                    <th>Pay ID</th>
-                                    <th>Pay Type</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>{{ od.payid }}</td>
-                                    <td>{{ od.paytype }}</td>
-                                    <td>{{ od.date }}</td>
-                                    <td>{{ od.status }}</td>
-                                    <td>₹{{ od.total }}</td>
-                                </tr>
-                            </tbody>
-
-                            <thead class="table-secondary">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for i in od.details.all %}
-                                <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>{{ i.product.name }}</td>
-                                    <td>₹{{ i.price }}</td>
-                                    <td>{{ i.qty }}</td>
-                                    <td>₹{{ i.total_price }}</td>
-                                </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="5" class="text-center">No Items</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-
-                        </table>
-                        {% empty %}
-                        <p class="text-center">No Orders Found</p>
-                        {% endfor %}
-
-
-
-                       
-
-                        <!-- Buttons -->
-                        <div class="text-center mt-4">
-                            <a  href="{% url 'address'%}" class="btn btn-success"> Add-Address</a>
-                            <a href="{% url 'index'%}" class="btn btn-outline-secondary">Shop Now</a>
-                       
-                        </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
 </body>
 

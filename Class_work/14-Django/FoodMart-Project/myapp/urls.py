@@ -21,6 +21,11 @@ urlpatterns = [
     path("payment",payment,name="payment"),
     path("makeorder",makeorder,name="makeorder"),
     path("checkout",checkout,name="checkout"),
+    path("address",address,name="address"),
+    path("forgotpass",forgotpass,name="forgotpass"),
+    path("sendmail-password",sendmail_password,name="sendmail-password"),
+    
+
 
 
 

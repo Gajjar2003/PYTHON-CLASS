@@ -50,6 +50,7 @@ class OredrDetails(models.Model):
 
 class Address(models.Model):
     order = models.ForeignKey(OredrDetails,on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     fname = models.CharField(max_length=40)
     phone = models.IntegerField()
     house = models.CharField(max_length=50)

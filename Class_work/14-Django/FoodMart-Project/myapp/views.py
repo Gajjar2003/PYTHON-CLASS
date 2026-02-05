@@ -74,6 +74,7 @@ def myaccount(request):
     if request.method == 'POST':
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
+        email =request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -81,7 +82,7 @@ def myaccount(request):
             return render(request, "myaccount.html", {'err': 'Username already exists !!'})
 
        
-        User.objects.create_user(username=username,password=password,first_name=fname,last_name=lname)
+        User.objects.create_user(username=username,password=password,first_name=fname,last_name=lname,email=email)
 
         return render(request, "myaccount.html", {'meg': 'Successfully registered!' })
 
@@ -139,35 +140,96 @@ def payment(request):
 def makeorder(requset):
     payid = requset.GET['payid']
     date = datetime.datetime.now()
-    user = requset.user
+    user =requset.user
 
     carts = Cart.objects.filter(user=user)
     sum = 0
     for i in carts:
-        sum +=i.total_price()
-
-    order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
-    count = 1
-    row  = ""
+        sum += i.total_price()
+    
+    order = Order.objects.create(user=user,payid=payid,date=date,total=sum)
+    rows = ""
+    count = 0
     for c in carts:
-        OredrDetails.objects.create(order=order,product=c.product,qty = c.qty,price = c.product.price)
-        row +=f" <tr><td>{ count }</td><td>{ c.product.name }</td><td>₹{ c.product.price }</td><td>{ c.qty }</td><td>₹{ c.total_price() }</td></tr>"
+        OredrDetails.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
+        rows +=f"<tr> <td>{count}</td><td>{ c.product.name }</td><td>₹{ c.product.price }</td><td>{ c.qty }</td><td>₹{ c.total_price() }</td></tr>"
         c.delete()
-        count +=1
+        count+=1
 
+        Teble = f"<table border=2px solid balck><tbody> <tr><td>{ order.payid }</td><td>{ order.paytype }</td><td>{ order.date }</td><td>{ order.status }</td><td>₹{ order.total }</td></tr></tbody><thead ><tr><th>ID</th><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr> </thead><tbody>{rows}</tbody></table>"
+                            
+                                        
 
-        tb = f"<table border=2px><tbody><tr><td>{ order.payid }</td><td>{ order.paytype }</td><td>{ order.date }</td><td>{ order.status }</td><td>₹{ order.total }</td></tr></tbody>{row}</table>"
         try:
-            send_mail("Order confimation", "Your Order Placed successfully done !", settings.EMAIL_HOST_USER, [user.email],html_message=tb)
+            send_mail("Order Confimation", "Your Order Placed successfully done ", settings.EMAIL_HOST_USER, [user.email],html_message=Teble)
+              
         except Exception as e:
-            print(e)
-    return HttpResponse("Order placed successfully")
+               print(e)
 
+    return HttpResponse("Order Placed successfully Done !")
 
-login_required(login_url="myaccount")
+@login_required(login_url="myaccount")
 def checkout(request):
     orders = Order.objects.filter(user=request.user)
     return render(request, "checkout.html", {'orders': orders})
+
+
+@login_required
+def address(request):
+    if request.method == 'POST':
+        fname = request.POST.get('fname')
+        phone = request.POST.get('phone')
+        house = request.POST.get('house')
+        area = request.POST.get('area')
+        city = request.POST.get('city')
+        land = request.POST.get('land')
+        code = request.POST.get('code')
+
+      
+        Address.objects.create(user=request.user,fname=fname,phone=phone,house=house,area=area,city=city,land=land,code=code)
+
+        
+        subject = "Food Mart - Address Added Successfully 🏠"
+        message = f"""
+Hello {request.user.username},
+
+Your delivery address has been added successfully.
+
+Name: {fname}
+Mobile: {phone}
+Address: {house}, {area}, {city}
+Landmark: {land}
+Pincode: {code}
+
+Thank you for shopping with Food Mart 
+"""
+        recipient = [request.user.email]
+
+      
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            recipient,
+            fail_silently=False,
+        )
+
+        return redirect('checkout')
+
+    return render(request, "address.html")
+
+def forgotpass(requset):
+    return render(requset,"forgot.html")
+
+def sendmail_password(requset):
+    email = requset.POST['email']
+    try:
+        user = User.objects.get(email=email)
+        send_mail("Password Recovery", f"http://127.0.0.1:8000/setpassword?email={email}", settings.EMAIL_HOST_USER, [email])
+        return render(requset,"forgot.html",{'err':'Mail send successfully done !!'})
+    except Exception as e:
+           return render(requset,"forgot.html",{'err':'Something want wrong ??'})
+    
 
 
 
