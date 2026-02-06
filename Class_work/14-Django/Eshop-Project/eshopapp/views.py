@@ -261,6 +261,39 @@ Thank you for shopping with us!
 def generate_bill_no():
     return f"BILL-{random.randint(100000,999999)}"
 
+def forgotpass(requset):
+    return render(requset,"forgotpass.html")
+
+
+def passwordsend_mail(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        try:
+            user = User.objects.get(email=email)
+
+            send_mail(
+                "Password Recovery",
+                f"http://127.0.0.1:8000/setpassword?email={email}",
+                settings.EMAIL_HOST_USER,
+                [email],
+            )
+
+            return render(request, "forgotpass.html", {
+                'msg': "Mail sent successfully!"
+            })
+
+        except User.DoesNotExist:
+            return render(request, "forgotpass.html", {
+                'err': "Email not registered"
+            })
+
+    return render(request, "forgotpass.html")
+    
+
+
+
+
 
 
 
