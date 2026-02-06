@@ -24,6 +24,8 @@ urlpatterns = [
     path("address",address,name="address"),
     path("forgotpass",forgotpass,name="forgotpass"),
     path("sendmail-password",sendmail_password,name="sendmail-password"),
+    path("passwordset",passwordset,name="passwordset")
+  
     
 
 

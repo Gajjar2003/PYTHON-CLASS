@@ -223,16 +223,33 @@ def forgotpass(requset):
 
 def sendmail_password(requset):
     email = requset.POST['email']
-    try:
-        user = User.objects.get(email=email)
-        send_mail("Password Recovery", f"http://127.0.0.1:8000/setpassword?email={email}", settings.EMAIL_HOST_USER, [email])
-        return render(requset,"forgot.html",{'err':'Mail send successfully done !!'})
+    try : 
+        user =  User.objects.get(email=email)
+        send_mail("Password Recovery", f"http://127.0.0.1:8000/passwordset?email={email}", settings.EMAIL_HOST_USER, [email]) 
+        return render(requset,"forgot.html",{"err":"Mail sent successfully"})
     except Exception as e:
-           return render(requset,"forgot.html",{'err':'Something want wrong ??'})
+        return render(requset,"forgot.html",{"err":"Something went wrong"})
     
 
+def passwordset(request):
+    email = request.GET.get('email')  
 
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
+        try:
+            user = User.objects.get(email=email)
+            user.set_password(password)
+            user.save()
+            return redirect('myaccount')
+        except User.DoesNotExist:
+            return render(request, "passwordset.html", {
+                "error": "User with this email does not exist",
+                "email": email
+            })
+
+    return render(request, "passwordset.html", {"email": email})
 
 
        
