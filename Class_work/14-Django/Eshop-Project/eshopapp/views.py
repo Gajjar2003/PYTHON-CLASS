@@ -222,7 +222,7 @@ def placeorder(request):
            
         )
 
-        # 📧 Email content
+     
         subject = f"Your Order Bill - {bill_no}"
         message = f"""
 Hello {bill.fname},
@@ -261,35 +261,31 @@ Thank you for shopping with us!
 def generate_bill_no():
     return f"BILL-{random.randint(100000,999999)}"
 
-def forgotpass(requset):
-    return render(requset,"forgotpass.html")
+def forgotpassword(requset):
+    return render(requset,"forgotpassword.html")
 
+def password_sendmail(requset):
+    email = requset.POST['email']
+    try : 
+        user =User.objects.get(email=email)
+        send_mail("Password Recovery", f"http://127.0.0.1:8000/setpassword?email={email}", settings.EMAIL_HOST_USER, [email])
+        return render(requset,"forgotpassword.html",{'meg':'Successfully send mail !!'})
+    except Exception as e:
 
-def passwordsend_mail(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
+        return render(requset,"forgotpassword.html",{'err':'something want wrong'})
 
-        try:
-            user = User.objects.get(email=email)
+def setpassword(requset):
+    if  requset.method == 'GET':
+        email = requset.GET['email']
+    if requset.method == 'POST':
+        email = requset.POST['email']
+        password = requset.POST['password']
+        user = User.objects.get(email=email)
+        user.set_password(password)
+        user.save()
+        return redirect('login1')
+    return render(requset,"setpassword.html",{'email':email})
 
-            send_mail(
-                "Password Recovery",
-                f"http://127.0.0.1:8000/setpassword?email={email}",
-                settings.EMAIL_HOST_USER,
-                [email],
-            )
-
-            return render(request, "forgotpass.html", {
-                'msg': "Mail sent successfully!"
-            })
-
-        except User.DoesNotExist:
-            return render(request, "forgotpass.html", {
-                'err': "Email not registered"
-            })
-
-    return render(request, "forgotpass.html")
-    
 
 
 

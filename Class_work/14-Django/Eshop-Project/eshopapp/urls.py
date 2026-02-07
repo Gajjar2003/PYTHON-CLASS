@@ -30,8 +30,12 @@ urlpatterns = [
     path("makeorder",makeorder,name="makeorder"),
     path("placeorder",placeorder,name="placeorder"),
 
-    path("forgotpass",forgotpass,name="forgotpass"),
-    path("passwordsend-mail",passwordsend_mail,name="passwordsend-mail"),
+    path("forgotpassword",forgotpassword,name="forgotpassword"),
+    path("password-sendmail",password_sendmail,name="password-sendmail"),
+    path("setpassword",setpassword,name="setpassword")
+
+  
+   
   
 
    
