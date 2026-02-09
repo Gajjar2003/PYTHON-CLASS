@@ -1,0 +1,1172 @@
+Module 10 Rest Framework
+
+    1. Introduction to APIs
+
+        1.What is an API (Application Programming Interface)?
+
+                An API (Application Programming Interface) is basically a messenger that lets different software applications talk to each other 🤝
+
+                Instead of apps directly accessing each other’s code or database, they use an API to request and exchange data or services in a safe, structured way.
+
+                Think of it like this 🍽️
+
+                You’re at a restaurant:
+
+                You (client/app) → place an order
+
+                Waiter (API) → takes your order
+
+                Kitchen (server/system) → prepares the food
+
+                Waiter (API) → brings the food back
+
+                You never go into the kitchen—you just interact through the waiter. That’s exactly how an API works.
+
+                What does an API do?
+
+                An API:
+
+                Defines what requests are allowed
+
+                Specifies how to make those requests
+
+                Returns responses in a fixed format (usually JSON or XML)
+
+                Simple real-world examples 🌍
+
+                A weather app uses an API to get weather data from a server
+
+                Google Maps API shows maps inside other apps
+
+                Payment gateways (Razorpay, Stripe) use APIs to process payments
+
+                Login with Google/Facebook uses APIs for authentication
+
+        2.Types of APIs: REST, SOAP.
+
+                | Feature     | REST                | SOAP               |
+                | ----------- | ------------------- | ------------------ |
+                | Protocol    | Architectural style | Protocol           |
+                | Data format | JSON, XML           | XML only           |
+                | Speed       | Fast                | Slow               |
+                | Complexity  | Simple              | Complex            |
+                | Popularity  | Very high           | Declining          |
+                | Best for    | Web & mobile apps   | Enterprise systems |
+
+        3.Why are APIs important in web development?
+
+        🔑 Why APIs are Important in Web Development
+            1️⃣ Connect Frontend and Backend
+
+            APIs act as a bridge between:
+
+            Frontend (HTML, CSS, JS, React, etc.)
+
+            Backend (Django, Node, Java, etc.)
+
+            The frontend doesn’t directly touch the database—it calls an API instead.
+
+            2️⃣ Enable Data Sharing
+
+            APIs allow different systems to share data securely:
+
+            Website ↔ Mobile App
+
+            App ↔ Third-party service
+
+            Server ↔ Server
+
+            Example:
+            An e-commerce site using a payment gateway API.
+
+            3️⃣ Improve Security 🔐
+
+            Database is never exposed directly
+
+            APIs control what data is accessible
+
+            Authentication (tokens, API keys, JWT)
+
+            4️⃣ Faster Development ⏱️
+
+            Developers can:
+
+            Reuse existing APIs
+
+            Work in parallel (frontend & backend teams)
+
+            Integrate ready-made services (maps, payments, emails)
+
+            5️⃣ Support Multiple Platforms 📱💻
+
+            One API can serve:
+
+            Website
+
+            Mobile app
+
+            Desktop app
+
+            Same backend, multiple clients.
+
+            6️⃣ Scalability & Maintenance
+
+            Easier to update or replace parts of the system
+
+            Changes in backend don’t break frontend if API stays same
+
+            Helps in microservices architecture
+
+            7️⃣ Third-Party Integrations 🌍
+
+            APIs let you add powerful features without building everything:
+
+            Google Login
+
+            Stripe / Razorpay payments
+
+            SMS & Email services
+
+            Weather, Maps, Analytics
+-------------------------------------------------------------------------------------------------------------------------
+    2. Requirements for Web Development Projects
+
+        1.Understanding project requirements.
+
+            🧩 Types of Project Requirements
+                1️⃣ Functional Requirements
+
+                What the system should do:
+
+                User registration & login
+
+                Add to cart
+
+                Place order
+
+                Admin dashboard
+
+                Payment processing
+
+                2️⃣ Non-Functional Requirements
+
+                How the system should perform:
+
+                Security (authentication, authorization)
+
+                Performance (load time, response speed)
+
+                Scalability
+
+                Reliability
+
+                UI/UX standards
+
+                3️⃣ Technical Requirements
+
+                Technology-related constraints:
+
+                Backend: Django / Node.js
+
+                Frontend: React / HTML/CSS
+
+                Database: MySQL / PostgreSQL
+
+                Hosting: AWS / PythonAnywhere
+
+                APIs: REST APIs
+
+                4️⃣ Business Requirements
+
+                High-level goals:
+
+                Increase sales
+
+                Automate manual work
+
+                Reduce operational cost
+
+                Improve customer experience
+
+                🛠️ Steps to Understand Project Requirements
+
+                1️⃣ Talk to stakeholders
+
+                Client, users, managers
+
+                Ask why, not just what
+
+                2️⃣ Gather requirements
+
+                Meetings
+
+                Questionnaires
+
+                Existing system analysis
+
+                3️⃣ Document everything
+
+                Requirement Specification (SRS)
+
+                User stories
+
+                Wireframes
+
+                4️⃣ Clarify doubts early
+
+                Remove assumptions
+
+                Confirm edge cases
+
+                5️⃣ Prioritize features
+
+                Must-have
+
+                Good-to-have
+
+                Optional
+
+
+        2. Setting up the environment and installing necessary packages.
+
+            1️⃣ Set Up the Development Environment
+            ✔ Install Required Software
+
+            Depending on your project (for example, a Django web app):
+
+            Python (latest stable version)
+
+            Code Editor (VS Code recommended)
+
+            Web Browser (Chrome / Firefox)
+
+            Database (SQLite / MySQL / PostgreSQL)
+
+            Git (for version control)
+
+            2️⃣ Create a Virtual Environment (Best Practice)
+
+            A virtual environment keeps project dependencies isolated.
+
+            python -m venv venv
+
+
+            Activate it:
+
+            Windows
+
+            venv\Scripts\activate
+
+
+            Linux / Mac
+
+            source venv/bin/activate
+
+            3️⃣ Install Necessary Packages
+            ✔ Using pip
+
+            Install project dependencies:
+
+            pip install django
+
+
+            Or install all required packages at once:
+
+            pip install -r requirements.txt
+
+            4️⃣ Common Packages (Django Example)
+
+            django – web framework
+
+            djangorestframework – REST APIs
+
+            mysqlclient / psycopg2 – database support
+
+            python-decouple – environment variables
+
+            pillow – image handling
+
+            Example:
+
+            pip install django djangorestframework pillow
+
+            5️⃣ Verify Installation
+
+            Check versions:
+
+            python --version
+            pip list
+            django-admin --version
+
+            6️⃣ Environment Configuration
+
+            Create .env file for secrets (keys, DB credentials)
+
+            Update settings.py
+
+            Run migrations
+
+            python manage.py migrate
+-------------------------------------------------------------------------------------------------------------
+
+    3. Serialization in Django REST Framework
+
+        1.What is Serialization?
+
+            🔁 What Serialization Does
+
+            Converts Python/Django objects → JSON
+
+            Makes data transferable between backend and frontend
+
+            Allows APIs to send data in a readable format
+
+            🌍 Why Serialization Is Important
+
+            Enables API communication
+
+            Makes data platform-independent
+
+            Ensures structured and validated data
+
+            Essential for REST APIs
+
+        2.Converting Django QuerySets to JSON
+
+            | Method            | Best Use Case         |
+            | ----------------- | --------------------- |
+            | DRF Serializer    | Full REST APIs (Best) |
+            | Django Serializer | Basic export          |
+            | `.values()`       | Lightweight JSON      |
+            | `model_to_dict`   | Single object         |
+
+        3.Using serializers in Django REST Framework (DRF).
+
+
+                What is a Serializer in DRF?
+
+                A serializer:
+
+                Converts Django model objects → JSON (serialization)
+
+                Converts JSON → Django objects (deserialization)
+
+                Validates data before saving to the database
+
+                1️⃣ Install & Setup DRF
+                pip install djangorestframework
+
+
+                Add to settings.py:
+
+                INSTALLED_APPS = [
+                    ...
+                    'rest_framework',
+                ]
+
+                2️⃣ Create a Model
+                from django.db import models
+
+                class Product(models.Model):
+                    name = models.CharField(max_length=100)
+                    price = models.IntegerField()
+                    stock = models.IntegerField()
+
+                    def __str__(self):
+                        return self.name
+
+                3️⃣ Create a Serializer
+                ✔ ModelSerializer (Most Used)
+                from rest_framework import serializers
+                from .models import Product
+
+                class ProductSerializer(serializers.ModelSerializer):
+                    class Meta:
+                        model = Product
+                        fields = '__all__'
+
+
+                DRF automatically creates fields and validation rules from the model.
+
+                4️⃣ Use Serializer in Views
+                GET (Read data)
+                from rest_framework.response import Response
+                from rest_framework.decorators import api_view
+                from .models import Product
+                from .serializers import ProductSerializer
+
+                @api_view(['GET'])
+                def product_list(request):
+                    products = Product.objects.all()
+                    serializer = ProductSerializer(products, many=True)
+                    return Response(serializer.data)
+
+                POST (Create data)
+                @api_view(['POST'])
+                def product_create(request):
+                    serializer = ProductSerializer(data=request.data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return Response(serializer.data, status=201)
+                    return Response(serializer.errors, status=400)
+
+                5️⃣ Validation in Serializer
+                Field-level validation
+                def validate_price(self, value):
+                    if value <= 0:
+                        raise serializers.ValidationError("Price must be greater than zero")
+                    return value
+
+                Object-level validation
+                def validate(self, data):
+                    if data['stock'] < 0:
+                        raise serializers.ValidationError("Stock cannot be negative")
+                    return data
+---------------------------------------------------------------------------------------------------------------------
+        4. Requests and Responses in Django REST Framework
+
+            1.HTTP request methods (GET, POST, PUT, DELETE).
+
+            GET — Retrieve Data
+
+            Purpose: Fetch data from the server
+
+            Does not change data
+
+            Safe & read-only
+
+            Example:
+
+            GET /api/products/
+            GET /api/products/1/
+
+
+            DRF View Example:
+
+            @api_view(['GET'])
+            def product_list(request):
+                products = Product.objects.all()
+                serializer = ProductSerializer(products, many=True)
+                return Response(serializer.data)
+
+            2️⃣ POST — Create New Data
+
+            Purpose: Send data to create a new resource
+
+            Data is sent in request body
+
+            Changes server data
+
+            Example:
+
+            POST /api/products/
+
+
+            JSON Body:
+
+            {
+            "name": "Shoes",
+            "price": 1200
+            }
+
+
+            DRF Example:
+
+            @api_view(['POST'])
+            def product_create(request):
+                serializer = ProductSerializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=201)
+
+            3️⃣ PUT — Update Entire Resource
+
+            Purpose: Update all fields of an existing resource
+
+            Replaces old data completely
+
+            Example:
+
+            PUT /api/products/1/
+
+
+            DRF Example:
+
+            product = Product.objects.get(id=1)
+            serializer = ProductSerializer(product, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+
+
+            ⚠️ All fields must be provided.
+
+            4️⃣ DELETE — Remove Data
+
+            Purpose: Delete a resource
+
+            Permanently removes data
+
+            Example:
+
+            DELETE /api/products/1/
+
+
+            DRF Example:
+
+            product = Product.objects.get(id=1)
+            product.delete()
+            return Response(status=204)
+    
+        2.Sending and receiving responsesin DRF.
+
+                📥 Receiving Requests in DRF
+
+                Client (frontend / Postman / mobile app) sends data to your API.
+
+                Access request data
+                request.data
+
+
+                Works for POST, PUT, PATCH
+
+                Automatically parses JSON, form data, etc.
+
+                Example (POST request)
+                @api_view(['POST'])
+                def create_product(request):
+                    serializer = ProductSerializer(data=request.data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return Response(serializer.data, status=201)
+                    return Response(serializer.errors, status=400)
+
+                📤 Sending Responses in DRF
+
+                DRF uses the Response class instead of Django’s HttpResponse.
+
+                from rest_framework.response import Response
+
+                Basic Response
+                return Response({"message": "Product created"})
+
+                Response with serialized data
+                return Response(serializer.data)
+
+                Response with status code
+                from rest_framework import status
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+------------------------------------------------------------------------------------------------------
+
+    5. Views in Django REST Framework
+
+        1.Understanding views in DRF: Function-based views vs Class-based views.
+
+            Function-Based Views (FBVs)
+
+            These are simple Python functions decorated with DRF helpers.
+
+            Example (FBV)
+            from rest_framework.decorators import api_view
+            from rest_framework.response import Response
+
+            @api_view(['GET', 'POST'])
+            def product_list(request):
+                if request.method == 'GET':
+                    products = Product.objects.all()
+                    serializer = ProductSerializer(products, many=True)
+                    return Response(serializer.data)
+
+                elif request.method == 'POST':
+                    serializer = ProductSerializer(data=request.data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return Response(serializer.data, status=201)
+                    return Response(serializer.errors, status=400)
+
+
+            Class-Based Views (CBVs)
+
+            These use classes instead of functions and map HTTP methods to class methods.
+
+            Example (APIView)
+            from rest_framework.views import APIView
+            from rest_framework.response import Response
+
+            class ProductList(APIView):
+
+                def get(self, request):
+                    products = Product.objects.all()
+                    serializer = ProductSerializer(products, many=True)
+                    return Response(serializer.data)
+
+                def post(self, request):
+                    serializer = ProductSerializer(data=request.data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return Response(serializer.data, status=201)
+                    return Response(serializer.errors, status=400)
+------------------------------------------------------------------------------------------------------------
+                    
+        6. URL Routing in Django REST Framework
+
+            1.Defining URLs and linking them to views.
+
+                 Defining URLs and Linking Them to Views (Django & DRF)
+
+                URLs tell Django which view should handle a request. In DRF, URL routing connects an API endpoint to a view or ViewSet.
+
+                Let’s break it down clearly 👇
+
+                1️⃣ Basic URL Structure in Django
+
+                URLs are defined in urls.py.
+
+                from django.urls import path
+                from . import views
+
+                urlpatterns = [
+                    path('products/', views.product_list),
+                ]
+
+
+                ➡️ When someone visits /products/, Django calls product_list view.
+
+                2️⃣ Linking URLs to Function-Based Views (FBVs)
+                View
+                @api_view(['GET'])
+                def product_list(request):
+                    ...
+
+                URL
+                from django.urls import path
+                from .views import product_list
+
+                urlpatterns = [
+                    path('api/products/', product_list, name='product-list'),
+                ]
+
+                3️⃣ Linking URLs to Class-Based Views (CBVs)
+                View
+                class ProductList(APIView):
+                    def get(self, request):
+                        ...
+
+                URL
+                from django.urls import path
+                from .views import ProductList
+
+                urlpatterns = [
+                    path('api/products/', ProductList.as_view(), name='product-list'),
+                ]
+
+
+                ⚠️ .as_view() is mandatory for CBVs.
+
+                4️⃣ URLs with Parameters (Dynamic URLs)
+                path('api/products/<int:id>/', views.product_detail)
+
+
+                Usage:
+
+                GET /api/products/1/
+
+
+                CBV:
+
+                path('api/products/<int:pk>/', ProductDetail.as_view())
+
+                5️⃣ Using Generic Views (Clean & Recommended ⭐)
+                from rest_framework.generics import ListCreateAPIView
+
+                urlpatterns = [
+                    path('api/products/', ProductList.as_view()),
+                ]
+
+                6️⃣ Using Routers with ViewSets (Best Practice 🚀)
+                ViewSet
+                from rest_framework.viewsets import ModelViewSet
+
+                class ProductViewSet(ModelViewSet):
+                    queryset = Product.objects.all()
+                    serializer_class = ProductSerializer
+
+                URLs
+                from rest_framework.routers import DefaultRouter
+
+                router = DefaultRouter()
+                router.register('products', ProductViewSet)
+
+                urlpatterns = router.urls
+--------------------------------------------------------------------------------------------------------
+
+        7. Pagination in Django REST Framework
+
+            1.Adding pagination to APIs to handle large data sets
+
+
+                 Adding Pagination to APIs (DRF) — Handling Large Data Sets
+
+                When an API returns a lot of data, pagination helps by splitting results into smaller pages. This makes APIs faster, lighter, and scalable 🚀
+
+                🔍 Why Pagination is Important
+
+                Improves performance
+
+                Reduces server load
+
+                Faster response time
+
+                Better user experience (infinite scroll, page numbers)
+
+                1️⃣ Enable Pagination in DRF (Global Way – Recommended)
+                settings.py
+                REST_FRAMEWORK = {
+                    'DEFAULT_PAGINATION_CLASS': 
+                        'rest_framework.pagination.PageNumberPagination',
+                    'PAGE_SIZE': 10,
+                }
+
+
+                Now all list APIs are automatically paginated ✅
+
+                2️⃣ Page Number Pagination (Most Common)
+                API Request
+                GET /api/products/?page=2
+
+                Response
+                {
+                "count": 45,
+                "next": "http://api/products/?page=3",
+                "previous": "http://api/products/?page=1",
+                "results": [
+                    { "id": 11, "name": "Shoes" }
+                ]
+}
+----------------------------------------------------------------------------------------------------------
+
+        8. Settings Configuration in Django
+
+            1. Configuring Django settings for database,static files, and API keys.
+
+                Configuring Django Settings
+
+                (Database, Static Files, and API Keys)
+
+                Proper configuration in settings.py is critical for a secure, scalable Django project. Let’s go step by step 👇
+
+                1️⃣ Database Configuration
+                Default (SQLite – for development)
+                DATABASES = {
+                    'default': {
+                        'ENGINE': 'django.db.backends.sqlite3',
+                        'NAME': BASE_DIR / 'db.sqlite3',
+                    }
+                }
+
+                MySQL Configuration
+                DATABASES = {
+                    'default': {
+                        'ENGINE': 'django.db.backends.mysql',
+                        'NAME': 'eshop_db',
+                        'USER': 'root',
+                        'PASSWORD': 'password',
+                        'HOST': 'localhost',
+                        'PORT': '3306',
+                    }
+                }
+
+-------------------------------------------------------------------------------------------
+
+        9. Project Setup
+
+            1.Setting up a Django REST Framework project.
+
+                Setting Up a Django REST Framework (DRF) Project
+
+                Let’s set up a clean, professional DRF project from scratch—step by step 👇
+                (This matches how you’d do it in real projects and exams.)
+
+                1️⃣ Create & Activate Virtual Environment (Recommended)
+                python -m venv venv
+
+
+                Activate it:
+
+                Windows
+
+                venv\Scripts\activate
+
+
+                Linux / macOS
+
+                source venv/bin/activate
+
+                2️⃣ Install Django & DRF
+                pip install django djangorestframework
+
+
+                (Optional but useful)
+
+                pip install python-decouple
+
+                3️⃣ Create Django Project
+                django-admin startproject myproject
+                cd myproject
+
+
+                Project structure:
+
+                myproject/
+                │── manage.py
+                │── myproject/
+                │   └── settings.py
+
+                4️⃣ Create Django App
+                python manage.py startapp api
+
+                5️⃣ Add Apps to settings.py
+                INSTALLED_APPS = [
+                    'django.contrib.admin',
+                    'django.contrib.auth',
+                    'django.contrib.contenttypes',
+                    'django.contrib.sessions',
+                    'django.contrib.messages',
+                    'django.contrib.staticfiles',
+
+                    'rest_framework',   # DRF
+                    'api',               # Your app
+                ]
+
+                6️⃣ Basic DRF Configuration
+                REST_FRAMEWORK = {
+                    'DEFAULT_PERMISSION_CLASSES': [
+                        'rest_framework.permissions.AllowAny',
+                    ]
+                }
+-----------------------------------------------------------------------------------------
+
+        10. Social Authentication, Email, and OTP Sending API
+
+            1.Implementing social authentication (e.g., Google, Facebook) in Django.
+
+                    🔐 Implementing Social Authentication in Django
+
+                    (Google / Facebook Login)
+
+                    Social authentication lets users log in using Google, Facebook, etc. instead of creating a new username/password. This improves UX, trust, and conversion 👍
+
+                    In Django, the most popular & recommended way is using django-allauth.
+
+                    1️⃣ Install Required Packages
+                    pip install django-allauth
+
+                    2️⃣ Update settings.py
+                    Add apps
+                    INSTALLED_APPS = [
+                        'django.contrib.sites',
+
+                        'allauth',
+                        'allauth.account',
+                        'allauth.socialaccount',
+                        'allauth.socialaccount.providers.google',
+                        'allauth.socialaccount.providers.facebook',
+                    ]
+
+                    Site ID
+                    SITE_ID = 1
+
+                    Authentication backends
+                    AUTHENTICATION_BACKENDS = [
+                        'django.contrib.auth.backends.ModelBackend',
+                        'allauth.account.auth_backends.AuthenticationBackend',
+                    ]
+
+                    3️⃣ Configure URLs
+                    # project/urls.py
+                    from django.urls import path, include
+
+                    urlpatterns = [
+                        path('accounts/', include('allauth.urls')),
+                    ]
+
+                    4️⃣ Run Migrations
+                    python manage.py migrate
+                    python manage.py createsuperuser
+
+                    5️⃣ Configure Google Login ✅
+                    Step A: Create Google OAuth Credentials
+
+                    Go to Google Cloud Console
+
+                    Create a project
+
+                    Enable Google+ / OAuth
+
+                    Create OAuth Client ID
+
+                    Add redirect URI:
+
+                    http://127.0.0.1:8000/accounts/google/login/callback/
+
+                    Step B: Add Google App in Django Admin
+
+                    Login to Django Admin
+
+                    Go to Social Applications
+
+                    Add new:
+
+                    Provider: Google
+
+                    Client ID
+
+                    Secret Key
+
+                    Sites: select your site
+
+                    6️⃣ Configure Facebook Login ✅
+                    Step A: Create Facebook App
+
+                    Go to Facebook Developers
+
+                    Create App → Consumer
+
+                    Enable Facebook Login
+
+                    Add redirect URI:
+
+                    http://127.0.0.1:8000/accounts/facebook/login/callback/
+
+        2.Sending emails and OTPs using third-party APIslike Twilio, SendGrid.
+
+                📧📱 Sending Emails & OTPs Using Third-Party APIs
+
+                (Twilio for SMS/OTP, SendGrid for Email)
+
+                Using third-party APIs lets your Django app send reliable emails and OTPs without managing mail/SMS servers yourself. This is the industry-standard approach 👍
+
+                📧 Sending Emails with SendGrid (Django)
+                1️⃣ Create SendGrid Account & API Key
+
+                Sign up on SendGrid
+
+                Generate an API Key
+
+                Verify sender email/domain
+
+                2️⃣ Install Package
+                pip install sendgrid
+
+                3️⃣ Configure API Key (Secure Way)
+
+                .env
+
+                SENDGRID_API_KEY=SG_xxxxx
+                DEFAULT_FROM_EMAIL=noreply@example.com
+
+
+                settings.py
+
+                from decouple import config
+
+                SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+                DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+                4️⃣ Send Email Using SendGrid API
+                import sendgrid
+                from sendgrid.helpers.mail import Mail
+                from django.conf import settings
+
+                def send_email(to_email, subject, message):
+                    sg = sendgrid.SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
+                    email = Mail(
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        to_emails=to_email,
+                        subject=subject,
+                        html_content=message
+                    )
+                    sg.send(email)
+
+
+                Usage:
+
+                send_email(
+                    "user@gmail.com",
+                    "Account Verification",
+                    "<h3>Your account is verified</h3>"
+                )
+
+                📱 Sending OTP via SMS with Twilio
+                1️⃣ Create Twilio Account
+
+                Get Account SID
+
+                Auth Token
+
+                Phone Number
+
+                2️⃣ Install Twilio SDK
+                pip install twilio
+
+                3️⃣ Configure Credentials
+
+                .env
+
+                TWILIO_ACCOUNT_SID=ACxxxx
+                TWILIO_AUTH_TOKEN=xxxx
+                TWILIO_PHONE_NUMBER=+1234567890
+
+
+                settings.py
+
+                TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+                TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+                TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
+
+                4️⃣ Send OTP SMS
+                from twilio.rest import Client
+                from django.conf import settings
+
+                def send_otp(phone, otp):
+                    client = Client(
+                        settings.TWILIO_ACCOUNT_SID,
+                        settings.TWILIO_AUTH_TOKEN
+                    )
+
+                    client.messages.create(
+                        body=f"Your OTP is {otp}",
+                        from_=settings.TWILIO_PHONE_NUMBER,
+                        to=phone
+                    )
+
+
+                Usage:
+
+                send_otp("+919876543210", 123456)
+
+                🔐 OTP Generation Example
+                import random
+
+                def generate_otp():
+                    return random.randint(100000, 999999)   
+-------------------------------------------------------------------------------------------------------------------
+
+        11. RESTful API Design
+
+            1.REST principles: statelessness, resource-based URLs, and using HTTP methods for CRUD operations.
+
+
+                🌐 REST Principles
+
+                (Statelessness, Resource-Based URLs & HTTP Methods for CRUD)
+
+                REST (Representational State Transfer) is a set of rules for designing scalable, clean APIs. These three principles are the core ones you’ll use daily 👇
+
+                1️⃣ Statelessness
+
+                Meaning:
+                Each API request must contain all the information needed to process it.
+                The server does not remember previous requests.
+
+                Example
+
+                ❌ Wrong idea:
+
+                “Server remembers the user after login”
+
+                ✅ REST way:
+
+                Client sends token (JWT / session ID) with every request
+
+                GET /api/orders/
+                Authorization: Bearer eyJhbGciOiJIUzI1...
+
+                Benefits
+
+                ✔ Easy scaling
+                ✔ No server-side session dependency
+                ✔ Reliable & predictable APIs
+
+                2️⃣ Resource-Based URLs
+
+                Meaning:
+                URLs should represent resources (nouns), not actions (verbs).
+
+                Good REST URLs ✅
+                /api/users/
+                /api/users/1/
+                /api/products/
+                /api/orders/10/
+
+                Bad URLs ❌
+                /api/getUsers/
+                /api/createProduct/
+                /api/deleteOrder/
+
+                Why?
+
+                Clean & readable
+
+                Consistent API design
+
+                Works naturally with HTTP methods
+
+                3️⃣ Using HTTP Methods for CRUD Operations
+
+                Instead of verbs in URLs, REST uses HTTP methods to define actions.
+
+                CRUD	HTTP Method	Example
+                Create	POST	POST /api/products/
+                Read	GET	GET /api/products/
+                Read (one)	GET	GET /api/products/1/
+                Update	PUT / PATCH	PUT /api/products/1/
+                Delete	DELETE	DELETE /api/products/1/
+                Example Flow
+                POST /api/products/
+
+
+                Creates a new product
+
+                GET /api/products/5/
+
+
+                Fetches product with ID 5
+
+                🧠 Putting It All Together (DRF Example)
+                class ProductViewSet(ModelViewSet):
+                    queryset = Product.objects.all()
+                    serializer_class = ProductSerializer
+
+
+                Auto-generated REST endpoints:
+
+                GET /products/
+
+                POST /products/
+
+                GET /products/{id}/
+
+                PUT /products/{id}/
+
+                DELETE /products/{id}/
+
+----------------------------------------------------------------------------------------------------------------
+
+        12. CRUD API (Create, Read, Update, Delete)
+
+            1. What is CRUD, and why is it fundamental to backend development?
+
+                | Operation  | Meaning             | Example         |
+                | ---------- | ------------------- | --------------- |
+                | **Create** | Add new data        | Register a user |
+                | **Read**   | Fetch existing data | View products   |
+                | **Update** | Modify data         | Edit profile    |
+                | **Delete** | Remove data         | Delete an order |
+
+-----------------------------------------------------------------------------------------------------------
+
+       13. Authentication and Authorization API
+
+            1.
+
