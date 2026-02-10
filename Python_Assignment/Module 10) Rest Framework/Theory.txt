@@ -1864,3 +1864,302 @@ Module 10 Rest Framework
                             return JsonResponse({"message": "OTP verified"})
                         
                         return JsonResponse({"error": "Invalid OTP"})
+
+------------------------------------------------------------------------------------------------------
+
+    21. Payment Integration (PayPal, Stripe)
+        
+        1.Introduction to integrating payment gateways like PayPal and Stripe.
+
+                 What is a Payment Gateway?
+
+                A payment gateway is a service that lets your application accept online payments securely.
+                It handles:
+
+                Card / wallet details
+
+                Authentication & authorization
+
+                Communication with banks
+
+                Fraud prevention
+
+                Payment confirmation
+
+                Popular gateways:
+
+                PayPal – wallet-based + cards
+
+                Stripe – developer-first, card-focused
+
+                (Others: Razorpay, Square, PayU, etc.)
+
+                Why Use PayPal or Stripe?
+
+                ✅ Security (PCI-DSS compliant)
+                ✅ Handles complex payment logic
+                ✅ Supports refunds, subscriptions, webhooks
+                ✅ Easy API integration
+
+                High-Level Payment Flow
+
+                This flow is almost the same for PayPal and Stripe:
+
+                User clicks Pay Now
+
+                Frontend sends payment request
+
+                Backend creates a payment intent/order
+
+                Gateway processes payment
+
+                Gateway sends success/failure response
+
+                Backend verifies & updates order status
+
+                PayPal – Overview
+
+                Best for: Wallet payments, international customers
+
+                Key Concepts
+
+                Client ID & Secret (API credentials)
+
+                Orders API
+
+                Redirect-based flow
+
+                Webhooks for payment confirmation
+
+                PayPal Payment Flow
+
+                Create order (backend)
+
+                Redirect user to PayPal
+
+                User logs in & pays
+
+                PayPal redirects back
+
+                Capture payment
+
+                Verify via webhook
+
+                Stripe – Overview
+
+                Best for: Card payments, subscriptions, modern apps
+
+                Key Concepts
+
+                Publishable key (frontend)
+
+                Secret key (backend)
+
+                PaymentIntent
+
+                Stripe Elements
+
+                Webhooks
+
+                Stripe Payment Flow
+
+                Create PaymentIntent (backend)
+
+                Frontend collects card details
+
+                Stripe confirms payment
+
+                Webhook verifies payment
+
+                Order marked as paid
+
+------------------------------------------------------------------------------------------------------
+
+        22. Google Maps API Integration
+
+            1.Using Google Maps API to display maps and calculate distances between locations.
+
+                 What is Google Maps API?
+
+                The Google Maps API lets you embed maps into your website or app and perform location-based operations like:
+
+                Showing maps
+
+                Adding markers
+
+                Getting latitude & longitude
+
+                Calculating distance and travel time
+
+                Finding routes and directions
+
+                It’s widely used in e-commerce, delivery apps, ride-sharing, and logistics systems.
+
+                Main Google Maps APIs You’ll Use
+                1️⃣ Maps JavaScript API
+
+                Used to display maps on web pages.
+
+                Features:
+
+                Interactive maps
+
+                Markers & info windows
+
+                Zoom, pan, map styles
+
+                2️⃣ Geocoding API
+
+                Converts:
+
+                Address → latitude & longitude
+
+                Latitude & longitude → address
+
+                Example:
+
+                "New Delhi" → (28.6139, 77.2090)
+
+                3️⃣ Distance Matrix API
+
+                Used to calculate distance & travel time between two or more locations.
+
+                Supports:
+
+                Driving 🚗
+
+                Walking 🚶
+
+                Bicycling 🚲
+
+                Transit 🚆
+
+                4️⃣ Directions API
+
+                Finds the best route between locations and shows turn-by-turn directions.
+
+                Basic Setup Steps
+                Step 1: Get API Key
+
+                Go to Google Cloud Console
+
+                Create a project
+
+                Enable required APIs
+
+                Generate API key
+
+                Restrict the key (important for security)
+
+                Displaying a Map (Frontend Concept)
+
+                Basic flow:
+
+                Load Google Maps JavaScript API
+
+                Provide API key
+
+                Set center location
+
+                Render map in a <div>
+
+                Conceptually:
+
+                Center → latitude & longitude
+
+                Zoom level → how close the map appears
+
+                Marker → location pin
+
+                Adding Markers
+
+                Markers show:
+
+                Shops
+
+                Delivery locations
+
+                User locations
+
+                Each marker can have:
+
+                Title
+
+                Info window
+
+                Custom icon
+
+                Calculating Distance Between Two Locations
+                Distance Matrix API Flow
+
+                Provide origin and destination
+
+                Select travel mode
+
+                Google calculates:
+
+                Distance (km/miles)
+
+                Duration (time)
+
+                Example use cases:
+
+                Delivery charges calculation
+
+                Ride fare estimation
+
+                Nearest store finder
+
+                Backend Usage (Django / REST APIs)
+
+                Typical backend flow:
+
+                Receive addresses from frontend
+
+                Convert addresses → coordinates (Geocoding API)
+
+                Calculate distance (Distance Matrix API)
+
+                Return distance & time as JSON
+
+                Save data if needed
+
+                Example Use Cases
+
+                ✅ Delivery fee based on distance
+                ✅ Store locator
+                ✅ Ride-sharing apps
+                ✅ Logistics tracking
+                ✅ Real estate map listings
+
+                Security Best Practices 🔐
+
+                Restrict API key by domain/IP
+
+                Never expose unrestricted keys
+
+                Use backend for sensitive requests
+
+                Enable billing limits
+
+                Monitor usage in Google Cloud Console
+
+                Google Maps API Pricing (Important!)
+
+                Free tier available (monthly credits)
+
+                Charges apply after usage limit
+
+                Distance Matrix & Geocoding are paid APIs
+
+                Always enable billing alerts ⚠️
+
+                Pay Attention To
+
+                API quota limits
+
+                Rate limiting
+
+                Error handling (ZERO_RESULTS, OVER_QUERY_LIMIT)
+
+                Location accuracy
