@@ -1168,5 +1168,699 @@ Module 10 Rest Framework
 
        13. Authentication and Authorization API
 
-            1.
+            1.Difference between authentication and authorization.
 
+            🔐 Authentication vs 🛂 Authorization
+                Authentication
+
+                👉 Who are you?
+
+                Authentication is the process of verifying a user’s identity.
+
+                Happens first
+
+                Confirms username/password, OTP, token, biometrics, etc.
+
+                Example: Logging in with email & password
+
+                Question it answers:
+                ➡️ “Are you really Jenil?”
+
+                Examples:
+
+                Login with username & password
+
+                OTP verification
+
+                Google / Facebook login
+
+                JWT token validation
+
+                Authorization
+
+                👉 What are you allowed to do?
+
+                Authorization is the process of checking permissions or access rights.
+
+                Happens after authentication
+
+                Controls access to resources/features
+
+                Based on roles, permissions, policies
+
+                Question it answers:
+                ➡️ “What can Jenil do?”
+
+                Examples:
+
+                Admin can delete users, normal user cannot
+
+                Only logged-in users can place orders
+
+                Only staff can access /admin/ in Django
+
+        2. Implementing authentication using Django REST Framework’s token-based system
+
+
+                lright, let’s do this step-by-step, practical, DRF-style 🔥
+                This is the classic Token Authentication using Django REST Framework (not JWT).
+
+                1️⃣ Install & Add Apps
+                pip install djangorestframework
+
+
+                In settings.py:
+
+                INSTALLED_APPS = [
+                    ...
+                    'rest_framework',
+                    'rest_framework.authtoken',
+                ]
+
+
+                👉 Run migrations (important!)
+
+                python manage.py migrate
+
+                2️⃣ Enable Token Authentication (Global)
+
+                In settings.py:
+
+                REST_FRAMEWORK = {
+                    'DEFAULT_AUTHENTICATION_CLASSES': [
+                        'rest_framework.authentication.TokenAuthentication',
+                    ],
+                    'DEFAULT_PERMISSION_CLASSES': [
+                        'rest_framework.permissions.IsAuthenticated',
+                    ],
+                }
+
+
+                This means:
+
+                Every API requires a token by default
+
+                Users must be logged in to access APIs
+
+                3️⃣ Create Token Automatically When User Is Created
+
+                Create signals.py in your app:
+
+                from django.conf import settings
+                from django.dispatch import receiver
+                from django.db.models.signals import post_save
+                from rest_framework.authtoken.models import Token
+
+                @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+                def create_auth_token(sender, instance=None, created=False, **kwargs):
+                    if created:
+                        Token.objects.create(user=instance)
+
+
+                In apps.py:
+
+                from django.apps import AppConfig
+
+                class AccountsConfig(AppConfig):
+                    default_auto_field = 'django.db.models.BigAutoField'
+                    name = 'accounts'
+
+                    def ready(self):
+                        import accounts.signals
+
+
+                And in __init__.py:
+
+                default_app_config = 'accounts.apps.AccountsConfig'
+
+                4️⃣ Login API (Get Token)
+
+                Use DRF’s built-in view.
+
+                urls.py
+                from django.urls import path
+                from rest_framework.authtoken.views import obtain_auth_token
+
+                urlpatterns = [
+                    path('api/login/', obtain_auth_token),
+                ]
+
+                📤 Request (POST)
+                {
+                "username": "jenil",
+                "password": "123456"
+                }
+
+                📥 Response
+                {
+                "token": "a1b2c3d4e5f6..."
+                }
+
+                5️⃣ Use Token in API Requests
+
+                Send token in headers:
+
+                Authorization: Token a1b2c3d4e5f6...
+
+
+                📌 Important:
+
+                Token (capital T)
+
+                Space after Token
+
+                6️⃣ Protect an API View
+                Function-Based View
+                from rest_framework.decorators import api_view, permission_classes
+                from rest_framework.permissions import IsAuthenticated
+                from rest_framework.response import Response
+
+                @api_view(['GET'])
+                @permission_classes([IsAuthenticated])
+                def profile(request):
+                    return Response({
+                        "username": request.user.username,
+                        "email": request.user.email
+                    })
+
+                Class-Based View
+                from rest_framework.views import APIView
+                from rest_framework.permissions import IsAuthenticated
+                from rest_framework.response import Response
+
+                class ProfileView(APIView):
+                    permission_classes = [IsAuthenticated]
+
+                    def get(self, request):
+                        return Response({
+                            "user": request.user.username
+                        })
+
+                7️⃣ Logout (Delete Token)
+                @api_view(['POST'])
+                @permission_classes([IsAuthenticated])
+                def logout(request):
+                    request.user.auth_token.delete()
+                    return Response({"message": "Logged out successfully"})
+
+                8️⃣ Test Using Postman / Thunder Client
+
+                Login → get token
+
+                Add Header:
+
+                Authorization: Token <your-token>
+
+-------------------------------------------------------------------------------------------------------------
+
+     14. OpenWeatherMap API Integration
+
+        1. Introduction to OpenWeatherMap API and how to retrieve weather data.
+
+                🌍 What is OpenWeatherMap API?
+
+                OpenWeatherMap API is a REST API that provides:
+
+                Current weather
+
+                Forecasts (hourly / daily)
+
+                Temperature, humidity, pressure
+
+                Wind speed, clouds, rain, etc.
+
+                It returns data in JSON format, which makes it perfect for Django, DRF, React, mobile apps, etc.
+
+                🔑 Step 1: Get an API Key
+
+                Go to 👉 https://openweathermap.org/
+
+                Sign up / login
+
+                Open API keys section
+
+                Copy your key (looks like this 👇)
+
+                a1b2c3d4e5f6xxxx
+
+
+                ⚠️ You must send this key with every request.
+
+                🌡️ Step 2: Basic Weather API Endpoint
+                Current Weather API
+                https://api.openweathermap.org/data/2.5/weather
+
+                📌 Step 3: Request Weather Data (by City)
+                Example URL
+                https://api.openweathermap.org/data/2.5/weather?q=Surat&appid=YOUR_API_KEY&units=metric
+
+-----------------------------------------------------------------------------------------------------------------------
+
+    15. Google Maps Geocoding API
+        
+        1.Using Google Maps Geocoding API to convert addresses into coordinates.
+
+                🗺️ What is Google Maps Geocoding API?
+
+                The Google Maps Geocoding API converts:
+
+                👉 Address → Latitude & Longitude
+
+                Example:
+
+                "Surat, Gujarat, India"
+                ↓
+                lat: 21.1702
+                lng: 72.8311
+
+
+                This is useful for:
+
+                Location-based apps
+
+                Weather apps
+
+                Delivery / ride apps
+
+                Maps & distance calculation
+
+                🔑 Step 1: Get Google Maps API Key
+
+                Go to 👉 https://console.cloud.google.com/
+
+                Create a new project
+
+                Enable Geocoding API
+
+                Create API credentials
+
+                Copy your API key
+
+                ⚠️ Billing must be enabled (Google gives free monthly credits)
+
+                🌍 Step 2: Geocoding API Endpoint
+                https://maps.googleapis.com/maps/api/geocode/json
+
+                📌 Step 3: Convert Address to Coordinates
+                Example Request URL
+                https://maps.googleapis.com/maps/api/geocode/json
+                ?address=Surat,Gujarat,India
+                &key=YOUR_API_KEY
+
+
+                (Usually written in one line)
+
+                📥 Sample JSON Response
+                {
+                "results": [
+                    {
+                    "geometry": {
+                        "location": {
+                        "lat": 21.1702,
+                        "lng": 72.8311
+                        }
+                    }
+                    }
+                ],
+                "status": "OK"
+                }
+-------------------------------------------------------------------------------------------------
+
+        16. GitHub API Integration
+
+            1.Introduction to GitHub API and how to interact with repositories, pull requests, and issues.
+
+                🐙 What is the GitHub API?
+
+                The GitHub API is a REST API that allows developers to programmatically interact with GitHub.
+
+                Using the API, you can:
+
+                Access repositories
+
+                Create & manage issues
+
+                Work with pull requests
+
+                Read commits, branches, users, etc.
+
+                📌 Base URL:
+
+                https://api.github.com/
+
+                🔐 Authentication (Very Important)
+                Options:
+
+                No Auth (limited requests)
+
+                Personal Access Token (PAT) ✅ recommended
+
+                Create Token:
+
+                GitHub → Settings → Developer settings
+
+                Personal access tokens
+
+                Generate token
+
+                Give scopes: repo, read:user
+
+                Header:
+                Authorization: Bearer YOUR_GITHUB_TOKEN
+
+                📦 Working with Repositories
+                🔍 Get Repository Info
+                GET /repos/{owner}/{repo}
+
+
+                Example:
+
+                https://api.github.com/repos/django/django
+
+                Python Example
+                import requests
+
+                url = "https://api.github.com/repos/django/django"
+                headers = {
+                    "Authorization": "Bearer YOUR_TOKEN"
+                }
+
+                response = requests.get(url, headers=headers)
+                data = response.json()
+
+                print("Repo:", data["name"])
+                print("Stars:", data["stargazers_count"])
+                print("Forks:", data["forks_count"])
+
+                🧩 Working with Issues
+                📄 List Issues
+                GET /repos/{owner}/{repo}/issues
+
+                url = "https://api.github.com/repos/django/django/issues"
+                response = requests.get(url, headers=headers)
+                issues = response.json()
+
+                for issue in issues:
+                    print(issue["title"])
+
+                ➕ Create an Issue
+                POST /repos/{owner}/{repo}/issues
+
+                url = "https://api.github.com/repos/USERNAME/REPO/issues"
+
+                payload = {
+                    "title": "Bug in login API",
+                    "body": "Login fails when password is incorrect"
+                }
+
+                response = requests.post(url, json=payload, headers=headers)
+                print(response.json()["html_url"])
+
+                🔀 Working with Pull Requests
+                📄 List Pull Requests
+                GET /repos/{owner}/{repo}/pulls
+
+                url = "https://api.github.com/repos/USERNAME/REPO/pulls"
+                response = requests.get(url, headers=headers)
+
+                for pr in response.json():
+                    print(pr["title"], pr["state"])
+
+                🔍 Get a Single PR
+                GET /repos/{owner}/{repo}/pulls/{pull_number}
+
+--------------------------------------------------------------------------------------------------------
+
+    17. Twitter API Integration
+    
+        1. Using Twitter API to fetch and post tweets, and retrieve user data.
+
+            Great pick—this one shows social media API + OAuth understanding 🐦
+            Let’s go step-by-step and keep it practical.
+
+            🐦 Introduction to Twitter (X) API
+
+            The Twitter API (now called X API) allows developers to:
+
+            Fetch tweets
+
+            Post tweets
+
+            Get user profile data
+
+            Analyze timelines, likes, followers, etc.
+
+            📌 Base URL (v2):
+
+            https://api.twitter.com/2/
+
+            🔐 Authentication (Very Important)
+
+            Twitter API uses OAuth.
+
+            Common Methods:
+
+            OAuth 2.0 Bearer Token → Read-only data
+
+            OAuth 1.0a / OAuth 2.0 User Context → Posting tweets ✅
+
+            🔑 Step 1: Create Twitter Developer Account
+
+            Go to 👉 https://developer.twitter.com/
+
+            Apply for developer access
+
+            Create a Project & App
+
+            Get:
+
+            API Key
+
+            API Secret
+
+            Bearer Token
+
+            Access Token & Secret (for posting)
+
+            🧾 Headers (Bearer Token)
+            Authorization: Bearer YOUR_BEARER_TOKEN
+
+            🧩 Fetch Tweets (Recent Tweets)
+            Endpoint
+            GET /2/tweets/search/recent
+
+            Example Request
+            https://api.twitter.com/2/tweets/search/recent?query=django
+
+            Python Example
+            import requests
+
+            url = "https://api.twitter.com/2/tweets/search/recent"
+            headers = {
+                "Authorization": "Bearer YOUR_BEARER_TOKEN"
+            }
+            params = {
+                "query": "django",
+                "max_results": 5
+            }
+
+            response = requests.get(url, headers=headers, params=params)
+            data = response.json()
+
+            for tweet in data["data"]:
+                print(tweet["text"])
+------------------------------------------------------------------------------------------------------
+
+    18. REST Countries API Integration
+
+        1.Introduction to REST Countries API and how to retrieve country-specific data.
+
+                What is REST Countries API?
+
+                REST Countries API is a public REST API that provides information about countries such as:
+
+                Country name
+
+                Capital
+
+                Population
+
+                Region & subregion
+
+                Currency
+
+                Languages
+
+                Flag URL
+
+                📌 No authentication required (totally free).
+
+                🔗 Base URL
+                https://restcountries.com/v3.1/
+
+                📌 Common Endpoints
+                Purpose	Endpoint
+                All countries	/all
+                By name	/name/{country}
+                By country code	/alpha/{code}
+                By region	/region/{region}
+                🔍 Retrieve Country Data by Name
+                Example Request
+                https://restcountries.com/v3.1/name/india
+
+                📥 Sample JSON Response (Simplified)
+                [
+                {
+                    "name": {
+                    "common": "India"
+                    },
+                    "capital": ["New Delhi"],
+                    "region": "Asia",
+                    "population": 1400000000,
+                    "flags": {
+                    "png": "https://flagcdn.com/w320/in.png"
+                    }
+                }
+                ]
+
+                🧠 Important Fields Explained
+                Field	Meaning
+                name.common	Country name
+                capital[0]	Capital
+                region	Continent
+                population	Population
+                flags.png	Flag image URL
+                🐍 Python Example (Fetch Country Data)
+                import requests
+
+                country = "india"
+                url = f"https://restcountries.com/v3.1/name/{country}"
+
+                response = requests.get(url)
+                data = response.json()
+
+                country_data = data[0]
+
+                print("Country:", country_data["name"]["common"])
+                print("Capital:", country_data["capital"][0])
+                print("Region:", country_data["region"])
+                print("Population:", country_data["population"])
+
+                🌐 Django View Example
+                import requests
+                from django.http import JsonResponse
+
+                def country_info(request):
+                    name = request.GET.get("country", "india")
+                    url = f"https://restcountries.com/v3.1/name/{name}"
+
+                    response = requests.get(url)
+                    data = response.json()
+
+                    if response.status_code == 200:
+                        country = data[0]
+                        return JsonResponse({
+                            "name": country["name"]["common"],
+                            "capital": country["capital"][0],
+                            "population": country["population"],
+                            "region": country["region"]
+                        })
+
+                    return JsonResponse({"error": "Country not found"})
+----------------------------------------------------------------------------------
+
+    20. SMS Sending APIs (Twilio)
+
+            1.Introduction to Twilio API forsending SMS and OTPs.
+
+                📞 What is Twilio API?
+
+                    Twilio is a cloud communication platform that lets you:
+
+                    Send SMS
+
+                    Send OTPs (One-Time Passwords)
+
+                    Make voice calls
+
+                    Send WhatsApp messages
+
+                    Twilio APIs are REST APIs and use token-based authentication.
+
+                    🔑 Twilio Credentials (Required)
+
+                    From Twilio Console you get:
+
+                    Credential	Purpose
+                    Account SID	Account identifier
+                    Auth Token	Secret key
+                    Twilio Phone Number	SMS sender number
+
+                    ⚠️ Never hardcode these — use environment variables.
+
+                    📦 Install Twilio SDK (Python)
+                    pip install twilio
+
+                    ✉️ Sending SMS Using Twilio
+                    Basic Python Example
+                    from twilio.rest import Client
+
+                    account_sid = "YOUR_ACCOUNT_SID"
+                    auth_token = "YOUR_AUTH_TOKEN"
+
+                    client = Client(account_sid, auth_token)
+
+                    message = client.messages.create(
+                        body="Hello from Twilio 👋",
+                        from_="+1234567890",   # Twilio number
+                        to="+919876543210"     # User number
+                    )
+
+                    print(message.sid)
+
+                    🔐 Sending OTP Using Twilio
+                    Generate OTP
+                    import random
+
+                    otp = random.randint(100000, 999999)
+
+                    Send OTP SMS
+                    message = client.messages.create(
+                        body=f"Your OTP is {otp}. Do not share it.",
+                        from_="+1234567890",
+                        to="+919876543210"
+                    )
+
+                    🌐 Django Example (OTP Send View)
+                    import random
+                    from django.http import JsonResponse
+                    from twilio.rest import Client
+
+                    def send_otp(request):
+                        phone = request.GET.get("phone")
+                        otp = random.randint(100000, 999999)
+
+                        client = Client(
+                            "ACCOUNT_SID",
+                            "AUTH_TOKEN"
+                        )
+
+                        client.messages.create(
+                            body=f"Your OTP is {otp}",
+                            from_="+1234567890",
+                            to=phone
+                        )
+
+                        # Save OTP in session / DB
+                        request.session["otp"] = otp
+
+                        return JsonResponse({"message": "OTP sent successfully"})
+
+                    ✅ OTP Verification Logic
+                    def verify_otp(request):
+                        user_otp = request.GET.get("otp")
+
+                        if str(request.session.get("otp")) == user_otp:
+                            return JsonResponse({"message": "OTP verified"})
+                        
+                        return JsonResponse({"error": "Invalid OTP"})
