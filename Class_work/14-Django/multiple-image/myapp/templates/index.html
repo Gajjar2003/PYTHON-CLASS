@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="file" name="image" multiple>
+        <input type="submit">
+
+    </form>
+    <br> <br>
+    <hr>
+   <table border="1" cellpadding="10" cellspacing="10">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+    </tr>
+
+    {% for p in product %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{ p.name }}</td>
+        <td>
+            {% for img in p.images.all %}
+                <img src="media/{{img.image}}" width="100">
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+
+</html>
