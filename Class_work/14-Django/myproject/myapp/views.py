@@ -137,36 +137,78 @@ def payment(request):
     
     return JsonResponse(payment)
 
-def makeorder(requset):
-    payid = requset.GET['payid']
+def makeorder(request):
+    payid = request.GET['payid']
     date = datetime.datetime.now()
-    user =requset.user
+    user = request.user
 
     carts = Cart.objects.filter(user=user)
-    sum = 0
+    total = 0
+
     for i in carts:
-        sum += i.total_price()
-    
-    order = Order.objects.create(user=user,payid=payid,date=date,total=sum)
+        total += i.total_price()
+
+    order = Order.objects.create(
+        user=user,
+        payid=payid,
+        date=date,
+        total=total
+    )
+
     rows = ""
-    count = 0
+    count = 1
+
     for c in carts:
-        OredrDetails.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
-        rows +=f"<tr> <td>{count}</td><td>{ c.product.name }</td><td>₹{ c.product.price }</td><td>{ c.qty }</td><td>₹{ c.total_price() }</td></tr>"
+        OredrDetails.objects.create(
+            order=order,
+            product=c.product,
+            qty=c.qty,
+            price=c.product.price
+        )
+
+        rows += f"""
+        <tr>
+            <td>{count}</td>
+            <td>{c.product.name}</td>
+            <td>₹{c.product.price}</td>
+            <td>{c.qty}</td>
+            <td>₹{c.total_price()}</td>
+        </tr>
+        """
         c.delete()
-        count+=1
+        count += 1
 
-        Teble = f"<table border=2px solid balck><tbody> <tr><td>{ order.payid }</td><td>{ order.paytype }</td><td>{ order.date }</td><td>{ order.status }</td><td>₹{ order.total }</td></tr></tbody><thead ><tr><th>ID</th><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr> </thead><tbody>{rows}</tbody></table>"
-                            
-                                        
+ 
+    table = f"""
+    <table border="1" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {rows}
+        </tbody>
+    </table>
+    """
 
-        try:
-            send_mail("Order Confimation", "Your Order Placed successfully done ", settings.EMAIL_HOST_USER, [user.email],html_message=Teble)
-              
-        except Exception as e:
-               print(e)
+    try:
+        send_mail(
+            "Order Confirmation",
+            "Your Order Placed Successfully",
+            settings.EMAIL_HOST_USER,
+            [user.email],
+            html_message=table
+        )
+    except Exception as e:
+        print(e)
 
-    return HttpResponse("Order Placed successfully Done !")
+    return HttpResponse("Order Placed Successfully Done!")
+
 
 @login_required(login_url="myaccount")
 def checkout(request):
