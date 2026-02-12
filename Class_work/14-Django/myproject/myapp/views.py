@@ -256,7 +256,7 @@ Thank you for shopping with Food Mart
             fail_silently=False,
         )
 
-        return redirect('checkout')
+        return redirect('index')
 
     return render(request, "address.html")
 
