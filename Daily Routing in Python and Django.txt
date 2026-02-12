@@ -1,0 +1,14 @@
+Daily Routing in Python and Django (60days)
+
+Day-1 Mock question and practical's
+Day-2 Api image upload  and second Project(food) To Add to cart 
+Day-3 Second Project(Foodmart) Email send
+Day-4 second Project(Foodmart) Forget passsowrd 
+Day-5 second project(Foodmart) Live in Python anywhere(username : Jenil1108 & Password : Jenil@11082003) (Date : 06-02-2026)  (Email-id : jenilgajjar90@gmail.com) URLS(Jenil1108.pythonanywhere.com)
+Day-6 Project(Eshop) Forgot Password  and live in pyhton anywhere ( Username : Gajjar3107 :  Password : Jenil@11082003) (Date : 07-02-2026) (Email-Id : jenilgajjar1108@gmail.com) URLS(Gajjar3107.pythonanywhere.com)
+Day-7 Holiday
+Day-8 Project(Eshop) live mode
+
+	
+
+
