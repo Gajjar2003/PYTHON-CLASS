@@ -5,19 +5,30 @@ from myapp.models import *
 class Userserializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields  = "__all__"
+        fields  = ['id','username','password']
 
+    def create(self, validated_data):
+        user =User.objects.create_user(**validated_data)
+        return user
 
 class Cateoryserializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields  = "__all__"
 
+    def __str__(self):
+        return self.name
+
+
 
 class Productserializer(serializers.ModelSerializer):
+    category = Cateoryserializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(),source='category',write_only=True)
+
     class Meta:
         model  = Product
         fields = "__all__"
+      
 
 
 
