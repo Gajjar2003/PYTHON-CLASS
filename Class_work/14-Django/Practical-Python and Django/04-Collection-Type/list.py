@@ -1,4 +1,4 @@
-# List all method in Practicals (list is  Ordered and mutable and duplicate all and writting to [])
+# List all method in Practicals (list is  Ordered and mutable and duplicate allow  and writting to [])
 
 l = [1,2,3,4,5,6]
 print(type(l))

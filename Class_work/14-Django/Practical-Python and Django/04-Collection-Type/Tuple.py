@@ -1,4 +1,4 @@
-# Tuple all method in Practicals (Tuple is  Ordered and unmutable and duplicate all and writting to () )
+# Tuple all method in Practicals (Tuple is  Ordered and unmutable and duplicate allow and writting to () )
 
 t = (1,2,3,4,5)
 print(t)

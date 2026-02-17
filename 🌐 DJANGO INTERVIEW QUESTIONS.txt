@@ -1,0 +1,127 @@
+🌐 DJANGO INTERVIEW QUESTIONS
+🔹 Django Basics
+
+What is Django?
+
+What is MVT architecture?
+
+Difference between Project and App?
+
+What is manage.py?
+
+What is settings.py?
+
+What is urls.py?
+
+What is wsgi.py / asgi.py?
+
+What is ORM?
+
+What is middleware?
+
+What is superuser?
+
+🔹 Models & Database
+
+What is a Model in Django?
+
+What is makemigrations?
+
+What is migrate?
+
+What is ForeignKey?
+
+What is ManyToManyField?
+
+What is OneToOneField?
+
+What is on_delete=models.CASCADE?
+
+What is Meta class in model?
+
+What is __str__() method?
+
+How to optimize queries?
+
+🔹 Query Optimization (Very Important 🔥)
+
+What is select_related()?
+
+What is prefetch_related()?
+
+What is Q object?
+
+What is annotate()?
+
+What is aggregate()?
+
+🔹 Views
+
+Difference between FBV and CBV?
+
+What is TemplateView?
+
+What is ListView?
+
+What is CreateView?
+
+What is context?
+
+🔹 Authentication
+
+What is Authentication?
+
+What is Authorization?
+
+What is CSRF?
+
+How login system works?
+
+What is custom user model?
+
+🔥 DJANGO REST FRAMEWORK (DRF) QUESTIONS
+🔹 REST Basics
+
+What is REST API?
+
+What is JSON?
+
+Difference between GET and POST?
+
+Difference between PUT and PATCH?
+
+Common HTTP status codes?
+
+🔹 DRF Core Concepts
+
+What is Serializer?
+
+Difference between Serializer and ModelSerializer?
+
+What is APIView?
+
+What is GenericAPIView?
+
+What is ViewSet?
+
+What is ModelViewSet?
+
+What is Router?
+
+What is Response?
+
+What is request.data?
+
+What is permission_classes?
+
+🔹 Authentication in DRF (Very Important 🔥)
+
+What is Token Authentication?
+
+What is JWT?
+
+Difference between Session Auth and Token Auth?
+
+What is Simple JWT?
+
+How to protect API for logged-in users only?

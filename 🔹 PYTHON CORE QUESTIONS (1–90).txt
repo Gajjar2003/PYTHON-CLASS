@@ -1,4 +1,4 @@
-🔹 PYTHON CORE QUESTIONS (1–90)
+🔹 PYTHON CORE+ ADVANCED QUESTIONS (1–90)
 
 What is Python?
 
@@ -41,8 +41,6 @@ What is user define function in Python?
 What is third-party define function in Python?
 
 What is core define function in Python?
-
-What is different between to low and casefeld in Python?
 
 What is in bult funation name in Python ?
 
@@ -104,6 +102,8 @@ What is list comprehension in pyhton?
 what is different between to append  and extend ?
 
 What is the use of the len() function in Python?
+
+What is different between to low and casefeld in Python?
 
 What is the use of the range() function in Python?
 
