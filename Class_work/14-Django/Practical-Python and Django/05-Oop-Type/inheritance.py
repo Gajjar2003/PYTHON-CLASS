@@ -27,3 +27,4 @@ s.display()
 
 t = Techer(101,"chitna",44,"MCA","Python","ch@gamil.com",25000)
 t.show()
+
