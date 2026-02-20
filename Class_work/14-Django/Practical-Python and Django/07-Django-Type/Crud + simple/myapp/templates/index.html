@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Register</title>
+</head>
+
+<body>
+    <form action="{%url 'register'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h1>Register</h1><br>
+        <span>{{meg}}</span><br>
+        <input type="hidden" name="id" value="{{ s.id }}">
+        <input type="text" placeholder="enter youe name" name="name" value="{{s.name}}"><br><br>
+        <input type="text" placeholder="Enter your age" name="age" value="{{s.age}}"> <br><br>
+        <input type="text" placeholder="Enter your email" name="email" value="{{s.email}}"><br><br>
+
+        <input type="file" name="image"><br>
+        {% if s.image %}
+        <img src="{{ s.image.url }}" alt="{{ s.image }}">
+        {% endif %}
+        <input type="submit"><br>
+        <a href="{% url 'display'%}">Display</a>
+    </form>
+</body>
+
+</html>
