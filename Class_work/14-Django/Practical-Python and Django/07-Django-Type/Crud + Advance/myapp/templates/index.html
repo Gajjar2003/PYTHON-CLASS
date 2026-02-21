@@ -49,100 +49,132 @@
                 <a href="{% url 'display'%}" class="btn btn-warning">View Details</a>
             </div>
 
-            <form action="{% url 'register'%}" method="post">
+            <form action="{% url 'register'%}" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
                 <span class="text-success">{{meg}}</span>
+
+                <input type="hidden" name="id" value="{{e.id}}">
 
                 <!-- Name -->
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
-                    <input type="text" class="form-control" placeholder="Enter your name" name="name">
+                    <input type="text" class="form-control" placeholder="Enter your name" name="name"
+                        value="{{e.name}}">
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="Enter your email" name="email">
+                    <input type="email" class="form-control" placeholder="Enter your email" name="email"
+                        value="{{e.email}}">
                 </div>
 
                 <!-- Age -->
                 <div class="mb-3">
                     <label class="form-label">Age</label>
-                    <input type="number" class="form-control" placeholder="Enter your age" name="age">
+                    <input type="number" class="form-control" placeholder="Enter your age" name="age" value="{{e.age}}">
                 </div>
 
                 <!-- Department -->
-                <div class="mb-3">
-                    <label class="form-label">Department</label>
-                    <select class="form-select" name="dept">
-                        <option value="">Select Department</option>
-                        <option value="HR">HR</option>
-                        <option value="IT">IT</option>
-                        <option value="Sales">Sales</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Finance">Finance</option>
-                    </select>
+              <div class="mb-3">
+                <label class="form-label">Department</label>
+                <select class="form-select" name="dept">
+
+                    <option value="HR" {% if e.dept == "HR" %}selected{% endif %}>HR</option>
+
+                    <option value="IT" {% if e.dept == "IT" %}selected{% endif %}>IT</option>
+
+                    <option value="Sales" {% if e.dept == "Sales" %}selected{% endif %}>Sales</option>
+
+                    <option value="Marketing" {% if e.dept == "Marketing" %}selected{% endif %}>Marketing</option>
+
+                    <option value="Finance" {% if e.dept == "Finance" %}selected{% endif %}>Finance</option>
+
+                </select>
                 </div>
 
                 <!-- Salary -->
                 <div class="mb-3">
                     <label class="form-label">Salary</label>
-                    <input type="number" class="form-control" placeholder="Enter salary" name="salary">
+                    <input type="number" class="form-control" placeholder="Enter salary" name="salary"
+                        value="{{e.salary}}">
                 </div>
 
                 <!-- Gender -->
-                <div class="mb-3">
-                    <label class="form-label d-block">Gender</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="Male">
-                        <label class="form-check-label">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="Female">
-                        <label class="form-check-label">Female</label>
-                    </div>
-                </div>
+            <div class="mb-3">
+            <label class="form-label d-block">Gender</label>
 
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" value="Male"
+                {% if e.gender == "Male" %}checked{% endif %}>
+                <label class="form-check-label">Male</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" value="Female"
+                {% if e.gender == "Female" %}checked{% endif %}>
+                <label class="form-check-label">Female</label>
+            </div>
+        </div>
                 <!-- Language (Checkbox) -->
-                <div class="mb-3">
-                    <label class="form-label d-block">Languages Known</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="language" value="English">
-                        <label class="form-check-label">English</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="language" value="Hindi">
-                        <label class="form-check-label">Hindi</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="language" value="Gujarati">
-                        <label class="form-check-label">Gujarati</label>
-                    </div>
-                </div>
+               <div class="mb-3">
+            <label class="form-label d-block">Languages Known</label>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="language" value="English"
+                {% if "English" in e.language %}checked{% endif %}>
+                <label class="form-check-label">English</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="language" value="Hindi"
+                {% if "Hindi" in e.language %}checked{% endif %}>
+                <label class="form-check-label">Hindi</label>
+            </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="language" value="Gujarati"
+            {% if "Gujarati" in e.language %}checked{% endif %}>
+            <label class="form-check-label">Gujarati</label>
+        </div>
+    </div>
 
                 <!-- Phone -->
                 <div class="mb-3">
                     <label class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" placeholder="Enter phone number" name="phone">
+                    <input type="tel" class="form-control" placeholder="Enter phone number" name="phone"
+                        value="{{e.phone}}">
                 </div>
 
                 <!-- City -->
                 <div class="mb-3">
                     <label class="form-label">City</label>
-                    <input type="text" class="form-control" placeholder="Enter city" name="city">
+                    <input type="text" class="form-control" placeholder="Enter city" name="city" value="{{e.city}}">
                 </div>
 
                 <!-- Pincode -->
                 <div class="mb-3">
                     <label class="form-label">Pincode</label>
-                    <input type="number" class="form-control" placeholder="Enter pincode" name="pincode">
+                    <input type="number" class="form-control" placeholder="Enter pincode" name="pincode"
+                        value="{{e.pincode}}">
                 </div>
 
                 <!-- Address -->
                 <div class="mb-3">
                     <label class="form-label">Address</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter address" name="address"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Enter address" name="address">{{ e.address }}</textarea>
                 </div>
+
+                         <!-- Image -->
+                <div class="mb-3">
+                    <label class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control">
+                    {% if e.image%}
+                    <img src="/media/{{e.image}}" alt="{{e.image}}">
+                    {%endif%}
+                </div><br>
+
+
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-custom">Register Employee</button>

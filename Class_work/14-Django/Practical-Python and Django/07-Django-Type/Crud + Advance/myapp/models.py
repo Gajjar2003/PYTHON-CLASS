@@ -12,3 +12,4 @@ class Employee(models.Model):
     city = models.CharField(max_length=50)
     pincode  = models.IntegerField()
     address = models.TextField(null=True, blank=True)
+    image  = models.ImageField(upload_to="image",default="test.png")
