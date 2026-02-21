@@ -13,9 +13,10 @@ def register(requset):
     salary = requset.POST.get('salary')
     dept = requset.POST.get('dept')
     address = requset.POST.get('address')
+    image = requset.FILES.get('image')
 
     if not id:
-        Employee.objects.create(name=name,email=email,age=age,salary=salary,dept=dept,address=address)
+        Employee.objects.create(name=name,email=email,age=age,salary=salary,dept=dept,address=address,image=image)
         return render(requset,"index.html",{'meg':'Employee successfully done !'})
     else:
         e = Employee.objects.get(pk=id)
@@ -25,6 +26,8 @@ def register(requset):
         e.salary=salary
         e.dept=dept
         e.address=address
+        if image :
+            e.image = image
         e.save()
         return render(requset,"index.html",{'meg':'Employee  Update successfully done !'})
 

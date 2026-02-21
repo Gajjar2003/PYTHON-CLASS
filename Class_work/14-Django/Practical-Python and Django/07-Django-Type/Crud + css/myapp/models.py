@@ -8,3 +8,4 @@ class Employee(models.Model):
     dept = models.CharField(max_length=50)
     salary = models.IntegerField()
     address = models.TextField()
+    image = models.ImageField(upload_to="image",default="test.png")

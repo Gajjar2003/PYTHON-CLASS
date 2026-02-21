@@ -67,6 +67,7 @@
                             <th>Salary</th>
                             <th>Address</th>
                             <th colspan="2">Action</th>
+                            <th>Image</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,6 +82,7 @@
                             <td>{{ e.address }}</td>
                             <td><a href="{% url 'delete'%}?id={{e.id}}" class="btn btn-danger">Delete</a></td>
                             <td><a href="{% url 'edit'%}?id={{e.id}}" class="btn btn-warning">Edit</a></td>
+                            <td><img src="media/{{e.image}}" alt="{{e.image}}" height="50px" width="50px"></td>
                         </tr>
                         {% empty %}
                         <tr>
