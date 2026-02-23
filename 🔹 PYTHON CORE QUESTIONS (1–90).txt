@@ -127,8 +127,6 @@ What is the use of the self keyword in Python?
 
 What is a constructor in Python?
 
-What does the __init__ method do in Python?
-
 What is inheritance in Python?
 
 What is single inheritance?
@@ -173,7 +171,7 @@ What is an iterator in Python?
 
 What is a lambda function?
 
-What different between to  map(),fliter() and reduce() function in  Python?
+What different between to  map(),fliter() and reduce() function in  Python? 
 
 What is shallow copy?
 
@@ -188,6 +186,18 @@ What is a package in Python?
 What is a virtual environment in Python?
 
 What is different between to read ,readline and readlines 
+
+What is different between to  seek() and tell()
+
+What is difference between static method, class method, and instance method
+
+What is opretor overloding 
+
+what is Name Mangling in pyhton
+
+
+
+
 
 
 

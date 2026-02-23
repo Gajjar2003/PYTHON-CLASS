@@ -79,6 +79,8 @@ How login system works?
 
 What is custom user model?
 
+-----------------------------------------------------------------------------------
+
 🔥 DJANGO REST FRAMEWORK (DRF) QUESTIONS
 🔹 REST Basics
 
@@ -91,6 +93,7 @@ Difference between GET and POST?
 Difference between PUT and PATCH?
 
 Common HTTP status codes?
+
 
 🔹 DRF Core Concepts
 

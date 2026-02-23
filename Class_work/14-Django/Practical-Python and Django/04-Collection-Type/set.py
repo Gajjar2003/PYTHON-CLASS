@@ -47,7 +47,7 @@ s1 = {4,5,6}
 s2 = s.issuperset(s1)
 print(s2)
 
-s = {1,2}  # set1 and set2 ke andar value smae nahi he to True and false 
+s = {1,2}  # set1 and set2 ke andar value same nahi he to True and false 
 s1 = {3,4}
 
 s2 = s.isdisjoint(s1)
