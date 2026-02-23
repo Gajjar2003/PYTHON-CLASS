@@ -129,7 +129,7 @@ def changeqty(requset):
 def payment(request):
 
     amt = request.GET['amt']
-    client = razorpay.Client(auth=("rzp_test_S1Hsg7YN8MlwDU", "ZKs1rK1XnjRDNd4uxjP2NcRJ"))
+    client = razorpay.Client(auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3"))
 
     
     data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
