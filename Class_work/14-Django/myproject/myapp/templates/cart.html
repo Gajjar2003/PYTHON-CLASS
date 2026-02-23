@@ -182,13 +182,13 @@
             $.get("payment", { amt }, function (rt) {
 
                 var options = {
-                    "key": "rzp_test_S1Hsg7YN8MlwDU", // Enter the Key ID generated from the Dashboard
+                    "key": "rzp_test_SF5R7ur5nvvYLR", // Enter the Key ID generated from the Dashboard
                     "amount": rt.amount, // Amount is in currency subunits. 
                     "currency": "INR",
                     "name": "Food-Mart",
                     "description": "Test Transaction",
                     "image": "https://example.com/your_logo",
-                    "order_id": rt.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "order_id": rt.id, 
                     "handler": function (response) {
                         // alert(response.razorpay_payment_id);
                         // alert(response.razorpay_order_id);
