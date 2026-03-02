@@ -33,6 +33,7 @@
     <script>
         $(document).ready(function(rt){
            produtcview()
+           $("#upbtn").hide()
         })
 
         function addproduct()
@@ -55,15 +56,50 @@
                 rt.p.map(ele =>{
                    row += `<tr><td>${ele.id}</td>
                         <td>${ele.name}</td>
-                       
                         <td>${ele.qty}</td>
-                        <td>${ele.price}</td></tr>`
+                        <td>${ele.price}</td>
+                        <td><button class='btn btn-danger' onclick='deleteitems(${ele.id})'>Delete</bitton></td>
+                        <td><button class= 'btn btn-primary' onclick = 'edititems(${ele.id})'>edit</button></td></tr>`
                 })
                 $("#tdata").html(row)
             })
         }
 
+        function deleteitems(pid){
+            $.get('delete',{pid},function(rt){
+                alert(rt)
+                produtcview()
+             
+            })
+        }
 
+        function edititems(pid){
+            $.get('edit',{pid},function(rt){
+                $("#id").val(rt.p[0].id)
+                $("#name").val(rt.p[0].name)
+                 $("#qty").val(rt.p[0].qty)
+                  $("#price").val(rt.p[0].price)
+
+                  $("#upbtn").show()
+                  $("#smbtn").hide()
+
+            })
+        }
+
+           function updateproduct()
+        {   
+            var id = $("#id").val()
+            var name = $("#name").val()
+            var qty = $("#qty").val()
+            var price  = $("#price").val()
+           var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val()
+
+            $.post("update",{csrfmiddlewaretoken,id,name,qty,price},function(rt){
+                alert(rt)
+
+                produtcview()
+            })
+        }
 
 
         
@@ -80,6 +116,7 @@
         <form action="">
             {%csrf_token%}
 
+            <input type="hidden" name="id" id="id">
         <div class="row g-3">
             <div class="col-md-3">
                 <input type="text" id="name" class="form-control" placeholder="Enter Name" name="name">
@@ -92,7 +129,8 @@
                 <input type="number" id="price" class="form-control" placeholder="Price" name="price">
             </div>
             <div class="col-md-2 d-grid">
-                <button class="btn btn-custom" onclick="addproduct()">Add</button>
+                <button class="btn btn-success" onclick="addproduct()" id="smbtn">Add</button><br>
+                <button class="btn btn-primary" onclick="updateproduct()" id="upbtn">Update</button>
             </div>
         </div>
     </div>
@@ -109,6 +147,7 @@
                         <th>Name</th>
                         <th>Qty</th>
                         <th>Price</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody id="tdata">
