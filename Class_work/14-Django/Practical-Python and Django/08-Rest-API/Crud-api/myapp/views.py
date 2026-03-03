@@ -40,7 +40,7 @@ def put(request,id):
         return Response({'errors':ser.errors,"megsses":'something went wrogn'})
     else:
         ser.save()
-        return Response({"data":ser.data,"message":"Student data inserted in tbales"})
+        return Response({"data":ser.data,"message":"Student data update in tbales"})
     
            
 @api_view(['delete'])
