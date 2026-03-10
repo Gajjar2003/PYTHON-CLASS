@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Registration</title>
+
+<script>
+
+function validateForm(){
+
+    let name = document.forms["patientForm"]["name"].value;
+    let email = document.forms["patientForm"]["email"].value;
+    let age = document.forms["patientForm"]["age"].value;
+    let phone = document.forms["patientForm"]["phone"].value;
+
+    if(name == ""){
+        alert("Name is required");
+        return false;
+    }
+
+    if(email == ""){
+        alert("Email is required");
+        return false;
+    }
+
+    if(age == ""){
+        alert("Age is required");
+        return false;
+    }
+
+    if(age <= 0){
+        alert("Enter valid age");
+        return false;
+    }
+
+    if(phone.length != 10){
+        alert("Phone number must be 10 digits");
+        return false;
+    }
+
+    return true;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h2>Patient Registration Form</h2>
+
+<form name="patientForm" onsubmit="return validateForm()">
+
+Name: <input type="text" name="name"><br><br>
+
+Email: <input type="email" name="email"><br><br>
+
+Age: <input type="number" name="age"><br><br>
+
+Phone: <input type="text" name="phone"><br><br>
+
+Address: <input type="text" name="address"><br><br>
+
+<input type="submit" value="Register">
+
+</form>
+
+</body>
+</html>
