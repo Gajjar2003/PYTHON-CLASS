@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doctor Finder Map</title>
+
+<script>
+function initMap(){
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat: 21.1702, lng: 72.8311}
+    });
+
+    // {% for doctor in doctors %}
+
+    var marker = new google.maps.Marker({
+        position: {lat: parseFloat("{{ doctor.latitude }}"), lng: parseFloat("{{ doctor.longitude }}")},
+        map: map,
+        title: "{{ doctor.name }}"
+    });
+
+    // {% endfor %}
+
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_REAL_API_KEY&callback=initMap" async defer></script>
+
+</head>
+
+<body>
+
+<h2>Doctor Locations</h2>
+
+<div id="map" style="height:500px;width:100%;"></div>
+
+</body>
+</html>
