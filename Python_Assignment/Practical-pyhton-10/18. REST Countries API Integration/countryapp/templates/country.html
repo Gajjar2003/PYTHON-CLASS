@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Country Details</title>
+</head>
+<body>
+
+<h2>Country Information</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<input type="text" name="country" placeholder="Enter Country Name">
+<button type="submit">Search</button>
+
+</form>
+
+{% if data %}
+
+<h3>Country: {{ data.country }}</h3>
+<p>Population: {{ data.population }}</p>
+<p>Languages:</p>
+
+<ul>
+{% for lang in data.languages %}
+<li>{{ lang }}</li>
+{% endfor %}
+</ul>
+
+<p>Currency: {{ data.currency }}</p>
+
+{% endif %}
+
+</body>
+</html>
