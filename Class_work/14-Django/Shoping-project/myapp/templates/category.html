@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Category</title>
+
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* HEADER */
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* CATEGORY IMAGE */
+        .category-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .category-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .category-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .ci-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+        }
+
+        .ci-text h4 {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        /* PRODUCT */
+        .single-product-item {
+            margin-bottom: 30px;
+        }
+
+        .single-product-item img {
+            width: 100%;
+        }
+
+        .product-text {
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.category-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #ff4d4d;
+    display: block;
+    margin: 10px auto;
+}
+    </style>
+</head>
+
+<body>
+    <div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search model end -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a href="./index.html"><img src="/static/img/logo.png" alt=""></a>
+                </div>
+                <div class="header-right">
+                    <img src="/static/img/icons/search.png" alt="" class="search-trigger">
+                    <img src="/static/img/icons/man.png" alt="">
+                    <a href="#">
+                        <img src="/static/img/icons/bag.png" alt="">
+                        <span>2</span>
+                    </a>
+                </div>
+                <div class="user-access">
+                    <a href="#">Register</a>
+                    <a href="#" class="in">Sign in</a>
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                      <li><a class="active" href="{% url 'index'%}">Home</a></li>
+                        <li><a href="{% url 'category'%}">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'product' %}">Product Details</a></li>
+                                <li><a href="{% url 'shopping-cart'%}">Shopping Details</a></li>
+                                <li><a href="{% url 'check-out'%}">Check out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'about'%}">About</a></li>
+                        <li><a href="{%url 'blog'%}">Blog</a></li>
+                        <li><a href="{% url 'contact'%}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header Info Begin -->
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="/static/img/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over ₹30 in India</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="/static/img/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="/static/img/icons/sales.png" alt="">
+                    <p>30% off on dresses. Use code: 30OFF</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Info End -->
+
+
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>Dresses<span>.</span></h2>
+                        <a href="{% url 'index'%}">Home</a>
+                        <a href="{% url 'category'%}">Shop</a>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <img src="/static/img/add.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- HEADER -->
+<div class="text-center mt-4">
+    <h3 class="category-title">Category</h3>
+</div>
+
+<!-- CATEGORY SECTION -->
+<div class="container mt-4">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="category-item" >
+                <img src="/static/img/product/t4.jpg">
+                <div class="ci-text"><h4>T-Shirt</h4></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-item" >
+                <img src="/static/img/product/p5.jpg">
+                <div class="ci-text"><h4>Jeans</h4></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-item">
+                <img src="/static/img/product/j4.jpg">
+                <div class="ci-text"><h4>Jackets</h4></div>
+            </div>
+        </div>
+    <div class="col-md-4">
+            <div class="category-item">
+                <img src="/static/img/product/s5.jpg">
+                <div class="ci-text"><h4>shoes</h4></div>
+            </div>
+        </div>
+
+          <div class="col-md-4">
+            <div class="category-item">
+                <img src="/static/img/product/w6.jpg">
+                <div class="ci-text"><h4>Watches </h4></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="category-item">
+                <img src="/static/img/product/3.jpg">
+                <div class="ci-text"><h4>Perfumes </h4></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3 product men">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-1.jpg' %}">
+                <div class="product-text">
+                    <h6>Men Shirt</h6>
+                    <p>₹499</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 product women">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-2.jpg' %}">
+                <div class="product-text">
+                    <h6>Women Dress</h6>
+                    <p>₹799</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 product kids">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-3.jpg' %}">
+                <div class="product-text">
+                    <h6>Kids Wear</h6>
+                    <p>₹299</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 product men">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-4.jpg' %}">
+                <div class="product-text">
+                    <h6>Men Jacket</h6>
+                    <p>₹999</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 product women">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-5.jpg' %}">
+                <div class="product-text">
+                    <h6>Women Top</h6>
+                    <p>₹599</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 product kids">
+            <div class="single-product-item">
+                <img src="{% static 'img/products/img-6.jpg' %}">
+                <div class="product-text">
+                    <h6>Kids T-shirt</h6>
+                    <p>₹349</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+
+
+<!-- FILTER JS -->
+<script>
+function filterProducts(category) {
+    let items = document.getElementsByClassName('product');
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].classList.contains(category)) {
+            items[i].style.display = "block";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>

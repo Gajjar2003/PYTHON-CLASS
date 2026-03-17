@@ -3,12 +3,11 @@ from myapp.views import *
 
 urlpatterns = [
     path("",index,name="index"),
-    path("about",about,name="about"),
-    path("blog",blog,name="blog"),
+    path("category",category,name="category"),
+    path("check-out",check_out,name="check-out"),
     path("contact",contact,name="contact"),
     path("product",product,name="product"),
-    
-    path("shoping-cart",shoping_cart,name="shoping-cart")
-
-   
+    path("shopping-cart",shopping_cart,name="shopping-cart"),
+    path("about",about,name="about"),
+    path("blog",blog,name="blog")
 ]

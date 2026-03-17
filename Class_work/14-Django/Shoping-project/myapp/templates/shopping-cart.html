@@ -10,25 +10,22 @@
     <title>Violet | Template</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+    <link href="/static/https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="/static/https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+
     
     <!-- Search model -->
 	<div class="search-model">
@@ -46,13 +43,13 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="./index.html"><img src="/static/img/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
-                    <img src="img/icons/search.png" alt="" class="search-trigger">
-                    <img src="img/icons/man.png" alt="">
+                    <img src="/static/img/icons/search.png" alt="" class="search-trigger">
+                    <img src="/static/img/icons/man.png" alt="">
                     <a href="#">
-                        <img src="img/icons/bag.png" alt="">
+                        <img src="/static/img/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
                 </div>
@@ -62,17 +59,17 @@
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
-                        <li><a href="./categories.html">Shop</a>
+                        <li><a class="active" href="{% url 'index'%}">Home</a></li>
+                        <li><a href="{% url 'category'%}">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="product-page.html">Product Page</a></li>
-                                <li><a href="shopping-cart.html">Shopping Card</a></li>
-                                <li><a href="check-out.html">Check out</a></li>
+                                <li><a href="{% url 'product' %}">Product Page</a></li>
+                                <li><a href="{% url 'shopping-cart'%}">Shopping Card</a></li>
+                                <li><a href="{% url 'check-out'%}">Check out</a></li>
                             </ul>
                         </li>
-                        <li><a href="./product-page.html">About</a></li>
-                        <li><a href="./check-out.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="{% url 'about'%}">About</a></li>
+                        <li><a href="{%url 'blog'%}">Blog</a></li>
+                        <li><a href="{% url 'contact'%}">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -84,19 +81,19 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="header-item">
-                        <img src="img/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
+                        <img src="/static/img/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over $30 in India</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-lg-center">
                     <div class="header-item">
-                        <img src="img/icons/voucher.png" alt="">
+                        <img src="/static/img/icons/voucher.png" alt="">
                         <p>20% Student Discount</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="img/icons/sales.png" alt="">
+                    <img src="/static/img/icons/sales.png" alt="">
                     <p>30% off on dresses. Use code: 30OFF</p>
                 </div>
                 </div>
@@ -119,7 +116,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <img src="img/add.jpg" alt="">
+                    <img src="/static/img/add.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -143,7 +140,7 @@
                     <tbody>
                         <tr>
                             <td class="product-col">
-                                <img src="img/product/product-1.jpg" alt="">
+                                <img src="/static/img/product/product-1.jpg" alt="">
                                 <div class="p-title">
                                     <h5>Blue Dotted Shirt</h5>
                                 </div>
@@ -328,14 +325,14 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.nice-select.min.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 
 </html>
