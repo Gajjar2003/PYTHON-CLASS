@@ -48,16 +48,24 @@
                 </div>
                 <div class="header-right">
                     <img src="/static/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="/static/img/icons/man.png" alt="">
+                  
                     <a href="#">
                         <img src="/static/img/icons/bag.png" alt="">
-                        <span>2</span>
+               
                     </a>
                 </div>
+                 {% if user.is_authenticated %}
                 <div class="user-access">
-                    <a href="#">Register</a>
-                    <a href="#" class="in">Sign in</a>
+                
+                    <a href="{% url 'user-logout' %}" >{{user}}/Logout</a>
                 </div>
+                {% else %}
+                <div class="user-access">
+                    <a href="{% url 'register' %}">Register</a>
+                    <a href="{% url 'user-login' %}" class="in">Login</a>
+                </div>
+                {% endif %}
+
                 <nav class="main-menu mobile-menu">
                     <ul>
                        <li><a class="active" href="{% url 'index'%}">Home</a></li>

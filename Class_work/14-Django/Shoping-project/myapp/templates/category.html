@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <title>Shop Category</title>
 
-   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
@@ -17,7 +19,7 @@
     <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/static/css/style.css" type="text/css">
-    
+
 
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -89,36 +91,44 @@
             padding: 20px;
             margin-top: 40px;
         }
-        .category-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 34px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    position: relative;
-}
 
-.category-title::after {
-    content: '';
-    width: 60px;
-    height: 3px;
-    background: #ff4d4d;
-    display: block;
-    margin: 10px auto;
-}
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: #ff4d4d;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
 
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -129,19 +139,27 @@
                 </div>
                 <div class="header-right">
                     <img src="/static/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="/static/img/icons/man.png" alt="">
+
                     <a href="#">
                         <img src="/static/img/icons/bag.png" alt="">
-                        <span>2</span>
+
                     </a>
                 </div>
+                {% if user.is_authenticated %}
                 <div class="user-access">
-                    <a href="#">Register</a>
-                    <a href="#" class="in">Sign in</a>
+
+                    <a href="{% url 'user-logout' %}">{{user}}/Logout</a>
                 </div>
+                {% else %}
+                <div class="user-access">
+                    <a href="{% url 'register' %}">Register</a>
+                    <a href="{% url 'user-login' %}" class="in">Login</a>
+                </div>
+                {% endif %}
+
                 <nav class="main-menu mobile-menu">
                     <ul>
-                      <li><a class="active" href="{% url 'index'%}">Home</a></li>
+                        <li><a class="active" href="{% url 'index'%}">Home</a></li>
                         <li><a href="{% url 'category'%}">Shop</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'product' %}">Product Details</a></li>
@@ -175,9 +193,9 @@
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="/static/img/icons/sales.png" alt="">
-                    <p>30% off on dresses. Use code: 30OFF</p>
-                </div>
+                        <img src="/static/img/icons/sales.png" alt="">
+                        <p>30% off on dresses. Use code: 30OFF</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,10 +209,10 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
-                        <h2>Dresses<span>.</span></h2>
+                        <h2>Outfits<span>.</span></h2>
                         <a href="{% url 'index'%}">Home</a>
                         <a href="{% url 'category'%}">Shop</a>
-                       
+
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -204,142 +222,183 @@
         </div>
     </section>
 
-<!-- HEADER -->
-<div class="text-center mt-4">
-    <h3 class="category-title">Category</h3>
-</div>
+    <!-- HEADER -->
+    <div class="text-center mt-4">
+        <h3 class="category-title">Category</h3>
+    </div>
 
-<!-- CATEGORY SECTION -->
-<div class="container mt-4">
-    <div class="row">
+    <!-- CATEGORY SECTION -->
+    <div class="container mt-4">
+        <div class="row" id="cdata">
+          
+          </div>
+          
 
-        <div class="col-md-4">
-            <div class="category-item" >
-                <img src="/static/img/product/t4.jpg">
-                <div class="ci-text"><h4>T-Shirt</h4></div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="category-item" >
-                <img src="/static/img/product/p5.jpg">
-                <div class="ci-text"><h4>Jeans</h4></div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="category-item">
-                <img src="/static/img/product/j4.jpg">
-                <div class="ci-text"><h4>Jackets</h4></div>
-            </div>
-        </div>
-    <div class="col-md-4">
-            <div class="category-item">
-                <img src="/static/img/product/s5.jpg">
-                <div class="ci-text"><h4>shoes</h4></div>
-            </div>
-        </div>
-
-          <div class="col-md-4">
-            <div class="category-item">
-                <img src="/static/img/product/w6.jpg">
-                <div class="ci-text"><h4>Watches </h4></div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="category-item">
-                <img src="/static/img/product/3.jpg">
-                <div class="ci-text"><h4>Perfumes </h4></div>
-            </div>
         </div>
     </div>
-</div>
-
-<!-- PRODUCTS -->
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-3 product men">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-1.jpg' %}">
-                <div class="product-text">
-                    <h6>Men Shirt</h6>
-                    <p>₹499</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 product women">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-2.jpg' %}">
-                <div class="product-text">
-                    <h6>Women Dress</h6>
-                    <p>₹799</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 product kids">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-3.jpg' %}">
-                <div class="product-text">
-                    <h6>Kids Wear</h6>
-                    <p>₹299</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 product men">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-4.jpg' %}">
-                <div class="product-text">
-                    <h6>Men Jacket</h6>
-                    <p>₹999</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 product women">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-5.jpg' %}">
-                <div class="product-text">
-                    <h6>Women Top</h6>
-                    <p>₹599</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 product kids">
-            <div class="single-product-item">
-                <img src="{% static 'img/products/img-6.jpg' %}">
-                <div class="product-text">
-                    <h6>Kids T-shirt</h6>
-                    <p>₹349</p>
-                </div>
-            </div>
-        </div>
-
+    <div class="text-center mt-4">
+        <h3 class="category-title">Products</h3>
     </div>
-</div>
+    <!-- PRODUCTS -->
+    <div class="container">
+        <div class="row" id="pdata">
+                         
+        </div>
+    </div>
 
-<!-- FOOTER -->
 
 
-<!-- FILTER JS -->
+
+    <!-- FILTER JS -->
+    <script>
+
+        function filterProducts(category) {
+            let items = document.getElementsByClassName('product');
+
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].classList.contains(category)) {
+                    items[i].style.display = "block"
+                    ;
+                } else { items[i].style.display = "none"; }
+            }
+        } </script>
+
+
 <script>
-function filterProducts(category) {
-    let items = document.getElementsByClassName('product');
+    $(document).ready(function(rt){
+        getcategory()
+        getproduct()
+    })
 
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].classList.contains(category)) {
-            items[i].style.display = "block";
-        } else {
-            items[i].style.display = "none";
-        }
+    function getcategory(){
+        $.get('getcategory',{},function(rt){
+            var row = ""
+            rt.category.map(ele => {
+                row += `<a onclick='getproduct(${ele.id})'
+                <div class="col-md-4" >
+                <div class="category-item">
+                    <img src=/media/${ele.image}>
+                    <div class="ci-text">
+                        <h4>${ele.name}</h4>
+                    </div>
+                    </div>
+                </div></a>`
+            })
+            $("#cdata").html(row)
+        })
     }
-}
+
+    function getproduct(catid){
+            $.get('getproduct',{catid},function(rt){
+           if (catid === undefined) 
+                {
+                    catid = 0;
+                }
+          
+            var pro = ""
+                rt.products.map(ele => {
+                   
+                    pro +=` <div class="col-md-3 product men">
+                    <div class="single-product-item">
+
+                    
+                        <img src="/media/${ele.image}" class="product-img" alt="">
+
+                        <div class="product-text">
+                            <h6>${ele.name}</h6>
+                            <p>${ele.price}</p>
+                            <button class='btn btn-primary'>Add to Cart</button>
+                        </div>
+
+                    </div>
+                </div>`
+            })
+            $("#pdata").html(pro)
+
+        })
+    }
 </script>
 
 </body>
+ <footer class="footer-section spad">
+            <div class="container">
+                <div class="newslatter-form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="#">
+                                <input type="text" placeholder="Your email address">
+                                <button type="submit">Subscribe to our newsletter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>About us</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>Community</li>
+                                    <li>Jobs</li>
+                                    <li>Shipping</li>
+                                    <li>Contact Us</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Customer Care</h4>
+                                <ul>
+                                    <li>Search</li>
+                                    <li>Privacy Policy</li>
+                                    <li>2019 Lookbook</li>
+                                    <li>Shipping & Delivery</li>
+                                    <li>Gallery</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Our Services</h4>
+                                <ul>
+                                    <li>Free Shipping</li>
+                                    <li>Free Returnes</li>
+                                    <li>Our Franchising</li>
+                                    <li>Terms and conditions</li>
+                                    <li>Privacy Policy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li>Payment methods</li>
+                                    <li>Times and shipping costs</li>
+                                    <li>Product Returns</li>
+                                    <li>Shipping methods</li>
+                                    <li>Conformity of the products</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-links-warp">
+                <div class="container">
+                    <div class="social-links">
+                        <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                        <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                        <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                        <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                        <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                        <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </footer>
+
 </html>

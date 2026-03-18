@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Violet | Template</title>
+
+    <!-- Google Font -->
+   <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+<body>
+   
+    
+    <!-- Search model -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="Search here.....">
+			</form>
+		</div>
+	</div>
+	<!-- Search model end -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a href="{% url 'index'%}"><img src="/static/img/logo.png" alt=""></a>
+                </div>
+                <div class="header-right">
+                    <img src="/static/img/icons/search.png" alt="" class="search-trigger">
+                    <img src="/static/img/icons/man.png" alt="">
+                    <a href="#">
+                        <img src="/static/img/icons/bag.png" alt="">
+                        <span>2</span>
+                    </a>
+                </div>
+                <div class="user-access">
+                    <a href="{% url 'register'%}">Register</a>
+                    <a href="{% url 'user-login'%}" class="in">Login</a>
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="active" href="{% url 'index'%}">Home</a></li>
+                        <li><a href="{% url 'category'%}">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'product' %}">Product Details</a></li>
+                                <li><a href="{% url 'shopping-cart'%}">Shopping Details</a></li>
+                                <li><a href="{% url 'check-out'%}">Check out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'about'%}">About</a></li>
+                        <li><a href="{%url 'blog'%}">Blog</a></li>
+                        <li><a href="{% url 'contact'%}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+     <!-- Header Info Begin -->
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="/static/img/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over ₹30 in India</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="/static/img/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="/static/img/icons/sales.png" alt="">
+                    <p>30% off on dresses. Use code: 30OFF</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 mb-5">
+    <h2 style="text-align:center; font-family: Montserrat;">Register</h2>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+
+            <form method="POST">
+                {% csrf_token %}
+                <span class="text-danger">{{err}}</span>
+                <span class="text-success">{{meg}}</span>
+
+                <div class="form-group mb-3">
+                    <label>Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control" placeholder="Enter email">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter Username">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="btn btn-warning w-100">Register</button><br><br>
+                <a href="{% url 'user-login' %}" class="btn btn-primary w-100">Login</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>

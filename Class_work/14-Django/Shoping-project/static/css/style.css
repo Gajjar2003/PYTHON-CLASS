@@ -292,6 +292,9 @@ ol {
 	margin-left: 4px;
 }
 
+
+
+
 .inner-header .header-right a span {
 	font-size: 11px;
 	color: #1e1e1e;
@@ -335,6 +338,7 @@ ol {
 	top: 1px;
 	color: #1e1e1e;
 	content: "/";
+	
 }
 
 .inner-header .main-menu {

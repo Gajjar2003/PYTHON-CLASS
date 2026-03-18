@@ -1,3 +1,22 @@
 from django.db import models
 
-# Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="image",default="test.jpg")
+
+    def __str__(self):
+        return self.name
+
+class Product(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    qty = models.IntegerField()
+    price = models.IntegerField()
+    image = models.ImageField(upload_to="image",default="test.png")
+    
+    def __str__(self):
+        return self.name
+    
+
+
+
