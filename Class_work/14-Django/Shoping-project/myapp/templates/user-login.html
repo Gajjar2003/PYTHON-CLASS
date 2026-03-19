@@ -47,7 +47,7 @@
                 <div class="header-right">
                     <img src="/static/img/icons/search.png" alt="" class="search-trigger">
                     <img src="/static/img/icons/man.png" alt="">
-                    <a href="#">
+                    <a href="{% url 'shopping-cart'%}">
                         <img src="/static/img/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
@@ -61,7 +61,7 @@
                         <li><a class="active" href="{% url 'index'%}">Home</a></li>
                         <li><a href="{% url 'category'%}">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'product' %}">Product Details</a></li>
+                               
                                 <li><a href="{% url 'shopping-cart'%}">Shopping Details</a></li>
                                 <li><a href="{% url 'check-out'%}">Check out</a></li>
                             </ul>

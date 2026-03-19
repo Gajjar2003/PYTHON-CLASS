@@ -12,9 +12,7 @@ def index(request):
     return render(request,"index.html")
 
 
-@login_required(login_url="user-login")
-def product(request):
-    return render(request,"product.html")
+
 
 
 @login_required(login_url="user-login")
@@ -26,19 +24,28 @@ def category(request):
 
 @login_required(login_url="user-login")
 def contact(request):
-    return render(request,"contact.html")
+    c = Contact.objects.all()
+    if request.method == 'POST':
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        area = request.POST.get('area')
+        phone = request.POST.get('phone')
 
+        con = Contact.objects.create(fname=fname,lname=lname,email=email,subject=subject,area=area,phone=phone)
+        con.save()
 
+        return render(request, "contact.html", {'meg': 'Message successfully done !!' })
+
+    
+    return render(request, "contact.html", {'c': c})
 
 
 @login_required(login_url="user-login")
 def check_out(request):
     return render(request,"check-out.html")
 
-
-@login_required(login_url="user-login")
-def shopping_cart(request):
-    return render(request,"shopping-cart.html")
 
 
 @login_required(login_url="user-login")
@@ -81,6 +88,7 @@ def user_login(request):
 
     return render(request,"user-login.html")
 
+
 def user_logout(request):
     logout(request)
     return redirect('user-login')  
@@ -98,3 +106,44 @@ def getproduct(request):
     else:
         products = Product.objects.all()
         return JsonResponse({'products':list(products.values())})
+    
+def addtocart(request):
+    pid = request.GET['pid']
+    product=Product.objects.get(pk=pid)
+    user = request.user
+
+    if user .is_anonymous:
+            return HttpResponse(user)
+    else:
+        isexist = Cart.objects.filter(user=user,product=product)
+        if len(isexist) >= 1:
+            isexist[0].qty = isexist[0].qty + 1
+            isexist[0].save()  
+            return HttpResponse("Product added into cart successfully !!")
+                
+        else:
+                Cart.objects.create(product=product,qty=1,user=user)
+                return HttpResponse("Product added into cart successfully !!")
+    
+
+@login_required(login_url="user-login")
+def shopping_cart(request):
+    carts = Cart.objects.filter(user=request.user)
+    return render(request,"shopping-cart.html",{'carts':carts})
+
+def remove(request):
+    cid  = request.GET['cid']
+    c = Cart.objects.get(pk=cid)
+    c.delete()
+    return HttpResponse("Remove items into cart")
+
+def changeqty(request):
+    cid  = request.GET['cid']
+    qty = request.GET['qty']
+    c = Cart.objects.get(pk=cid)
+    if int(qty) <= 0:
+        c.delete()
+    else:
+        c.qty = qty
+        c.save()
+    return HttpResponse("Cart updatetd in this items")
