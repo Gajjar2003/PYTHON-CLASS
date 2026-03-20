@@ -37,6 +37,21 @@ class Contact(models.Model):
     area = models.CharField(max_length=50)
     phone = models.IntegerField()
 
+class Order(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    date = models.DateTimeField()
+    total = models.FloatField()
+    status = models.CharField(max_length=50,default="pedding")
+    paytype = models.CharField(max_length=50,default="online")
+    payid = models.CharField(max_length=50)
+
+
+class Orderdetalis(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty = models.IntegerField()
+    price = models.FloatField()
+
 
 
 

@@ -4,6 +4,8 @@ from myapp.models import *
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,JsonResponse
+import razorpay
+import datetime
 
 
 
@@ -11,35 +13,47 @@ from django.http import HttpResponse,JsonResponse
 def index(request):
     return render(request,"index.html")
 
-
-
-
-
 @login_required(login_url="user-login")
 def category(request):
     return render(request,"category.html",)
 
 
-
-
 @login_required(login_url="user-login")
 def contact(request):
-    c = Contact.objects.all()
-    if request.method == 'POST':
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        area = request.POST.get('area')
-        phone = request.POST.get('phone')
+    # c = Contact.objects.all()
+    # if request.method == 'POST':
+    #     fname = request.POST.get('fname')
+    #     lname = request.POST.get('lname')
+    #     email = request.POST.get('email')
+    #     subject = request.POST.get('subject')
+    #     area = request.POST.get('area')
+    #     phone = request.POST.get('phone')
 
-        con = Contact.objects.create(fname=fname,lname=lname,email=email,subject=subject,area=area,phone=phone)
-        con.save()
+    #     con = Contact.objects.create(fname=fname,lname=lname,email=email,subject=subject,area=area,phone=phone)
+    #     con.save()
 
-        return render(request, "contact.html", {'meg': 'Message successfully done !!' })
+    #     return render(request, "contact.html", {'meg': 'Message successfully done !!' })
 
     
-    return render(request, "contact.html", {'c': c})
+    return render(request, "contact.html")
+
+def addcontact(request):
+        if request.method == 'POST':
+            fname = request.POST.get('fname')
+            lname = request.POST.get('lname')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            area = request.POST.get('area')
+            phone = request.POST.get('phone')
+
+            con = Contact.objects.create(fname=fname,lname=lname,email=email,subject=subject,area=area,phone=phone)
+            con.save()
+
+            return HttpResponse("Contact Save into website !!")
+        
+def displaycontact(request):
+    co = Contact.objects.all()
+    return JsonResponse({'co':list(co.values())})
 
 
 @login_required(login_url="user-login")
@@ -129,7 +143,10 @@ def addtocart(request):
 @login_required(login_url="user-login")
 def shopping_cart(request):
     carts = Cart.objects.filter(user=request.user)
-    return render(request,"shopping-cart.html",{'carts':carts})
+    sum = 0
+    for c in carts:
+        sum+=c.total_price()
+    return render(request,"shopping-cart.html",{'carts':carts,'total':int(sum)})
 
 def remove(request):
     cid  = request.GET['cid']
@@ -147,3 +164,30 @@ def changeqty(request):
         c.qty = qty
         c.save()
     return HttpResponse("Cart updatetd in this items")
+
+
+def payment(request):
+    amt = request.GET['amt']
+    client = razorpay.Client(auth=("rzp_test_STS6r0jEAzoi7U", "qd2x98bvF2IOQvAKgNv34Qi7"))
+
+    
+    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) 
+    
+    return JsonResponse(payment)
+
+def makeorder(request):
+    payid = request.GET['payid']
+    date  = datetime.datetime.now()
+    user = request.user
+
+    carts = Cart.objects.filter(user=user)
+    sum = 0
+    for i in carts:
+        sum+=i.total_price()
+        order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+
+        for c in carts:
+                Orderdetalis.objects.create(order=order,product=c.product,qty=c.qty,price =c.product.price)
+                c.delete()
+    return HttpResponse("Order placed successfully done !!")

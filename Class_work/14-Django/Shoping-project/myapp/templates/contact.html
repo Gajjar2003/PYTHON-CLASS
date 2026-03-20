@@ -11,7 +11,8 @@
 
     <!-- Google Font -->
     <link href="/static/https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link href="/static/https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+    <link
+        href="/static/https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
@@ -24,75 +25,75 @@
     <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <style>
-body {
-    background-color: #f4f6f9;
-}
+    body {
+        background-color: #f4f6f9;
+    }
 
-/* Center container */
-.table-container {
-    display: flex;
-    justify-content: center;
-}
+    /* Center container */
+    .table-container {
+        display: flex;
+        justify-content: center;
+    }
 
-/* Table Styling */
-.styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 15px;
-    min-width: 900px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
+    /* Table Styling */
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 15px;
+        min-width: 900px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
 
-/* Header */
-.styled-table thead tr {
-    background-color: #007bff;
-    color: #ffffff;
-    text-align: center;
-}
+    /* Header */
+    .styled-table thead tr {
+        background-color: #007bff;
+        color: #ffffff;
+        text-align: center;
+    }
 
-/* Cells */
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-    text-align: center;
-}
+    /* Cells */
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        text-align: center;
+    }
 
-/* Rows */
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
+    /* Rows */
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
 
-/* Alternate row color */
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
+    /* Alternate row color */
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
 
-/* Hover effect */
-.styled-table tbody tr:hover {
-    background-color: #e9f3ff;
-    cursor: pointer;
-}
+    /* Hover effect */
+    .styled-table tbody tr:hover {
+        background-color: #e9f3ff;
+        cursor: pointer;
+    }
 
-/* Last row */
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #007bff;
-}
+    /* Last row */
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #007bff;
+    }
 </style>
 
 <body>
-   
+
     <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
 
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -103,16 +104,16 @@ body {
                 </div>
                 <div class="header-right">
                     <img src="/static/img/icons/search.png" alt="" class="search-trigger">
-                   
+
                     <a href="{% url 'shopping-cart'%}">
                         <img src="/static/img/icons/bag.png" alt="">
-                       
+
                     </a>
                 </div>
-                  {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                 <div class="user-access">
-                
-                    <a href="{% url 'user-logout' %}" >{{user}}/Logout</a>
+
+                    <a href="{% url 'user-logout' %}">{{user}}/Logout</a>
                 </div>
                 {% else %}
                 <div class="user-access">
@@ -123,10 +124,10 @@ body {
 
                 <nav class="main-menu mobile-menu">
                     <ul>
-                         <li><a class="active" href="{% url 'index'%}">Home</a></li>
+                        <li><a class="active" href="{% url 'index'%}">Home</a></li>
                         <li><a href="{% url 'category'%}">Shop</a>
                             <ul class="sub-menu">
-                              
+
                                 <li><a href="{% url 'shopping-cart'%}">Shopping Card</a></li>
                                 <li><a href="{% url 'check-out'%}">Check out</a></li>
                             </ul>
@@ -157,9 +158,9 @@ body {
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="/static/img/icons/sales.png" alt="">
-                    <p>30% off on dresses. Use code: 30OFF</p>
-                </div>
+                        <img src="/static/img/icons/sales.png" alt="">
+                        <p>30% off on dresses. Use code: 30OFF</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,31 +186,31 @@ body {
     <!-- Page Add Section End -->
 
     <!-- Contact Section Begin -->
-   
+
     <div class="contact-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <form action="" class="contact-form" method="POST">
-                      {% csrf_token %}
-                      <span class="text-success">{{meg}}</span>
+                        {% csrf_token %}
+                        <span class="text-success">{{meg}}</span>
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="text" placeholder="First Name" name="fname">
+                                <input type="text" placeholder="First Name" name="fname" id="fname">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Last Name" name="lname">
+                                <input type="text" placeholder="Last Name" name="lname" id="lname">
                             </div>
-                                <div class="col-lg-6">
-                                <input type="text" placeholder="Phone" name="phone">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Phone" name="phone" id="phone">
                             </div>
                             <div class="col-lg-12">
-                                <input type="email" placeholder="E-mail" name="email">
-                                <input type="text" placeholder="Subject" name="subject">
-                                <textarea placeholder="Message" name="area"></textarea>
+                                <input type="email" placeholder="E-mail" name="email" id="email">
+                                <input type="text" placeholder="Subject" name="subject" id="subject">
+                                <textarea placeholder="Message" name="area" id="area"></textarea>
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="submit">Send message</button>
+                                <button type="submit" onclick="addtocontact()">Send message</button>
                             </div>
                         </div>
                     </form>
@@ -240,46 +241,32 @@ body {
                     </div>
                 </div>
             </div>
-   <div class="container mt-5">
+            <div class="container mt-5">
 
-    <h2 class="text-center mb-4">Contact Messages</h2>
+                <h2 class="text-center mb-4">Contact Messages</h2>
 
-    <div class="table-container">
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                    <th>Phone</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if c %}
-                    {% for co in c %}
-                    <tr>
-                        <td>{{ co.id }}</td>
-                        <td>{{ co.fname }}</td>
-                        <td>{{ co.lname }}</td>
-                        <td>{{ co.email }}</td>
-                        <td>{{ co.subject }}</td>
-                        <td>{{ co.area }}</td>
-                        <td>{{co.phone}}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr>
-                        <td colspan="6">No Data Found</td>
-                    </tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
+                <div class="table-container">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tdata">
 
-</div>
+                           
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
             <div class="map">
                 <div class="row">
                     <div class="col-lg-12">
@@ -360,29 +347,84 @@ body {
             </div>
         </div>
         <div class="social-links-warp">
-			<div class="container">
-				<div class="social-links">
-					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
-				</div>
-			</div>
+            <div class="container">
+                <div class="social-links">
+                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                    <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                </div>
+            </div>
 
 
-    <!-- Footer Section End -->
+            <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="/static/js/jquery-3.3.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/jquery.magnific-popup.min.js"></script>
-    <script src="/static/js/jquery.slicknav.js"></script>
-    <script src="/static/js/owl.carousel.min.js"></script>
-    <script src="/static/js/jquery.nice-select.min.js"></script>
-    <script src="/static/js/mixitup.min.js"></script>
-    <script src="/static/js/main.js"></script>
+            <!-- Js Plugins -->
+            <script src="/static/js/jquery-3.3.1.min.js"></script>
+            <script src="/static/js/bootstrap.min.js"></script>
+            <script src="/static/js/jquery.magnific-popup.min.js"></script>
+            <script src="/static/js/jquery.slicknav.js"></script>
+            <script src="/static/js/owl.carousel.min.js"></script>
+            <script src="/static/js/jquery.nice-select.min.js"></script>
+            <script src="/static/js/mixitup.min.js"></script>
+            <script src="/static/js/main.js"></script>
+            <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+                integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+
+            <script>
+                $(document).ready(function (rt) {
+                    displaycontact()
+                })
+
+                function addtocontact() {
+                    var fname = $("#fname").val()
+                    var lname = $("#lname").val()
+                    var email = $("#email").val()
+                    var subject = $("#subject").val()
+                    var area = $("#area").val()
+                    var phone = $("#phone").val()
+                    var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val()
+
+                    $.post('addcontact', { csrfmiddlewaretoken, fname, lname, email, subject, area, phone }, function (rt) {
+                        alert(rt)
+                        displaycontact()
+                    })
+
+                }
+
+                function displaycontact() {
+                    $.get('displaycontact', {}, function (rt) {
+                        let row = ""
+
+                        if (rt.co.length > 0) {
+                            rt.co.map(ele => {
+                                    row += ` <tr> 
+                
+                        <td>${ele.id}</td>
+                        <td>${ele.fname}</td>
+                        <td>${ele.lname}</td>
+                        <td>${ele.email}</td>
+                        <td>${ele.subject}</td>
+                        <td>${ele.area}</td>
+                        <td>${ele.phone}</td>
+                    </tr>`
+                                })
+                            } else {
+                                row = `
+                <tr>
+                    <td colspan="7" style="text-align:center;">No Data Found</td>
+                </tr>`
+                        }
+
+                        $("#tdata").html(row)
+                    })
+                }
+
+
+
+            </script>
 </body>
 
 </html>

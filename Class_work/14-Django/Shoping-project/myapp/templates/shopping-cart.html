@@ -157,15 +157,32 @@
                             </td>
                             <td class="price-col">RS : {{c.product.price}}</td>
                             <td class="quantity-col">
-                        
-                                    <input type="text" value="{{c.qty}}" onchange="changeqty(value,'{{c.id}}')" style="border: 1px solid rgb(151, 148, 148); border-radius: 50px;text-align: center;">
-                              
+
+                                <input type="text" value="{{c.qty}}" onchange="changeqty(value,'{{c.id}}')"
+                                    style="border: 1px solid rgb(151, 148, 148); border-radius: 50px;text-align: center;">
+
                             </td>
                             <td class="total">Rs : {{c.total_price}}</td>
                             <td class="product-close" onclick="deleteitems('{{c.id}}')">x</td>
                         </tr>
                         {%endfor%}
                     </tbody>
+                </table>
+            </div>
+            <div class="total-table">
+                <table style="width:100%; border:1px solid #c5c3c3; ">
+                    <tr>
+                        <th style="padding:10px; text-align:left;">Subtotal</th>
+                        <td style="padding:10px; text-align:right;"> {{total}}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding:10px; text-align:left;">Shipping</th>
+                        <td style="padding:10px; text-align:right;">Free</td>
+                    </tr>
+                    <tr style="border-top:2px solid #000;">
+                        <th style="padding:10px; text-align:left;">Total</th>
+                        <td style="padding:10px; text-align:right;"><b id="amt"> {{total}}</b></td>
+                    </tr>
                 </table>
             </div>
 
@@ -182,7 +199,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 text-right">
-                                            <a href="#" class="primary-btn chechout-btn">Proceed to checkout</a>
+                                            <button  class="primary-btn chechout-btn"  id="rzp-button1">Proceed to
+                                                checkout</button>
                                         </div>
                                     </div>
                                 </div>
@@ -211,19 +229,78 @@
 </body>
 <script>
     function deleteitems(cid) {
-        $.get('remove',{cid},function(rt){
-             alert(rt)
+        $.get('remove', { cid }, function (rt) {
+            alert(rt)
             location.reload()
-           
+
         })
     }
 
-    function changeqty(qty,cid){
-        $.get('changeqty',{qty,cid},function(rt){
+    function changeqty(qty, cid) {
+        $.get('changeqty', { qty, cid }, function (rt) {
             location.reload()
         })
 
     }
 </script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <script>
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+
+            e.preventDefault();
+            var amt = $("#amt").html()
+           
+            $.get("payment", { amt }, function (rt) {
+
+                var options = {
+                    "key": "rzp_test_STS6r0jEAzoi7U", 
+                    "amount": rt.amount, 
+                    "currency": "INR",
+                    "name": "Jenil",
+                    "description": "Test Transaction",
+                    "image": "https://example.com/your_logo",
+                    "order_id": rt.id,
+                    "handler": function (response) {
+                        // alert(response.razorpay_payment_id);
+                        // alert(response.razorpay_order_id);
+                        // alert(response.razorpay_signature)
+                        $.get('makeorder',{'payid':response.razorpay_payment_id},function(rt){
+                            alert(rt)
+                            location.reload()
+                        })
+                    },
+                    "prefill": {
+                        "name": "<name>",
+                        "email": "<email>",
+                        "contact": "<phone>"
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    alert(response.error.code);
+                    alert(response.error.description);
+                    alert(response.error.source);
+                    alert(response.error.step);
+                    alert(response.error.reason);
+                    alert(response.error.metadata.order_id);
+                    alert(response.error.metadata.payment_id);
+                });
+
+
+                rzp1.open();
+            })
+
+
+        }
+    </script>
 
 </html>
