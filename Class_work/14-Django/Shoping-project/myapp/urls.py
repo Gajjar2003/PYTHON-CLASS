@@ -21,6 +21,9 @@ urlpatterns = [
     path("addcontact",addcontact,name="addcontact"),
     path("displaycontact",displaycontact,name="displaycontact"),
       path("payment",payment,name="payment"),
-      path("makeorder",makeorder,name="makeorder")
+      path("makeorder",makeorder,name="makeorder"),
+      # path("address",address,name="address"),
+ 
+   
    
 ]

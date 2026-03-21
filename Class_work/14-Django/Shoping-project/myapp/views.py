@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,JsonResponse
 import razorpay
 import datetime
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -58,7 +60,8 @@ def displaycontact(request):
 
 @login_required(login_url="user-login")
 def check_out(request):
-    return render(request,"check-out.html")
+    orders =Order.objects.filter(user=request.user)
+    return render(request,"check-out.html",{"orders":orders})
 
 
 
@@ -177,17 +180,146 @@ def payment(request):
     return JsonResponse(payment)
 
 def makeorder(request):
-    payid = request.GET['payid']
-    date  = datetime.datetime.now()
+  
+    payid = request.GET.get('payid')
     user = request.user
 
     carts = Cart.objects.filter(user=user)
-    sum = 0
+   
+    total = 0
     for i in carts:
-        sum+=i.total_price()
-        order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+        total += i.total_price()
 
+    order = Order.objects.create( user=user,date=datetime.datetime.now(),total=total,payid=payid)
+    rows = ""
+    count = 0
+    for c in carts:
+        Orderdetalis.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price )
+        rows +=f"<tr><td>{count}</td><td>{c.product.name}</td><td>{c.product.price}</td><td>{c.qty}</td><td>{c.total_price()}</td></tr>"
+        count+=1
+
+
+    carts.delete()
+    table = f"Pay-ID: {order.payid} |Type: {order.paytype} |Status:{order.status}</span></div>|Date:</strong> {order.date}|Total:</strong> ₹{order.total}<table border='1px'<tr><th>ID</th><th>Product</th><th>Qty</th><th>Price</th><th>Total</th> </tr></thead><tbody>{rows} </tbody> </table>"
+
+    try:
+            send_mail("Order Confimations", "You Order placed successfully done !!", settings.EMAIL_HOST_USER, [user.email],html_message=table)
+          
+    except Exception as e:
+            print(e)
+
+
+    return HttpResponse("Order successfully done !!")
+
+
+# # def address(request):
+#     if request.method == 'POST':
+#         fname = request.POST['fname']
+#         lname = request.POST['lname']
+#         address = request.POST['address']
+#         app = request.POST['app']
+#         city = request.POST['city']
+#         country = request.POST['country']
+#         pincode = request.POST['pincode']
+#         phone = request.POST['phone']
+
+#         Address.objects.create(fname=fname,lname=lname,address=address,app=app,city=city,country=country,pincode=pincode,phone=phone)
+#         return render(request,"check-out.html")
+    
+
+    if request.method == 'POST':
+
+        user = request.user
+
+        
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        app = request.POST.get('app')
+        city = request.POST.get('city')
+        country = request.POST.get('country')
+        pincode = request.POST.get('picode')   
+        phone = request.POST.get('phone')
+
+        if not pincode:
+            return HttpResponse("Pincode required ❌")
+
+        
+        addr = Address.objects.create(
+            user=user,
+            fname=fname,
+            lname=lname,
+            address=address,
+            app=app,
+            city=city,
+            country=country,
+            pincode=pincode,
+            phone=phone
+        )
+
+    
+        carts = Cart.objects.filter(user=user)
+
+        if not carts.exists():
+            return HttpResponse("Cart is empty ❌")
+
+
+        total = 0
+        for i in carts:
+            total += i.total_price()
+
+
+        order = Order.objects.create(
+            user=user,
+            date=datetime.datetime.now(),
+            total=total,
+            payid="TEST123"   
+        )
+
+      
         for c in carts:
-                Orderdetalis.objects.create(order=order,product=c.product,qty=c.qty,price =c.product.price)
-                c.delete()
-    return HttpResponse("Order placed successfully done !!")
+            Orderdetalis.objects.create(
+                order=order,
+                product=c.product,
+                qty=c.qty,
+                price=c.product.price
+            )
+
+        carts.delete()
+
+        # ✅ EMAIL MESSAGE
+        message = f"""
+Hello {fname} {lname},
+
+Your Order is Confirmed 🎉
+
+Order ID: {order.payid}
+Total: ₹{order.total}
+
+Address:
+{address}, {city}, {country}
+Pincode: {pincode}
+Phone: {phone}
+
+Products:
+"""
+
+        for item in order.items.all():
+            message += f"\n- {item.product.name} | Qty: {item.qty} | ₹{item.price}"
+
+        # ✅ SEND EMAIL
+        try:
+            send_mail(
+                "Order Confirmation",
+                message,
+                settings.EMAIL_HOST_USER,
+                [user.email],
+                fail_silently=False
+            )
+        except Exception as e:
+            print("EMAIL ERROR:", e)
+
+        return HttpResponse("✅ Order + Email Sent Successfully")
+
+
+   

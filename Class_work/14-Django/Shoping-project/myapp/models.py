@@ -43,14 +43,28 @@ class Order(models.Model):
     total = models.FloatField()
     status = models.CharField(max_length=50,default="pedding")
     paytype = models.CharField(max_length=50,default="online")
-    payid = models.CharField(max_length=50)
+    payid = models.CharField(max_length=50,unique=True)
 
 
 class Orderdetalis(models.Model):
-    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name="items")
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     qty = models.IntegerField()
     price = models.FloatField()
+
+    def total_price(self):
+        return  self.price*self.qty
+    
+class Address(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    fname = models.CharField(max_length=50)
+    lname = models.CharField(max_length=50)
+    address = models.CharField(max_length=100)
+    app = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    pincode = models.CharField(max_length=10, null=True, blank=True)
+    phone = models.IntegerField()
 
 
 
