@@ -8,7 +8,7 @@ import razorpay
 import datetime
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.core.mail import EmailMultiAlternatives
 
 
 @login_required(login_url="user-login")
@@ -200,10 +200,10 @@ def makeorder(request):
 
 
     carts.delete()
-    table = f"Pay-ID: {order.payid} |Type: {order.paytype} |Status:{order.status}</span></div>|Date:</strong> {order.date}|Total:</strong> ₹{order.total}<table border='1px'<tr><th>ID</th><th>Product</th><th>Qty</th><th>Price</th><th>Total</th> </tr></thead><tbody>{rows} </tbody> </table>"
+    table = f"Pay-ID: {order.payid} |Type: {order.paytype} | Status:{order.status}</span></div>| Date:</strong> {order.date}| Total:</strong> ₹{order.total}<table border='1px'<tr><th>ID</th><th>Product</th><th>Qty</th><th>Price</th><th>Total</th> </tr></thead><tbody>{rows} </tbody> </table>"
 
     try:
-            send_mail("Order Confimations", "You Order placed successfully done !!", settings.EMAIL_HOST_USER, [user.email],html_message=table)
+        send_mail("Order Confimations", "You Order placed successfully done !!", settings.EMAIL_HOST_USER, [user.email],html_message=table)
           
     except Exception as e:
             print(e)
@@ -211,115 +211,68 @@ def makeorder(request):
 
     return HttpResponse("Order successfully done !!")
 
-
-# # def address(request):
-#     if request.method == 'POST':
-#         fname = request.POST['fname']
-#         lname = request.POST['lname']
-#         address = request.POST['address']
-#         app = request.POST['app']
-#         city = request.POST['city']
-#         country = request.POST['country']
-#         pincode = request.POST['pincode']
-#         phone = request.POST['phone']
-
-#         Address.objects.create(fname=fname,lname=lname,address=address,app=app,city=city,country=country,pincode=pincode,phone=phone)
-#         return render(request,"check-out.html")
-    
-
+def address(request):
     if request.method == 'POST':
-
         user = request.user
 
-        
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
-        address = request.POST.get('address')
+        address_line = request.POST.get('address')
         app = request.POST.get('app')
         city = request.POST.get('city')
         country = request.POST.get('country')
-        pincode = request.POST.get('picode')   
+        pincode = request.POST.get('pincode')
         phone = request.POST.get('phone')
 
-        if not pincode:
-            return HttpResponse("Pincode required ❌")
+        Address.objects.create(user=user,fname=fname,lname=lname,address=address_line, app=app,city=city,country=country,pincode=pincode,phone=phone)
+
+        try:
+            subject = "Order Confirmation"
+            from_email = settings.EMAIL_HOST_USER
+            to = [user.email]
+
+
+            text_content = f"""
+            Your order has been placed successfully!
+
+            Name: {fname} {lname}
+            Phone: {phone}
+            Address: {address_line}, {city}, {country} - {pincode}
+            """
+
+            html_content = f"""
+            <h2>Order Confirmation</h2>
+
+            <p>Your order has been placed successfully! 🎉</p>
+
+            <h3>Customer Details:</h3>
+            <ul>
+                <li><b>Name:</b> {fname} {lname}</li>
+                <li><b>Email:</b> {user.email}</li>
+                <li><b>Phone:</b> {phone}</li>
+                <li><b>Address:</b> {address_line},
+                  <li><b>City:</b> {city}, 
+                    <li><b>Country:</b> {country} - {pincode}</li>
+            </ul>
+
+            <br>
+            <p>Thank you for shopping with us ❤️</p>
+            """
+
+          
+            email = EmailMultiAlternatives(subject, text_content, from_email, to)
+            email.attach_alternative(html_content, "text/html")
+            email.send()
+        except Exception as e:
+            print("Email Error:", e)
+        return render(request, "check-out.html")
+    return render(request, "check-out.html")
+
+def forgotpass(request):
+    return render(request,"forgot.html")
+
+
+
+
 
         
-        addr = Address.objects.create(
-            user=user,
-            fname=fname,
-            lname=lname,
-            address=address,
-            app=app,
-            city=city,
-            country=country,
-            pincode=pincode,
-            phone=phone
-        )
-
-    
-        carts = Cart.objects.filter(user=user)
-
-        if not carts.exists():
-            return HttpResponse("Cart is empty ❌")
-
-
-        total = 0
-        for i in carts:
-            total += i.total_price()
-
-
-        order = Order.objects.create(
-            user=user,
-            date=datetime.datetime.now(),
-            total=total,
-            payid="TEST123"   
-        )
-
-      
-        for c in carts:
-            Orderdetalis.objects.create(
-                order=order,
-                product=c.product,
-                qty=c.qty,
-                price=c.product.price
-            )
-
-        carts.delete()
-
-        # ✅ EMAIL MESSAGE
-        message = f"""
-Hello {fname} {lname},
-
-Your Order is Confirmed 🎉
-
-Order ID: {order.payid}
-Total: ₹{order.total}
-
-Address:
-{address}, {city}, {country}
-Pincode: {pincode}
-Phone: {phone}
-
-Products:
-"""
-
-        for item in order.items.all():
-            message += f"\n- {item.product.name} | Qty: {item.qty} | ₹{item.price}"
-
-        # ✅ SEND EMAIL
-        try:
-            send_mail(
-                "Order Confirmation",
-                message,
-                settings.EMAIL_HOST_USER,
-                [user.email],
-                fail_silently=False
-            )
-        except Exception as e:
-            print("EMAIL ERROR:", e)
-
-        return HttpResponse("✅ Order + Email Sent Successfully")
-
-
-   

@@ -134,7 +134,7 @@
     <section class="cart-total-page spad">
         <div class="container">
 
-            <form action="" class="checkout-form" method="post">
+            <form action="{% url 'address'%}" class="checkout-form" method="post">
                 {%csrf_token%}
 
                 <!-- Heading -->
@@ -170,7 +170,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Post Code / ZIP" name="picode" required>
+                           <input type="text" name="pincode" placeholder="Enter pincode" class="form-control>
                         </div>
 
                         <div class="mb-4">
@@ -245,7 +245,7 @@
 
         <!-- Button -->
         <div class="col-lg-12 text-center mt-4">
-            <button type="submit" class="btn btn-dark px-5">Place your order</button>
+            <button type="submit" class="btn btn-dark px-5"  >Place your order</button>
         </div>
 
         </div>
@@ -273,6 +273,8 @@
             <script src="js/jquery.nice-select.min.js"></script>
             <script src="js/mixitup.min.js"></script>
             <script src="js/main.js"></script>
+            
+ 
 </body>
 
 </html>

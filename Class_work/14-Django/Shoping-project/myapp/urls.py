@@ -22,7 +22,9 @@ urlpatterns = [
     path("displaycontact",displaycontact,name="displaycontact"),
       path("payment",payment,name="payment"),
       path("makeorder",makeorder,name="makeorder"),
-      # path("address",address,name="address"),
+      path("address",address,name="address"),
+      path("forgotpass",forgotpass,name="forgotpass"),
+    
  
    
    

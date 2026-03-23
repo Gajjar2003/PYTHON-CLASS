@@ -44,6 +44,7 @@ class Order(models.Model):
     status = models.CharField(max_length=50,default="pedding")
     paytype = models.CharField(max_length=50,default="online")
     payid = models.CharField(max_length=50,unique=True)
+    
 
 
 class Orderdetalis(models.Model):
@@ -63,7 +64,7 @@ class Address(models.Model):
     app = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    pincode = models.CharField(max_length=10, null=True, blank=True)
+    pincode = models.IntegerField()
     phone = models.IntegerField()
 
 
