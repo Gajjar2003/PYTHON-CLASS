@@ -24,6 +24,8 @@ urlpatterns = [
       path("makeorder",makeorder,name="makeorder"),
       path("address",address,name="address"),
       path("forgotpass",forgotpass,name="forgotpass"),
+      path("send-mail",send_mail_view,name="send-mail"),
+      path("password-recovery",password_recovery,name="password-recovery")
     
  
    

@@ -75,40 +75,53 @@ def blog(request):
     return render(request,"blog.html")
 
 def register(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         if User.objects.filter(username=username).exists():
-            return render(request,"user-register.html",{'err':'User already exists ??'})
-        else:
-        
-            u = User.objects.create(first_name=name,email=email,username=username)
-            u.set_password(password)
-            u.save()
+            return render(request, "user-register.html", {
+                'err': 'User already exists'
+            })
 
-    return render(request,"user-register.html",{'meg':'User successfully done !!'})
+        u = User.objects.create(
+            first_name=name,
+            email=email,
+            username=username
+        )
+        u.set_password(password)
+        u.save()
+
+        return render(request, "user-register.html", {
+            'meg': 'User registered successfully'
+        })
+
+
+    return render(request, "user-register.html")
+
+
 
 def user_login(request):
-    if request.method =='POST':
+    if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        u = authenticate(username=username,password=password)
-        if u is None:
-            return render(request,"user-login.html",{'err':'Invalid Username and Password ??'})
-        else:
-            login(request,u)
+        user = authenticate(username=username, password=password)
+
+        if user:
+            login(request, user)
             return redirect('index')
 
-    return render(request,"user-login.html")
+        return render(request, "user-login.html", {'err': 'Invalid Username or Password'})
+
+    return render(request, "user-login.html")
 
 
 def user_logout(request):
     logout(request)
-    return redirect('user-login')  
+    return redirect('user-login')
 
 
 def getcategory(request):
@@ -125,23 +138,22 @@ def getproduct(request):
         return JsonResponse({'products':list(products.values())})
     
 def addtocart(request):
-    pid = request.GET['pid']
-    product=Product.objects.get(pk=pid)
+    pid = request.GET.get('pid')
+    product = Product.objects.get(pk=pid)
     user = request.user
 
-    if user .is_anonymous:
-            return HttpResponse(user)
+    if user.is_anonymous:
+        return redirect('user-login')  
+
+    cart_item = Cart.objects.filter(user=user, product=product).first()
+
+    if cart_item:
+        cart_item.qty += 1
+        cart_item.save()
     else:
-        isexist = Cart.objects.filter(user=user,product=product)
-        if len(isexist) >= 1:
-            isexist[0].qty = isexist[0].qty + 1
-            isexist[0].save()  
-            return HttpResponse("Product added into cart successfully !!")
-                
-        else:
-                Cart.objects.create(product=product,qty=1,user=user)
-                return HttpResponse("Product added into cart successfully !!")
-    
+        Cart.objects.create(product=product, qty=1, user=user)
+
+    return HttpResponse("Product added into cart successfully !!")
 
 @login_required(login_url="user-login")
 def shopping_cart(request):
@@ -268,11 +280,40 @@ def address(request):
         return render(request, "check-out.html")
     return render(request, "check-out.html")
 
+
 def forgotpass(request):
-    return render(request,"forgot.html")
+    return render(request, "forgot.html")
 
 
 
+def send_mail_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user = User.objects.filter(email=email).first()
+
+        if not user:
+            return render(request, "forgot.html", {'err': 'Email not registered'})
+        send_mail(
+            "Password Recovery",f"http://127.0.0.1:8000/password-recovery?email={email}",settings.EMAIL_HOST_USER, [email])
+        return render(request, "forgot.html", {'meg': 'Mail sent successfully !!!'})
+
+    return render(request, "forgot.html")
 
 
+def password_recovery(request):
+    email = request.GET.get('email')  
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = User.objects.filter(email=email).first()
+
+        if user:
+            user.set_password(password)
+            user.save()
+            return redirect('user-login')
+        else:
+            return render(request, "passwordset.html", {"err": "User with this email does not exist","email": email })
+    return render(request, "password-recovery.html", {"email": email})
         
