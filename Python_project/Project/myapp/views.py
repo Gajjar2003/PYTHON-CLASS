@@ -1,0 +1,26 @@
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return render(request,"index.html")
+
+def blog_details(request):
+    return render(request,"blog-details.html")
+
+def blog(request):
+    return render(request,"blog.html")
+
+def checkout(request):
+    return render(request,"checkout.html")
+
+def contact(request):
+    return  render(request,"contact.html")
+
+def shop(request):
+    return render(request,"shop.html")
+
+def shop_cart(request):
+    return render(request,"shop-cart.html")
+
+def product_details(request):
+    return render(request,"product-details.html")
