@@ -2,10 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from myapp.models import *
+from django.http import HttpResponse,JsonResponse
 
 
 def index(request):
-    return render(request,"index.html")
+    categorys = Category.objects.all()
+    return render(request,"index.html",{'categorys':categorys})
 
 @login_required(login_url="user-login")
 def blog_details(request):
@@ -25,6 +28,8 @@ def contact(request):
 
 @login_required(login_url="user-login")
 def shop(request):
+    # categorys = Category.objects.all()
+    # products = Product.objects.all()
     return render(request,"shop.html")
 
 @login_required(login_url="user-login")
@@ -70,3 +75,12 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return render(request,"user-login.html")
+
+
+def getcategory(request):
+        categorys = Category.objects.all()
+        return JsonResponse({'categorys':list(categorys.values())})
+
+def getproduct(request):
+        products = Product.objects.all()
+        return JsonResponse({'products':list(products.values())})
