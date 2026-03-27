@@ -34,11 +34,10 @@ def shop(request):
 
 @login_required(login_url="user-login")
 def shop_cart(request):
-    return render(request,"shop-cart.html")
+    carts = Cart.objects.filter(user=request.user)
+    return render(request,"shop-cart.html",{'carts':carts})
 
-@login_required(login_url="user-login")
-def product_details(request):
-    return render(request,"product-details.html")
+
 
 
 def register(request):
@@ -82,5 +81,33 @@ def getcategory(request):
         return JsonResponse({'categorys':list(categorys.values())})
 
 def getproduct(request):
-        products = Product.objects.all()
-        return JsonResponse({'products':list(products.values())})
+        catid = request.GET['catid']
+        if int(catid) > 0 :
+            products = Product.objects.filter(category_id=catid)
+            return JsonResponse({'products':list(products.values())})
+        else:
+            products = Product.objects.all()
+            return JsonResponse({'products':list(products.values())})
+
+def addtocart(request):
+    pid = request.GET['pid']
+    product = Product.objects.get(pk=pid)
+    user = request.user
+
+    if user.is_anonymous:
+        return HttpResponse(user)
+    else:
+        isexist = Cart.objects.filter(user=user,product=product)
+        if(len(isexist)>=1):
+            isexist[0].qty =  isexist[0].qty+1
+            isexist[0].save()
+            return HttpResponse("Product into cart successfully done !!!")
+        else:
+            Cart.objects.create(product=product,user=user,qty=1)
+            return HttpResponse("Product into cart successfully done !!!")
+
+def removeitems(request):
+    cid = request.GET['cid']
+    c = Cart.objects.get(pk=cid)
+    c.delete()
+    return HttpResponse("Products Deleted into Cart")

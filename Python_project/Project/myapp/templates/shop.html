@@ -71,10 +71,10 @@
         <ul class="offcanvas__widget">
             <li><span class="icon_search search-switch"></span></li>
             <li><a href="#"><span class="icon_heart_alt"></span>
-                    <div class="tip">2</div>
+                  
                 </a></li>
-            <li><a href="#"><span class="icon_bag_alt"></span>
-                    <div class="tip">2</div>
+               <li><a href="{% url 'shop-cart'%}"><span class="icon_bag_alt"></span>
+                    
                 </a></li>
         </ul>
         <div class="offcanvas__logo">
@@ -105,7 +105,7 @@
                             <li><a href="{%url 'shop'%}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="{% url 'product-details'%}">Product Details</a></li>
+                                 
                                     <li><a href="{% url 'shop-cart'%}">Shop Cart</a></li>
                                     <li><a href="{% url 'checkout'%}">Checkout</a></li>
                                     <li><a href="{% url 'blog-details'%}">Blog Details</a></li>
@@ -132,12 +132,12 @@
                             {% endif %}
                         </div>
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch"></span></li>
+                      
                             <li><a href="#"><span class="icon_heart_alt"></span>
-                                    <div class="tip">2</div>
+                                    
                                 </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
-                                    <div class="tip">2</div>
+               <li><a href="{% url 'shop-cart'%}"><span class="icon_bag_alt"></span>
+                                   
                                 </a></li>
                         </ul>
                     </div>
@@ -354,7 +354,7 @@
             $.get('getcategory',{},function(rt){
                 row = ""
                 rt.categorys.map(ele =>{
-                    row+=` <div class="col-md-4 category-box">
+                    row+=` <div class="col-md-4 category-box" onclick=' getproduct(${ele.id})'>
                     <img src="/media/${ele.image}" class="img-fluid">
                     <div class="category-text">${ele.name}</div>
                 </div>`
@@ -363,8 +363,11 @@
             })
         }
 
-     function getproduct() {
-    $.get('/getproduct', function (rt) {
+     function getproduct(catid) {
+    if (catid  == undefined){
+        catid = 0
+    }
+    $.get('getproduct',{catid}, function (rt) {
 
         var rows = "";
 
@@ -372,16 +375,18 @@
             rows += `
             <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                 <div class="product__item">
-
+                    
                     <div class="product__item__pic set-bg" style="background-image:url('/media/${ele.image}')">
                         <ul class="product__hover">
                             <li>
+                              
                                 <a href="/media/${ele.image}" class="image-popup">
                                     <span class="arrow_expand"></span>
                                 </a>
+                                </a>
                             </li>
                             <li><a ><span class="icon_heart_alt"></span></a></li>
-                            <li><a ><span class="icon_bag_alt"></span></a></li>
+                            <li><a ><span class="icon_bag_alt" onclick='addtocart(${ele.id})'></span></a></li>
                         </ul>
                     </div>
 
@@ -396,7 +401,7 @@
                             <i class="fa fa-star"></i>
                         </div>
 
-                        <div class="product__price">₹${ele.price}</div>
+                        <div class="product__price">Rs : ${ele.price}</div>
                     </div>
 
                 </div>
@@ -406,6 +411,19 @@
 
         $("#pdata").html(rows);
     });
+}
+
+function addtocart(pid)
+{
+    $.get('addtocart',{pid},function(rt){
+       if (rt == 'AnonymousUser')
+       {
+        location.href('user-login')
+       }
+       else{
+        alert(rt)
+       }
+    })
 }
     </script>
 </body>

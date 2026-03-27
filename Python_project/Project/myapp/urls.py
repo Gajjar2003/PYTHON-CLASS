@@ -9,11 +9,13 @@ urlpatterns =[
     path("contact",contact,name="contact"),
     path("shop",shop,name="shop"),
     path("shop-cart",shop_cart,name="shop-cart"),
-    path("product-details",product_details,name="product-details"),
+    
     path("register",register,name="register"),
     path("user-login",user_login,name="user-login"),
     path("user-logout",user_logout,name="user-logout"),
 
     path("getcategory",getcategory,name="getcategory"),
-    path("getproduct",getproduct,name="getproduct")
+    path("getproduct",getproduct,name="getproduct"),
+    path("addtocart",addtocart,name="addtocart"),
+    path("removeitems",removeitems,name="removeitems")
 ]

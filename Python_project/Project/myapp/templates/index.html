@@ -58,6 +58,19 @@
             -webkit-text-fill-color: transparent;
             margin: 40px 0;
         }
+        .offcanvas-menu-wrapper {
+    position: fixed;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background: #f3efef;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.offcanvas-menu-wrapper.active {
+    left: 0;
+}
     </style>
 </head>
 
@@ -84,7 +97,7 @@
                             <li><a href="{%url 'shop'%}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="{% url 'product-details'%}">Product Details</a></li>
+                                   
                                     <li><a href="{% url 'shop-cart'%}">Shop Cart</a></li>
                                     <li><a href="{% url 'checkout'%}">Checkout</a></li>
                                     <li><a href="{% url 'blog-details'%}">Blog Details</a></li>
@@ -115,17 +128,21 @@
                                 <li><a href="#"><span class="icon_heart_alt"></span>
 
                                     </a></li>
-                                <li><a href="#"><span class="icon_bag_alt"></span>
+                         <li><a href="{% url 'shop-cart'%}"><span class="icon_bag_alt"></span>
 
                                     </a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="canvas__open">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </div>
+     <div class="canvas__open">
+    <i class="fa fa-bars"></i>
+</div>
+
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <div id="mobile-menu-wrap"></div>
+</div>
     </header>
     <!-- Header Section End -->
 
@@ -638,6 +655,15 @@
     <script src="/static/js/owl.carousel.min.js"></script>
     <script src="/static/js/jquery.nicescroll.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script>
+    $(".canvas__open").on('click', function () {
+        $(".offcanvas-menu-wrapper").addClass("active");
+    });
+
+    $(".offcanvas__close").on('click', function () {
+        $(".offcanvas-menu-wrapper").removeClass("active");
+    });
+</script>
 </body>
 
 </html>

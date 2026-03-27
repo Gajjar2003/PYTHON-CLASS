@@ -48,7 +48,7 @@
                             <li><a href="{%url 'shop'%}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="{% url 'product-details'%}">Product Details</a></li>
+                               
                                     <li><a href="{% url 'shop-cart'%}">Shop Cart</a></li>
                                     <li><a href="{% url 'checkout'%}">Checkout</a></li>
                                     <li><a href="{% url 'blog-details'%}">Blog Details</a></li>
@@ -66,12 +66,12 @@
                             <a href="{% url 'register'%}">Register</a>
                         </div>
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch"></span></li>
+                       
                             <li><a href="#"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
+                            
                             </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                                 <li><a href="{% url 'shop-cart'%}"><span class="icon_bag_alt"></span>
+                              
                             </a></li>
                         </ul>
                     </div>
