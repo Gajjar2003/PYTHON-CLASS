@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from myapp.models import *
 from django.http import HttpResponse,JsonResponse
+import razorpay,datetime
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 def index(request):
@@ -20,7 +23,9 @@ def blog(request):
 
 @login_required(login_url="user-login")
 def checkout(request):
-    return render(request,"checkout.html")
+    orders = Order.objects.filter(user=request.user)
+
+    return render(request,"checkout.html",{'orders':orders})
 
 @login_required(login_url="user-login")
 def contact(request):
@@ -35,8 +40,15 @@ def shop(request):
 @login_required(login_url="user-login")
 def shop_cart(request):
     carts = Cart.objects.filter(user=request.user)
-    return render(request,"shop-cart.html",{'carts':carts})
+    total = 0
 
+    for c in carts:
+        total += c.total_price()
+
+    return render(request, "shop-cart.html", {
+        'carts': carts,
+        'total': int(total)
+    })
 
 
 
@@ -70,7 +82,7 @@ def user_login(request):
             return redirect('index')
     return render(request,"user-login.html")
 
-@login_required(login_url="user-login")
+
 def user_logout(request):
     logout(request)
     return render(request,"user-login.html")
@@ -111,3 +123,138 @@ def removeitems(request):
     c = Cart.objects.get(pk=cid)
     c.delete()
     return HttpResponse("Products Deleted into Cart")
+
+def changeqty(request):
+    cid = request.GET['cid']
+    qty = request.GET['qty']
+    c = Cart.objects.get(pk=cid)
+    if int(qty)<=0:
+        c.delete()
+    else:
+        c.qty = qty
+        c.save()
+    return HttpResponse("Cart update in Products")
+
+
+def payment(request):
+    amt = request.GET['amt']
+    client = razorpay.Client(auth=("rzp_test_STS6r0jEAzoi7U", "qd2x98bvF2IOQvAKgNv34Qi7"))
+
+    
+    data = { "amount": int(amt)*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) 
+    
+    return JsonResponse(payment)
+
+def makeorder(request):
+    payid = request.GET['payid']
+    date = datetime.datetime.now()
+    user = request.user
+
+    carts = Cart.objects.filter(user=user)
+    sum = 0
+    for i in carts:
+        sum+=i.total_price()
+
+    order = Order.objects.create(user=user,date=date,total=sum,payid=payid)
+
+    for c in carts:
+        Orderdetails.objects.create(order=order,product=c.product,qty=c.qty,price=c.product.price)
+        c.delete()
+
+    return HttpResponse("Oredr placed successfully !!")
+
+
+def checkout(request):
+    orders = Order.objects.all()  
+
+    subtotal = 0
+    for od in orders:
+        for item in od.items.all():
+            subtotal += item.total_price()
+
+    total = subtotal
+
+    if request.method == "POST":
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        notes = request.POST.get('notes')
+
+      
+        message = f"""
+==============================
+        BILLING DETAILS
+==============================
+Name: {fname} {lname}
+Address: {address}, {city}, {state} - {zip_code}
+Phone: {phone}
+Email: {email}
+Notes: {notes}
+
+==============================
+        ORDER DETAILS
+==============================
+"""
+
+        for od in orders:
+            message += f"\nOrder ID: {od.id} | PayID: {od.payid}\n"
+
+            order_total = 0
+
+            for item in od.items.all():
+                price = item.total_price()
+                order_total += price
+
+                message += f"{item.product.name} - Qty:{item.qty} - ₹{price}\n"
+
+            message += f"Order Total: ₹{order_total}\n"
+            message += "--------------------------\n"
+
+        message += f"\nFINAL TOTAL: ₹{total}"
+
+      
+        send_mail(
+            subject="Your Order Confirmation",
+            message=message,
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+        )
+
+      
+        for od in orders:
+            od.items.all().delete()
+        orders.delete()
+        request.session['order_success'] = "Order placed successfully!"
+        return redirect('index')
+
+    # ================= SUCCESS MESSAGE =================
+    success_msg = request.session.pop('order_success', None)
+
+    return render(request, 'checkout.html', {
+        'orders': orders,
+        'subtotal': subtotal,
+        'total': total,
+        'success_msg': success_msg
+    })
+
+
+def addcontact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+
+        message = request.POST.get('message')
+
+        Contact.objects.create(name=name,email=email,message=message)
+    return HttpResponse("Contact add into Website !!")
+
+
+def diaplay(request):
+    con = Contact.objects.all()
+    return JsonResponse({'con':list(con.values())})

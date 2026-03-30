@@ -17,5 +17,13 @@ urlpatterns =[
     path("getcategory",getcategory,name="getcategory"),
     path("getproduct",getproduct,name="getproduct"),
     path("addtocart",addtocart,name="addtocart"),
-    path("removeitems",removeitems,name="removeitems")
+    path("removeitems",removeitems,name="removeitems"),
+    path("changeqty",changeqty,name="changeqty"),
+
+    path("payment",payment,name="payment"),
+    path("makeorder",makeorder,name="makeorder"),
+    path('checkout', checkout, name='checkout'),
+
+    path("addcontact",addcontact,name="addcontact"),
+    path("diaplay",diaplay,name="diaplay")
 ]
