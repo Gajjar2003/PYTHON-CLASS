@@ -69,24 +69,24 @@ def register(request):
     return render(request,"register.html",{'meg':'successfully done !!'})
 
 def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        u = authenticate(username=username,password=password)
+        user = authenticate(request, username=username, password=password)
 
-        if u is None:
-            return render(request,"user-login.html",{'err':"Invalid Username and password ???"})
+        if user is not None:
+            login(request, user)
+            return redirect('index')   
         else:
-            login(request,u)
-            return redirect('index')
-    return render(request,"user-login.html")
+            return render(request, 'user-login.html', {'err': 'Invalid Username or Password'})
+
+    return render(request, 'user-login.html')
 
 
 def user_logout(request):
     logout(request)
-    return render(request,"user-login.html")
-
+    return redirect('index')
 
 def getcategory(request):
         categorys = Category.objects.all()
@@ -219,12 +219,7 @@ Notes: {notes}
         message += f"\nFINAL TOTAL: ₹{total}"
 
       
-        send_mail(
-            subject="Your Order Confirmation",
-            message=message,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[email],
-        )
+        send_mail(subject="Your Order Confirmation",message=message,from_email=settings.EMAIL_HOST_USER,recipient_list=[email],)
 
       
         for od in orders:
@@ -258,3 +253,39 @@ def addcontact(request):
 def diaplay(request):
     con = Contact.objects.all()
     return JsonResponse({'con':list(con.values())})
+
+def forgotpass(request):
+    return render(request,"forgotpass.html")
+
+def password_sendmail(request):
+    email = request.POST['email']
+    try:
+        user = User.objects.get(email=email)
+        send_mail("Password Recovery",f"http://127.0.0.1:8000/setpassword?email={email}", settings.EMAIL_HOST_USER,[email])
+        return render(request,'forgotpass.html',{'meg':'Mail send sucessfully !!'})
+    except Exception as e:
+        return render(request,'forgotpass.html',{'err':'Something went wrong ???'})
+    
+def setpassword(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('pass')
+        cpassword = request.POST.get('cpass')
+
+        print("EMAIL:", email)
+        print("PASSWORD:", password)
+
+        if password != cpassword:
+            return render(request, "setpassword.html", {"err": "Passwords do not match","email": email})
+
+        user = User.objects.filter(email=email).first()
+
+        if user:
+            user.set_password(password)
+            user.save()
+            return redirect('user-login')
+        else:
+            return render(request, "setpassword.html", {"err": "User not found","email": email})
+
+    email = request.GET.get('email')
+    return render(request, "setpassword.html", {"email": email})

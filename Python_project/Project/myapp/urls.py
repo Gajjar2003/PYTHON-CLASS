@@ -25,5 +25,9 @@ urlpatterns =[
     path('checkout', checkout, name='checkout'),
 
     path("addcontact",addcontact,name="addcontact"),
-    path("diaplay",diaplay,name="diaplay")
+    path("diaplay",diaplay,name="diaplay"),
+
+    path("forgotpass",forgotpass,name="forgotpass"),
+    path("password-sendmail",password_sendmail,name="password-sendmail"),
+    path("setpassword",setpassword,name="setpassword")
 ]
