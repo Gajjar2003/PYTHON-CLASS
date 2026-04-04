@@ -34,6 +34,8 @@
 
                     <form id="itemForm" method="post">
                         {% csrf_token %}
+
+                      <input type="hidden" id="id"  name="id">
                         <div class="mb-3">
                             <label class="form-label">Item Name</label>
                             <input type="text" class="form-control" id="name" name="name">
@@ -54,8 +56,11 @@
                             <input type="number" class="form-control" id="qty" name="qty">
                         </div>
 
-                        <button type="button" class="btn btn-primary w-100" onclick="addproduct()">
+                        <button type="button" class="btn btn-primary w-100" onclick="addproduct()" id="smbtn">
                             Add Item
+                        </button><br>
+                          <button type="button" class="btn btn-success w-100" onclick="updateitems()" id="upbtn">
+                            Update Item
                         </button>
                     </form>
                 </div>
@@ -98,6 +103,8 @@
     <script>
         $(document).ready(function (rt) {
             display()
+            $("#upbtn").hide()
+          
         })
 
         function addproduct() {
@@ -130,13 +137,65 @@
                             <td>${ele.category}</td>
                             <td>${ele.price}</td>
                             <td>${ele.qty}</td>
-                            <td><button>Delete</button></td>
-                            <td><button>Edit</button></td>
+                            <td><button onclick='deleteitems(${ele.id})'>Delete</button></td>
+                            <td><button onclick='edititems(${ele.id})'>Edit</button></td>
                         </tr>`
+                       
                 })
                 $("#tdata").html(row)
+
             })
         }
+
+        function deleteitems(pid){
+            $.get("delete",{pid},function(rt){
+                alert(rt)
+                display()
+            })
+        }
+
+        function edititems(pid){
+            $.get('edit',{pid},function(rt){
+
+                $("#id").val(rt.pro[0].id)
+                $("#name").val(rt.pro[0].name)
+                $("#category").val(rt.pro[0].category)
+                $("#price").val(rt.pro[0].price)
+                $("#qty").val(rt.pro[0].qty)
+                  
+               
+                $("#upbtn").show()
+                $("#smbtn").hide()
+
+            })
+        }
+      
+        function updateitems(){
+            var id  =  $("#id").val()
+            var name = $("#name").val()
+            var category = $("#category").val()
+            var price = $("#price").val()
+            var qty = $("#qty").val()
+            var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val()
+
+
+            $.post('update', { csrfmiddlewaretoken, id ,name, category, price, qty }, function (rt) {
+                alert(rt)
+                display()
+
+                $("#id").val("")
+                $("#name").val("")
+                $("#category").val("")
+                $("#price").val("")
+                $("#qty").val("")
+
+                  $("#upbtn").hide()
+                $("#smbtn").show()
+            })
+        }
+
+ 
+
     </script>
 
 </body>

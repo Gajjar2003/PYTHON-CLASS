@@ -4,8 +4,8 @@ from myapp.views import *
 urlpatterns = [
     path("",index,name="index"),
     path("register",register,name="register"),
-    path("display",display,name="display"),
-    path("delete",delete,name="delete"),
-    path("edit",edit,name="edit"),
+    path("displayitems",displayitems,name="displayitems"),
+    path("deleteitems",deleteitems,name="deleteitems"),
+    path("edititems",edititems,name="edititems"),
     path("update",update,name="update")
 ]
