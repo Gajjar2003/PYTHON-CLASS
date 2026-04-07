@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <title>Jenil Live Score-Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --neon-green: #39ff14;
+            --neon-red: #ff3131;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b, #0f172a, #020617);
+            color: #a7c1e4;
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 18px;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            text-transform: uppercase;
+        }
+
+        .stadium-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stadium-card::before {
+            content: "LIVE";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: var(--neon-red);
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .score-big {
+            font-size: 65px;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #ef9696, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+            margin: 10px 0;
+        }
+
+        /* 🔘 UPDATED CONTROLS GRID */
+        .controls-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Mobile friendly 3 columns */
+            gap: 15px;
+            margin-top: 25px;
+            justify-items: center;
+        }
+
+        .btn-pro {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            background: var(--glass);
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-pro:active { transform: scale(0.85); }
+
+        .btn-run { border-color: var(--neon-blue); color: var(--neon-blue); }
+        .btn-dot { border-color: #64748b; color: #64748b; } /* 0 button color */
+        .btn-boundary { border-color: #fbbf24; color: #fbbf24; }
+        .btn-out { border-color: var(--neon-red); color: var(--neon-red); }
+        .btn-extra { border-color: #a855f7; color: #a855f7; }
+
+        .ball-log {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: 900;
+            background: #334155;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .w-ball { background: var(--neon-red) !important; color: white; }
+        .b-ball { background: #fbbf24 !important; color: black; }
+        .dot-ball { background: #1e293b !important; color: #64748b; }
+
+        .form-pro {
+            background: rgba(246, 231, 231, 0.913) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            color: rgb(107, 103, 103) !important;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .winner-anim {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px var(--neon-green);
+            margin-top: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media(max-width:450px){
+            .btn-pro { width: 65px; height: 65px; font-size: 18px; }
+            .score-big { font-size: 50px; }
+            .controls-wrapper { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">GPL LIVE Score</div>
+
+<div class="container">
+    <div class="stadium-card" id="setup-box">
+        <h5 class="text-center mb-4" style="color: var(--neon-blue)">GPL Cricket Live Score</h5>
+        <div class="row g-3">
+            <div class="col-6"><input id="team1" class="form-pro form-control" placeholder="TEAM 1"></div>
+            <div class="col-6"><input id="team2" class="form-pro form-control" placeholder="TEAM 2"></div>
+            <div class="col-12"><input id="overs" type="number" class="form-pro form-control" placeholder="TOTAL OVERS"></div>
+            <button onclick="startMatch()" class="btn btn-info w-100 mt-4 fw-bold py-3" style="border-radius: 15px; box-shadow: 0 0 20px rgba(0, 210, 255, 0.4)">Start Match</button>
+        </div>
+    </div>
+
+    <div class="stadium-card text-center">
+        <h6 id="match-title" class="text-white-50 text-uppercase ls-2">Waiting for Toss</h6>
+        <div class="score-big" id="score-display">00<span style="font-size: 30px; color: var(--neon-red)">/</span>0</div>
+        <div id="over-info" class="text-info fw-bold" style="letter-spacing: 2px;">OVERS: 0.0</div>
+        <div id="status-bar" class="mt-3 badge bg-dark px-3 py-2 text-white-50 border border-secondary">N/A</div>
+        <div id="winner-display" class="winner-anim"></div>
+    </div>
+
+    <div class="controls-wrapper">
+        <button onclick="addBall(0)" class="btn-pro btn-dot">0</button>
+        <button onclick="addBall(1)" class="btn-pro btn-run">1</button>
+        <button onclick="addBall(2)" class="btn-pro btn-run">2</button>
+        <button onclick="addBall(3)" class="btn-pro btn-run">3</button>
+        <button onclick="addBall(4)" class="btn-pro btn-boundary">4</button>
+        <button onclick="addBall(6)" class="btn-pro btn-boundary">6</button>
+        <button onclick="addBall('W')" class="btn-pro btn-out">W</button>
+        <button onclick="addBall('WD')" class="btn-pro btn-extra">WD</button>
+        <button onclick="addBall('NB')" class="btn-pro btn-extra">NB</button>
+    </div>
+
+    <div class="stadium-card p-3">
+        <p class="text-white-50 small mb-2 text-center text-uppercase">Timeline Highlights</p>
+        <div id="timeline" class="d-flex flex-wrap justify-content-center"></div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button onclick="location.reload()" class="btn btn-sm text-secondary border-0 text-uppercase fw-bold" style="letter-spacing: 1px;">↺ Reset Tournament</button>
+    </div>
+</div>
+
+<script>
+let team1, team2, maxOvers;
+let innings = 1, totalRuns = 0, totalWkts = 0, totalBalls = 0, targetScore = 0;
+let matchHistory = [];
+
+function startMatch(){
+    const t1 = document.getElementById("team1");
+    const t2 = document.getElementById("team2");
+    const ov = document.getElementById("overs");
+
+    if(!t1.value || !t2.value || !ov.value){
+        [t1, t2, ov].forEach(e => e.style.borderColor = e.value ? "" : "var(--neon-red)");
+        return;
+    }
+
+    team1 = t1.value;
+    team2 = t2.value;
+    maxOvers = parseInt(ov.value);
+
+    document.getElementById("setup-box").style.display = "none";
+    document.getElementById("match-title").innerHTML = `${team1} <span class="text-info">vs</span> ${team2}`;
+    document.getElementById("status-bar").innerHTML = `${team1} IS BATTING`;
+    updateDisplay();
+}
+
+function addBall(val){
+    if(!team1 || document.getElementById("winner-display").innerHTML != "") return;
+
+    if(val === "WD" || val === "NB"){
+        totalRuns++;
+        matchHistory.push(val);
+        checkInnings();
+    } else {
+        totalBalls++; // 0 button will trigger this, increasing ball count
+        if(val === "W") totalWkts++;
+        else totalRuns += val; // val is 0, so no runs added
+        matchHistory.push(val);
+        checkInnings();
+    }
+    updateDisplay();
+}
+
+function checkInnings(){
+    let currentOverCount = totalBalls / 6;
+
+    if(innings == 2 && totalRuns >= targetScore){
+        finishMatch();
+        return;
+    }
+
+    if(totalWkts == 10 || currentOverCount >= maxOvers){
+        if(innings == 1){
+            targetScore = totalRuns + 1;
+            innings = 2;
+            totalRuns = 0; totalWkts = 0; totalBalls = 0; matchHistory = [];
+            document.getElementById("status-bar").innerHTML = `TARGET: ${targetScore} (BATTING: ${team2})`;
+        } else {
+            finishMatch();
+        }
+    }
+}
+
+function updateDisplay(){
+    let ovText = Math.floor(totalBalls/6) + "." + (totalBalls%6);
+    document.getElementById("score-display").innerHTML = `${totalRuns}<span style="font-size: 30px; color: var(--neon-red)">/</span>${totalWkts}`;
+    document.getElementById("over-info").innerHTML = `OVERS: ${ovText} / ${maxOvers}`;
+
+    let logHtml = "";
+    matchHistory.slice(-9).forEach(b => {
+        let cls = "";
+        if(b === 0) cls = "dot-ball";
+        else if(b == "W") cls = "w-ball";
+        else if(b == 4 || b == 6) cls = "b-ball";
+        logHtml += `<div class="ball-log ${cls}">${b}</div>`;
+    });
+    document.getElementById("timeline").innerHTML = logHtml;
+}
+
+function finishMatch(){
+    let victor = (totalRuns >= targetScore) ? team2 : team1;
+    document.getElementById("winner-display").innerHTML = `🏆 ${victor} Winner !`;
+    document.getElementById("status-bar").innerHTML = "MATCH Winner";
+    document.getElementById("status-bar").className = "mt-3 badge bg-danger px-3 py-2";
+}
+</script>
+
+</body>
+</html>
