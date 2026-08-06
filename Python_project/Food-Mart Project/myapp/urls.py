@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from myapp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,7 +24,7 @@ urlpatterns = [
     path("address",address,name="address"),
     path("forgotpass",forgotpass,name="forgotpass"),
     path("sendmail-password",sendmail_password,name="sendmail-password"),
-    path("passwordset",passwordset,name="passwordset")
+    path("passwordset",passwordset,name="passwordset"),
   
     
 
